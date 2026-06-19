@@ -1,0 +1,151 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { getT } from '../../../i18n/utils';
+
+const t = getT('en');
+const app = t.apps.autovolume;
+---
+<Base
+  title="AutoVolume · macOS Network Volume Auto-Remount"
+  description={app.tagline}
+  lang="en"
+>
+
+<section class="hero sec-dark" id="top">
+  <div class="wrap">
+    <p class="eyebrow">AutoVolume · v{app.version}</p>
+    <h1>Set it up.<br>Forget about it.</h1>
+    <p class="lead">{app.desc}</p>
+    <p class="hero-sub"><img src="/images/icon-macos.svg" class="pi" alt="" width="17" height="17">macOS Desktop App</p>
+    <div class="hero-device" style="padding-bottom:60px">
+      <div class="app-showcase" style="transform:translateY(40px)">
+        <img src="/images/autovolume-icon.png" alt="AutoVolume icon" class="showcase-icon" width="140" height="140" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec-dark" id="features">
+  <div class="wrap">
+    <div class="spot-head reveal">
+      <p class="eyebrow">Why AutoVolume</p>
+      <h2>Silent. Self-healing. Lightweight.</h2>
+      <p class="lead">Network recovers, volumes remount — automatically, without a single notification.</p>
+    </div>
+
+    <div class="spot reveal">
+      <div class="spot-text">
+        <h2>Four Protocols.<br>Full Coverage.</h2>
+        <p class="lead">Supports SMB, WebDAV, AFP, and NFS — covering all major NAS brands, routers with USB drives, corporate file servers, and WebDAV cloud storage.</p>
+      </div>
+      <div class="spot-visual">
+        <div class="app-showcase">
+          <img src="/images/autovolume-icon.png" alt="AutoVolume" class="showcase-icon" width="140" height="140" loading="lazy" />
+        </div>
+      </div>
+    </div>
+
+    <div class="spot rev reveal">
+      <div class="spot-text">
+        <h2>Auto Reconnect.<br>Zero Interruptions.</h2>
+        <p class="lead">Detects server recovery after network interruption and silently remounts. No manual Finder navigation. No annoying popups.</p>
+      </div>
+      <div class="spot-visual">
+        <div class="app-showcase">
+          <img src="/images/autovolume-icon.png" alt="AutoVolume" class="showcase-icon" width="140" height="140" loading="lazy" />
+        </div>
+      </div>
+    </div>
+
+    <div class="spot reveal">
+      <div class="spot-text">
+        <h2>Subdirectory Mount.<br>Precise Targeting.</h2>
+        <p class="lead">Mount a specific subdirectory like smb://nas.local/share/tools — only what you need, not the entire share.</p>
+      </div>
+      <div class="spot-visual">
+        <div class="app-showcase">
+          <img src="/images/autovolume-icon.png" alt="AutoVolume" class="showcase-icon" width="140" height="140" loading="lazy" />
+        </div>
+      </div>
+    </div>
+
+    <div class="spot rev reveal">
+      <div class="spot-text">
+        <h2>Local Encrypted Storage.<br>No Keychain Required.</h2>
+        <p class="lead">Passwords stored in a local encrypted file — no macOS Keychain dependency, better compatibility with VPNs and complex network setups.</p>
+      </div>
+      <div class="spot-visual">
+        <div class="privacy-gfx">🔒</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec-light">
+  <div class="wrap">
+    <div class="spot-head reveal">
+      <p class="eyebrow">All Features</p>
+      <h2>Lightweight but complete</h2>
+    </div>
+    <div class="grid">
+      {app.features.map(f => (
+        <div class="cell reveal">
+          <div class="cell-ico">{f.icon}</div>
+          <h3>{f.title}</h3>
+          <p>{f.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="sec-darker" id="platforms">
+  <div class="wrap">
+    <div class="spot-head reveal">
+      <p class="eyebrow">Platform</p>
+      <h2>Built for macOS</h2>
+    </div>
+    <div class="plats" style="grid-template-columns:1fr">
+      <div class="plat reveal" style="max-width:560px;margin:0 auto">
+        <span class="plat-tag">macOS</span>
+        <h3>Menu Bar Utility</h3>
+        <ul>
+          <li>Lives in menu bar, never interrupts your workflow</li>
+          <li>SMB / WebDAV / AFP / NFS protocol support</li>
+          <li>Silent auto-reconnect, no user intervention needed</li>
+          <li>Bilingual UI — switches with system language</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec-light get" id="get">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow">Get AutoVolume</p>
+      <h2>Download AutoVolume</h2>
+      <p class="lead">Free on GitHub. MIT license. v{app.version}.</p>
+    </div>
+    <div class="get-cards" style="grid-template-columns:1fr;max-width:320px;margin-left:auto;margin-right:auto">
+      <div class="get-card reveal">
+        <div class="store-ph">🐙</div>
+        <h3>GitHub Releases</h3>
+        <p>Download the latest DMG and drag to Applications. Current version: v{app.version}.</p>
+        <a class="btn btn-primary" href={app.downloadUrl} target="_blank" rel="noopener">{app.downloadLabel}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var els = document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return;}
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+  },{threshold:.15});
+  els.forEach(function(e){io.observe(e)});
+})();
+</script>
+</Base>

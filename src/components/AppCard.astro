@@ -1,0 +1,24 @@
+---
+// src/components/AppCard.astro
+interface Props {
+  name: string;
+  nameEn: string;
+  desc: string;
+  platform: readonly string[];
+  icon: string;
+  href: string;
+}
+const { name, nameEn, desc, platform, icon, href } = Astro.props;
+---
+<a class="app-card" href={href}>
+  <img class="app-card-icon" src={icon} alt={`${name} 图标`} width="56" height="56" loading="lazy" />
+  <div class="app-card-name">
+    {name}
+    {nameEn !== name && <span>{nameEn}</span>}
+  </div>
+  <div class="app-card-badges">
+    {platform.map(p => <span class="badge">{p}</span>)}
+  </div>
+  <p class="app-card-desc">{desc}</p>
+  <span class="app-card-cta">了解详情 →</span>
+</a>

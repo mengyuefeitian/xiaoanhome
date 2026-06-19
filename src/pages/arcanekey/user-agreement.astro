@@ -1,0 +1,11 @@
+---
+import Legal from '../../layouts/Legal.astro';
+import { getEntry, render } from 'astro:content';
+
+const entry = await getEntry('legal', 'arcanekey-user-agreement');
+if (!entry) throw new Error('Legal entry not found: arcanekey-user-agreement');
+const { Content } = await render(entry);
+---
+<Legal title="星枢令 ArcaneKey 用户协议" date="2026年6月18日">
+  <Content />
+</Legal>

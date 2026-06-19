@@ -1,0 +1,47 @@
+---
+// src/layouts/Base.astro
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+import { getLangUrl } from '../i18n/utils';
+import type { Lang } from '../i18n/utils';
+
+interface Props {
+  title: string;
+  description: string;
+  lang: Lang;
+}
+
+const { title, description, lang } = Astro.props;
+const pathname = Astro.url.pathname;
+const canonical = `https://www.xiaoanhome.xyz${pathname}`;
+const altLang = lang === 'zh' ? 'en' : 'zh';
+const altUrl = `https://www.xiaoanhome.xyz${getLangUrl(pathname, altLang)}`;
+const htmlLang = lang === 'zh' ? 'zh-CN' : 'en';
+---
+<!DOCTYPE html>
+<html lang={htmlLang}>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#fbfbfd" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+  <link rel="alternate" hreflang={htmlLang} href={canonical} />
+  <link rel="alternate" hreflang={altLang === 'zh' ? 'zh-CN' : 'en'} href={altUrl} />
+  <link rel="alternate" hreflang="x-default" href={`https://www.xiaoanhome.xyz${getLangUrl(pathname, 'zh')}`} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:site_name" content="小安之家" />
+</head>
+<body>
+  <Nav lang={lang} currentPath={pathname} />
+  <main>
+    <slot />
+  </main>
+  <Footer lang={lang} />
+</body>
+</html>

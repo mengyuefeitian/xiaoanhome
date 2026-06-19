@@ -1,0 +1,163 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { getT } from '../../../i18n/utils';
+
+const t = getT('en');
+const app = t.apps.lumibox;
+---
+<Base
+  title="LumiBox · NAS Photo Sync & Browser"
+  description={app.tagline}
+  lang="en"
+>
+
+<section class="hero sec-dark" id="top">
+  <div class="wrap">
+    <p class="eyebrow">LumiBox</p>
+    <h1>Your photos.<br>Between your devices.</h1>
+    <p class="lead">{app.desc}</p>
+    <p class="hero-sub"><img src="/images/icon-harmonyos.svg" class="pi" alt="" width="22" height="22" style="width:22px;height:22px">HarmonyOS App</p>
+    <div class="hero-device" style="padding-bottom:60px">
+      <div class="app-showcase" style="transform:translateY(40px)">
+        <img src="/images/lumibox-icon.png" alt="LumiBox icon" class="showcase-icon" width="140" height="140" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec-dark" id="features">
+  <div class="wrap">
+    <div class="spot-head reveal">
+      <p class="eyebrow">Why LumiBox</p>
+      <h2>Backup. Browse. Done.</h2>
+      <p class="lead">Seamlessly connect your Synology NAS with your Huawei phone gallery. Your photo data stays entirely under your control.</p>
+    </div>
+
+    <div class="spot reveal">
+      <div class="spot-text">
+        <h2>Delta Sync.<br>Save Time & Data.</h2>
+        <p class="lead">Only transfers files not yet on your NAS. Resumable mid-transfer. No redundant uploads — real savings in time and bandwidth.</p>
+      </div>
+      <div class="spot-visual">
+        <div class="app-showcase">
+          <img src="/images/lumibox-icon.png" alt="LumiBox" class="showcase-icon" width="140" height="140" loading="lazy" />
+        </div>
+      </div>
+    </div>
+
+    <div class="spot rev reveal">
+      <div class="spot-text">
+        <h2>Photo Timeline.<br>Complete & Familiar.</h2>
+        <p class="lead">Browse all NAS photos by year, month, and day. Folder structure fully preserved — exactly like your phone gallery.</p>
+      </div>
+      <div class="spot-visual">
+        <div class="app-showcase">
+          <img src="/images/lumibox-icon.png" alt="LumiBox" class="showcase-icon" width="140" height="140" loading="lazy" />
+        </div>
+      </div>
+    </div>
+
+    <div class="spot reveal">
+      <div class="spot-text">
+        <h2>HDR Vivid Preview.<br>Huawei-exclusive.</h2>
+        <p class="lead">Plays media with HDR Vivid rendering on supported Huawei devices. Full support for Huawei Live Photo upload, sync, and playback.</p>
+      </div>
+      <div class="spot-visual">
+        <div class="app-showcase">
+          <img src="/images/lumibox-icon.png" alt="LumiBox" class="showcase-icon" width="140" height="140" loading="lazy" />
+        </div>
+      </div>
+    </div>
+
+    <div class="spot rev reveal">
+      <div class="spot-text">
+        <h2>Your Data.<br>Your Control.</h2>
+        <p class="lead">Photos go directly to your Synology NAS — never through third-party cloud services. Visual cache management, one-tap clear.</p>
+      </div>
+      <div class="spot-visual">
+        <div class="privacy-gfx">📦</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec-light">
+  <div class="wrap">
+    <div class="spot-head reveal">
+      <p class="eyebrow">Features</p>
+      <h2>Thoughtful in every detail</h2>
+    </div>
+    <div class="grid">
+      {app.features.map(f => (
+        <div class="cell reveal">
+          <div class="cell-ico">{f.icon}</div>
+          <h3>{f.title}</h3>
+          <p>{f.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="sec-darker" id="platforms">
+  <div class="wrap">
+    <div class="spot-head reveal">
+      <p class="eyebrow">Platform</p>
+      <h2>Built for Huawei</h2>
+    </div>
+    <div class="plats" style="grid-template-columns:1fr">
+      <div class="plat reveal" style="max-width:560px;margin:0 auto">
+        <span class="plat-tag">HarmonyOS</span>
+        <h3>Native HarmonyOS App</h3>
+        <ul>
+          <li>ArkTS native development, HarmonyOS design language</li>
+          <li>HDR Vivid rendering, full Live Photo support</li>
+          <li>Direct Synology NAS WebDAV connection</li>
+          <li>Resumable uploads, incremental delta sync</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec-light get" id="get">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow">Get LumiBox</p>
+      <h2>Download LumiBox</h2>
+      <p class="lead">Free on Huawei AppGallery.</p>
+    </div>
+    <div class="get-cards get-cards-2">
+      <div class="get-card reveal">
+        <img src="/images/icon-appgallery.svg" alt="" width="80" height="80" loading="lazy">
+        <h3>Huawei AppGallery</h3>
+        <p>Search "LumiBox" on your HarmonyOS device or click below.</p>
+        <a class="btn btn-primary" href="https://appgallery.huawei.com/" target="_blank" rel="noopener">App Gallery</a>
+      </div>
+      <div class="get-card reveal">
+        <div class="store-ph">🔒</div>
+        <h3>Privacy First</h3>
+        <p>Photos connect directly to your NAS — never through any third-party server.</p>
+        <a class="btn btn-light" style="border:1px solid rgba(0,0,0,.1)" href="/lumibox/privacy-policy">Privacy Policy</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="legal-links">
+  <a href="/lumibox/privacy-policy">Privacy Policy</a>
+  {' · '}
+  <a href="/lumibox/user-agreement">User Agreement</a>
+</div>
+
+<script>
+(function(){
+  var els = document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return;}
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+  },{threshold:.15});
+  els.forEach(function(e){io.observe(e)});
+})();
+</script>
+</Base>

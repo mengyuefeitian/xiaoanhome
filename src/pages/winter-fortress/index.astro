@@ -1,0 +1,151 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getT } from '../../i18n/utils';
+
+const t = getT('zh');
+const app = t.apps.winterFortress;
+---
+<Base
+  title="无尽冬日活动 · 联盟活动报名管理小程序"
+  description={app.tagline}
+  lang="zh"
+>
+
+<section class="hero sec-dark" id="top">
+  <div class="wrap">
+    <p class="eyebrow">无尽冬日活动</p>
+    <h1>五种活动<br>一站搞定</h1>
+    <p class="lead">{app.desc}</p>
+    <p class="hero-sub"><img src="/images/icon-wechat.svg" class="pi" alt="" width="17" height="17">微信小程序</p>
+    <div class="hero-device" style="padding-bottom:60px">
+      <div class="app-showcase" style="transform:translateY(40px)">
+        <img src="/images/winter-fortress-logo.svg" alt="无尽冬日活动图标" class="showcase-icon" width="140" height="140" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec-dark" id="features">
+  <div class="wrap">
+    <div class="spot-head reveal">
+      <p class="eyebrow">解决联盟活动管理的痛点</p>
+      <h2>告别群消息统计</h2>
+      <p class="lead">支持完整权限申请与审核流程，让联盟管理员从繁杂的群消息统计中解放出来。</p>
+    </div>
+
+    <div class="spot reveal">
+      <div class="spot-text">
+        <h2>五类活动<br>统一管理</h2>
+        <p class="lead">堡垒、兵工厂、峡谷会战、国战、官职五类活动统一在一个小程序管理，满员自动置灰，防止重复报名，实时展示状态。</p>
+      </div>
+      <div class="spot-visual">
+        <div class="app-showcase">
+          <img src="/images/winter-fortress-logo.svg" alt="无尽冬日" class="showcase-icon" width="140" height="140" loading="lazy" />
+        </div>
+      </div>
+    </div>
+
+    <div class="spot rev reveal">
+      <div class="spot-text">
+        <h2>多级角色权限<br>在线申请审核</h2>
+        <p class="lead">普通用户、盟管、区管、超级管理员四级角色，在线申请审核一键生效，权限清晰，管理高效。</p>
+      </div>
+      <div class="spot-visual">
+        <div class="app-showcase">
+          <img src="/images/winter-fortress-logo.svg" alt="无尽冬日" class="showcase-icon" width="140" height="140" loading="lazy" />
+        </div>
+      </div>
+    </div>
+
+    <div class="spot reveal">
+      <div class="spot-text">
+        <h2>数据统计<br>快速分享</h2>
+        <p class="lead">管理员可查看按联盟统计的报名数据，支持截图保存到相册快速分享给成员，省去汇总烦恼。</p>
+      </div>
+      <div class="spot-visual">
+        <div class="app-showcase">
+          <img src="/images/winter-fortress-logo.svg" alt="无尽冬日" class="showcase-icon" width="140" height="140" loading="lazy" />
+        </div>
+      </div>
+    </div>
+
+    <div class="spot rev reveal">
+      <div class="spot-text">
+        <h2>自动清理<br>始终整洁</h2>
+        <p class="lead">定时清理过期数据和失效时间段，数据库始终保持整洁可用，无需管理员手动维护。</p>
+      </div>
+      <div class="spot-visual">
+        <div class="privacy-gfx">🧹</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec-light">
+  <div class="wrap">
+    <div class="spot-head reveal">
+      <p class="eyebrow">全部功能</p>
+      <h2>为游戏联盟量身打造</h2>
+    </div>
+    <div class="grid">
+      {app.features.map(f => (
+        <div class="cell reveal">
+          <div class="cell-ico">{f.icon}</div>
+          <h3>{f.title}</h3>
+          <p>{f.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="sec-darker" id="platforms">
+  <div class="wrap">
+    <div class="spot-head reveal">
+      <p class="eyebrow">平台</p>
+      <h2>微信小程序，无需安装</h2>
+    </div>
+    <div class="plats" style="grid-template-columns:1fr">
+      <div class="plat reveal" style="max-width:560px;margin:0 auto">
+        <span class="plat-tag">微信小程序</span>
+        <h3>免安装即用</h3>
+        <ul>
+          <li>微信内直接打开，无需下载安装</li>
+          <li>支持五种联盟活动类型统一管理</li>
+          <li>四级权限体系，在线申请审核</li>
+          <li>多分区配置，每区最多 12 个联盟</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec-light get" id="get">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow">立即使用</p>
+      <h2>微信扫码进入</h2>
+      <p class="lead">无需安装，微信扫码即可使用。</p>
+    </div>
+    <div class="get-cards" style="grid-template-columns:1fr;max-width:320px;margin-left:auto;margin-right:auto">
+      <div class="get-card reveal">
+        <img class="qr-real" src="/images/winter-fortress-qrcode.jpg" alt="无尽冬日活动微信小程序二维码" width="120" height="120" loading="lazy" />
+        <h3>微信小程序</h3>
+        <p>微信扫描二维码，或搜索「无尽冬日活动」，免安装即用。</p>
+        <span class="btn btn-primary" style="cursor:default">扫码进入</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var els = document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return;}
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+  },{threshold:.15});
+  els.forEach(function(e){io.observe(e)});
+})();
+</script>
+</Base>

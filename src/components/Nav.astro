@@ -1,0 +1,59 @@
+---
+// src/components/Nav.astro
+import { getT, getLangUrl } from '../i18n/utils';
+import type { Lang } from '../i18n/utils';
+
+interface Props {
+  lang: Lang;
+  currentPath: string;
+}
+
+const { lang, currentPath } = Astro.props;
+const t = getT(lang);
+const prefix = lang === 'en' ? '/en' : '';
+
+const links = [
+  { label: t.nav.home,           href: lang === 'en' ? '/en' : '/' },
+  { label: t.nav.arcanekey,      href: `${prefix}/arcanekey` },
+  { label: t.nav.winterFortress, href: `${prefix}/winter-fortress` },
+  { label: t.nav.lumibox,        href: `${prefix}/lumibox` },
+  { label: t.nav.autovolume,     href: `${prefix}/autovolume` },
+  { label: t.nav.autoprint,      href: `${prefix}/autoprint` },
+];
+
+const langTarget = getLangUrl(currentPath, lang === 'zh' ? 'en' : 'zh');
+---
+<nav class="nav" aria-label="主导航">
+  <div class="nav-inner">
+    <a class="nav-brand" href={lang === 'en' ? '/en' : '/'}>
+      <span class="nav-logo-icon">安</span>
+      {lang === 'zh' ? '小安之家' : 'XiaoAn Home'}
+    </a>
+
+    <ul class="nav-links" id="nav-links" role="list">
+      {links.map(({ label, href }) => (
+        <li>
+          <a
+            href={href}
+            aria-current={currentPath === href || currentPath === href + '/' ? 'page' : undefined}
+          >
+            {label}
+          </a>
+        </li>
+      ))}
+      <li>
+        <a href={langTarget} class="nav-cta">{t.nav.langSwitch}</a>
+      </li>
+    </ul>
+
+    <button class="nav-hamburger" aria-label="菜单" id="nav-toggle">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<script>
+  const toggle = document.getElementById('nav-toggle')!;
+  const links  = document.getElementById('nav-links')!;
+  toggle.addEventListener('click', () => links.classList.toggle('open'));
+</script>

@@ -1,0 +1,151 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { getT } from '../../../i18n/utils';
+
+const t = getT('en');
+const app = t.apps.autoprint;
+---
+<Base
+  title="AutoPrint · macOS Automatic Folder Print Queue"
+  description={app.tagline}
+  lang="en"
+>
+
+<section class="hero sec-dark" id="top">
+  <div class="wrap">
+    <p class="eyebrow">AutoPrint</p>
+    <h1>Drop files in.<br>They print.</h1>
+    <p class="lead">{app.desc}</p>
+    <p class="hero-sub"><img src="/images/icon-macos.svg" class="pi" alt="" width="17" height="17">macOS Desktop App</p>
+    <div class="hero-device" style="padding-bottom:60px">
+      <div class="app-showcase" style="transform:translateY(40px)">
+        <img src="/images/autoprint-icon.png" alt="AutoPrint icon" class="showcase-icon" width="140" height="140" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec-dark" id="features">
+  <div class="wrap">
+    <div class="spot-head reveal">
+      <p class="eyebrow">Why AutoPrint</p>
+      <h2>Configure once. Print forever.</h2>
+      <p class="lead">Place files in a watched folder, AutoPrint sends them to the printer automatically. No manual intervention needed.</p>
+    </div>
+
+    <div class="spot reveal">
+      <div class="spot-text">
+        <h2>Watch Folders.<br>Auto-trigger.</h2>
+        <p class="lead">Choose one or more local folders to monitor. New files trigger automatic print jobs — no need to open each file manually.</p>
+      </div>
+      <div class="spot-visual">
+        <div class="app-showcase">
+          <img src="/images/autoprint-icon.png" alt="AutoPrint" class="showcase-icon" width="140" height="140" loading="lazy" />
+        </div>
+      </div>
+    </div>
+
+    <div class="spot rev reveal">
+      <div class="spot-text">
+        <h2>Flexible Printer Selection.<br>Multi-scenario.</h2>
+        <p class="lead">Lists all system printers. Assign different printers to different folders — perfect for offices, classrooms, or home setups with multiple devices.</p>
+      </div>
+      <div class="spot-visual">
+        <div class="app-showcase">
+          <img src="/images/autoprint-icon.png" alt="AutoPrint" class="showcase-icon" width="140" height="140" loading="lazy" />
+        </div>
+      </div>
+    </div>
+
+    <div class="spot reveal">
+      <div class="spot-text">
+        <h2>Office Conversion.<br>Multi-Format.</h2>
+        <p class="lead">Handles PDF, images, and Office documents. Choose LibreOffice Headless, Microsoft Word, or Pages for document-to-PDF conversion before printing.</p>
+      </div>
+      <div class="spot-visual">
+        <div class="app-showcase">
+          <img src="/images/autoprint-icon.png" alt="AutoPrint" class="showcase-icon" width="140" height="140" loading="lazy" />
+        </div>
+      </div>
+    </div>
+
+    <div class="spot rev reveal">
+      <div class="spot-text">
+        <h2>Print Log.<br>Full Audit Trail.</h2>
+        <p class="lead">Records file name and completion time for every print job. Know exactly what printed, when — perfect for small offices needing accountability.</p>
+      </div>
+      <div class="spot-visual">
+        <div class="privacy-gfx">📜</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec-light">
+  <div class="wrap">
+    <div class="spot-head reveal">
+      <p class="eyebrow">All Features</p>
+      <h2>The small office print solution</h2>
+    </div>
+    <div class="grid">
+      {app.features.map(f => (
+        <div class="cell reveal">
+          <div class="cell-ico">{f.icon}</div>
+          <h3>{f.title}</h3>
+          <p>{f.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="sec-darker" id="platforms">
+  <div class="wrap">
+    <div class="spot-head reveal">
+      <p class="eyebrow">Platform</p>
+      <h2>Built for macOS</h2>
+    </div>
+    <div class="plats" style="grid-template-columns:1fr">
+      <div class="plat reveal" style="max-width:560px;margin:0 auto">
+        <span class="plat-tag">macOS</span>
+        <h3>macOS Desktop App</h3>
+        <ul>
+          <li>Watch local folders, auto-trigger print jobs</li>
+          <li>PDF, image, and Office document support</li>
+          <li>Optional document conversion engine</li>
+          <li>Complete print log with timestamp</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec-light get" id="get">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow">Get AutoPrint</p>
+      <h2>Download AutoPrint</h2>
+      <p class="lead">Free and open source on GitHub.</p>
+    </div>
+    <div class="get-cards" style="grid-template-columns:1fr;max-width:320px;margin-left:auto;margin-right:auto">
+      <div class="get-card reveal">
+        <div class="store-ph">🐙</div>
+        <h3>GitHub</h3>
+        <p>Browse source code or download the latest release. Free and open source.</p>
+        <a class="btn btn-primary" href={app.downloadUrl} target="_blank" rel="noopener">{app.downloadLabel}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var els = document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return;}
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+  },{threshold:.15});
+  els.forEach(function(e){io.observe(e)});
+})();
+</script>
+</Base>

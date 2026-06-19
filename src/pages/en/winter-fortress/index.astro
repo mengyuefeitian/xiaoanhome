@@ -1,0 +1,151 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { getT } from '../../../i18n/utils';
+
+const t = getT('en');
+const app = t.apps.winterFortress;
+---
+<Base
+  title="Winter Fortress Activity · Alliance Registration Mini Program"
+  description={app.tagline}
+  lang="en"
+>
+
+<section class="hero sec-dark" id="top">
+  <div class="wrap">
+    <p class="eyebrow">Winter Fortress Activity</p>
+    <h1>Five activity types.<br>One mini program.</h1>
+    <p class="lead">{app.desc}</p>
+    <p class="hero-sub"><img src="/images/icon-wechat.svg" class="pi" alt="" width="17" height="17">WeChat Mini Program</p>
+    <div class="hero-device" style="padding-bottom:60px">
+      <div class="app-showcase" style="transform:translateY(40px)">
+        <img src="/images/winter-fortress-logo.svg" alt="Winter Fortress Activity icon" class="showcase-icon" width="140" height="140" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec-dark" id="features">
+  <div class="wrap">
+    <div class="spot-head reveal">
+      <p class="eyebrow">Solving alliance management chaos</p>
+      <h2>Free your admin from group messages</h2>
+      <p class="lead">Complete role-based permission workflow. Alliance admins spend their time playing, not counting messages.</p>
+    </div>
+
+    <div class="spot reveal">
+      <div class="spot-text">
+        <h2>Five Activity Types.<br>One Place.</h2>
+        <p class="lead">Fortress, Arsenal, Canyon Battle, Nation War, and Position — all managed in one mini program. Auto-disable when full, duplicate prevention, real-time status.</p>
+      </div>
+      <div class="spot-visual">
+        <div class="app-showcase">
+          <img src="/images/winter-fortress-logo.svg" alt="Winter Fortress Activity" class="showcase-icon" width="140" height="140" loading="lazy" />
+        </div>
+      </div>
+    </div>
+
+    <div class="spot rev reveal">
+      <div class="spot-text">
+        <h2>Role-Based Access.<br>Online Approval.</h2>
+        <p class="lead">Four roles: Member, Alliance Admin, Zone Admin, Super Admin. Online application and one-tap approval — clear permissions, efficient management.</p>
+      </div>
+      <div class="spot-visual">
+        <div class="app-showcase">
+          <img src="/images/winter-fortress-logo.svg" alt="Winter Fortress Activity" class="showcase-icon" width="140" height="140" loading="lazy" />
+        </div>
+      </div>
+    </div>
+
+    <div class="spot reveal">
+      <div class="spot-text">
+        <h2>Stats at a Glance.<br>Share Instantly.</h2>
+        <p class="lead">Admins view per-alliance registration stats and save screenshots directly to the album for instant sharing. No more manual tallying.</p>
+      </div>
+      <div class="spot-visual">
+        <div class="app-showcase">
+          <img src="/images/winter-fortress-logo.svg" alt="Winter Fortress Activity" class="showcase-icon" width="140" height="140" loading="lazy" />
+        </div>
+      </div>
+    </div>
+
+    <div class="spot rev reveal">
+      <div class="spot-text">
+        <h2>Auto Cleanup.<br>Always Tidy.</h2>
+        <p class="lead">Scheduled cleanup of expired data and invalid time slots keeps the database clean automatically — no manual maintenance required.</p>
+      </div>
+      <div class="spot-visual">
+        <div class="privacy-gfx">🧹</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec-light">
+  <div class="wrap">
+    <div class="spot-head reveal">
+      <p class="eyebrow">All Features</p>
+      <h2>Built for game alliances</h2>
+    </div>
+    <div class="grid">
+      {app.features.map(f => (
+        <div class="cell reveal">
+          <div class="cell-ico">{f.icon}</div>
+          <h3>{f.title}</h3>
+          <p>{f.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="sec-darker" id="platforms">
+  <div class="wrap">
+    <div class="spot-head reveal">
+      <p class="eyebrow">Platform</p>
+      <h2>WeChat Mini Program. No install.</h2>
+    </div>
+    <div class="plats" style="grid-template-columns:1fr">
+      <div class="plat reveal" style="max-width:560px;margin:0 auto">
+        <span class="plat-tag">WeChat Mini Program</span>
+        <h3>Open Inside WeChat</h3>
+        <ul>
+          <li>Open directly in WeChat, no download needed</li>
+          <li>Manage five alliance activity types in one place</li>
+          <li>Four-tier permission system, online approval workflow</li>
+          <li>Multi-zone config, up to 12 alliances per zone</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec-light get" id="get">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow">Get Started</p>
+      <h2>Scan to Enter</h2>
+      <p class="lead">No installation — open inside WeChat.</p>
+    </div>
+    <div class="get-cards" style="grid-template-columns:1fr;max-width:320px;margin-left:auto;margin-right:auto">
+      <div class="get-card reveal">
+        <img class="qr-real" src="/images/winter-fortress-qrcode.jpg" alt="Winter Fortress Activity WeChat Mini Program QR code" width="120" height="120" loading="lazy" />
+        <h3>WeChat Mini Program</h3>
+        <p>Scan the QR code in WeChat or search "无尽冬日活动" — no installation needed.</p>
+        <span class="btn btn-primary" style="cursor:default">Scan to Enter</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var els = document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return;}
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+  },{threshold:.15});
+  els.forEach(function(e){io.observe(e)});
+})();
+</script>
+</Base>

@@ -1,0 +1,39 @@
+---
+// src/layouts/Legal.astro
+// Legal pages: Chinese-only, no language switcher, minimal layout
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  date: string;
+}
+
+const { title, date } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex" />
+  <title>{title} · 小安之家</title>
+  <meta name="theme-color" content="#0d1117" />
+</head>
+<body>
+  <header style="background:var(--bg-2);border-bottom:1px solid var(--border);padding:16px 24px;display:flex;align-items:center;gap:16px;">
+    <a href="/" style="color:var(--text-2);font-size:0.9rem;">← 返回首页</a>
+    <span style="color:var(--border)">|</span>
+    <span style="color:var(--text-2);font-size:0.9rem;">小安之家</span>
+  </header>
+  <div class="legal-content">
+    <h1>{title}</h1>
+    <p class="legal-meta">生效日期：{date}</p>
+    <hr class="divider" style="margin-bottom:32px;" />
+    <slot />
+  </div>
+  <footer class="footer">
+    <div class="footer-row">京ICP备2026021298号-3 · 豫公网安备41018202001348号</div>
+    <div class="footer-row">© 2026 小安工作室 · <a href="mailto:mengyuefeitian@live.cn">mengyuefeitian@live.cn</a></div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,244 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { getT } from '../../../i18n/utils';
+
+const t = getT('en');
+const app = t.apps.arcanekey;
+---
+<Base
+  title="ArcaneKey · Dual-Platform TOTP Authenticator"
+  description={app.tagline}
+  lang="en"
+>
+
+<!-- ===== Hero (dark) ===== -->
+<section class="hero sec-dark" id="top">
+  <div class="wrap">
+    <p class="eyebrow">ArcaneKey</p>
+    <h1>Your keys.<br>Your device only.</h1>
+    <p class="lead">Cross-platform TOTP authenticator. Codes refresh every 30 seconds. Keys stored locally, never uploaded.</p>
+    <p class="hero-sub"><img src="/images/icon-harmonyos.svg" class="pi" alt="" width="22" height="22" style="width:22px;height:22px">HarmonyOS App · <img src="/images/icon-wechat.svg" class="pi" alt="" width="17" height="17">WeChat Mini Program</p>
+    <div class="hero-device">
+      <div class="device">
+        <div class="device-screen">
+          <div class="island"></div>
+          <div class="app-title">ArcaneKey</div>
+          <div class="tk">
+            <div class="tk-avatar" style="background:#24292f">G</div>
+            <div class="tk-info"><div class="tk-name">GitHub</div><div class="tk-acct">dev@arcanekey</div><div class="tk-code">428 913</div></div>
+            <div class="ring" style="--p:78%"></div>
+          </div>
+          <div class="tk">
+            <div class="tk-avatar" style="background:#4080D0">G</div>
+            <div class="tk-info"><div class="tk-name">Google</div><div class="tk-acct">me@gmail.com</div><div class="tk-code">051 264</div></div>
+            <div class="ring" style="--p:55%"></div>
+          </div>
+          <div class="tk">
+            <div class="tk-avatar" style="background:#EA4335">M</div>
+            <div class="tk-info"><div class="tk-name">Microsoft</div><div class="tk-acct">work@ms.com</div><div class="tk-code">739 016</div></div>
+            <div class="ring" style="--p:33%"></div>
+          </div>
+          <div class="app-nav"><span class="on"></span><span></span><span></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Feature spotlights (dark) ===== -->
+<section class="sec-dark" id="features">
+  <div class="wrap">
+    <div class="spot-head reveal">
+      <p class="eyebrow">Why ArcaneKey</p>
+      <h2>Simple. Secure. Beautiful.</h2>
+      <p class="lead">Turn the tedium of two-factor auth into something you actually enjoy.</p>
+    </div>
+
+    <div class="spot reveal">
+      <div class="spot-text">
+        <h2>TOTP Codes at<br>a Glance</h2>
+        <p class="lead">Standards-compliant TOTP refreshed every 30 seconds. Visual countdown ring, grouped digits — read at a glance, copy in a tap.</p>
+      </div>
+      <div class="spot-visual">
+        <div class="device" style="width:260px;flex-basis:260px">
+          <div class="device-screen" style="height:520px">
+            <div class="island"></div>
+            <div class="app-title">ArcaneKey</div>
+            <div class="tk"><div class="tk-avatar" style="background:#24292f">G</div>
+              <div class="tk-info"><div class="tk-name">GitHub</div><div class="tk-acct">dev@arcanekey</div><div class="tk-code">428 913</div></div>
+              <div class="ring" style="--p:78%"></div></div>
+            <div class="tk"><div class="tk-avatar" style="background:#EA4335">M</div>
+              <div class="tk-info"><div class="tk-name">Microsoft</div><div class="tk-acct">work@out.com</div><div class="tk-code">662 540</div></div>
+              <div class="ring" style="--p:60%"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="spot rev reveal">
+      <div class="spot-text">
+        <h2>Scan to Add</h2>
+        <p class="lead">Scan QR codes with your camera or recognize them from your photo album. One-tap import, no manual key entry. Base32 manual input also supported.</p>
+      </div>
+      <div class="spot-visual">
+        <div class="scanbox"><div class="scanline"></div></div>
+      </div>
+    </div>
+
+    <div class="spot reveal">
+      <div class="spot-text">
+        <h2>10 Themes.<br>Your Style.</h2>
+        <p class="lead">Ocean Blue, Royal Purple, Aurora Green and 7 more. Switch accent colors with one tap — your authenticator, your personality.</p>
+        <div class="swatches" id="swatches" style="margin-top:24px"></div>
+      </div>
+      <div class="spot-visual">
+        <div class="device" id="themeDevice" style="width:240px;flex-basis:240px">
+          <div class="device-screen" style="height:480px">
+            <div class="island"></div>
+            <div class="app-title">ArcaneKey</div>
+            <div class="tk"><div class="tk-avatar" style="background:var(--accent)">A</div>
+              <div class="tk-info"><div class="tk-name">Apple ID</div><div class="tk-acct">me@icloud.com</div><div class="tk-code">309 175</div></div>
+              <div class="ring" style="--p:66%"></div></div>
+            <div class="app-nav"><span class="on"></span><span></span><span></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="spot rev reveal" id="privacy">
+      <div class="spot-text">
+        <h2>Local-First.<br>Always Private.</h2>
+        <p class="lead">All TOTP secrets are stored only on your device — never uploaded to any server. Encrypted export for worry-free device migration.</p>
+        <a class="btn btn-ghost" href="/arcanekey/privacy-policy" style="margin-top:16px">Privacy Policy ›</a>
+      </div>
+      <div class="spot-visual"><div class="privacy-gfx">🔒</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Feature grid (light) ===== -->
+<section class="sec-light">
+  <div class="wrap">
+    <div class="spot-head reveal">
+      <p class="eyebrow">Details</p>
+      <h2>Thoughtful in every corner</h2>
+    </div>
+    <div class="grid">
+      {app.features.map(f => (
+        <div class="cell reveal">
+          <div class="cell-ico">{f.icon}</div>
+          <h3>{f.title}</h3>
+          <p>{f.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ===== Platforms (darker) ===== -->
+<section class="sec-darker" id="platforms">
+  <div class="wrap">
+    <div class="spot-head reveal">
+      <p class="eyebrow">Dual Platform</p>
+      <h2>Native experience, anywhere</h2>
+    </div>
+    <div class="plats">
+      <div class="plat reveal">
+        <span class="plat-tag">HarmonyOS 6.1</span>
+        <h3>Native HarmonyOS App</h3>
+        <ul>
+          <li>ArkTS native development, HarmonyOS design language</li>
+          <li>Frosted-glass floating nav, immersive interface</li>
+          <li>ScanKit system-level QR scanning</li>
+          <li>Long-press and swipe gesture support</li>
+        </ul>
+      </div>
+      <div class="plat reveal">
+        <span class="plat-tag">WeChat Mini Program</span>
+        <h3>No Install Required</h3>
+        <ul>
+          <li>Open directly inside WeChat, no download needed</li>
+          <li>Scan to add accounts in one step</li>
+          <li>Encrypted cloud backup, cross-device sync</li>
+          <li>Feedback goes directly to the developer</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Download (light) ===== -->
+<section class="sec-light get" id="get">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow">Get Started</p>
+      <h2>Get ArcaneKey</h2>
+      <p class="lead">Open source. Free. Local-first.</p>
+    </div>
+    <div class="get-cards">
+      <div class="get-card reveal">
+        <div class="store-ph">🐙</div>
+        <h3>GitHub</h3>
+        <p>Browse source code, download releases, contribute. MIT license.</p>
+        <a class="btn btn-primary" href="https://github.com/mengyuefeitian/ArcaneKey" target="_blank" rel="noopener">View Repository</a>
+      </div>
+      <div class="get-card reveal">
+        <img class="qr-real" src="/images/arcanekey-qrcode.jpg" alt="ArcaneKey WeChat Mini Program QR code" width="120" height="120" loading="lazy" />
+        <h3>WeChat Mini Program</h3>
+        <p>Search "星枢令" in WeChat — no installation needed.</p>
+        <a class="btn btn-light" style="border:1px solid rgba(0,0,0,.1)" href="#">Scan to Open</a>
+      </div>
+      <div class="get-card reveal">
+        <img src="/images/icon-appgallery.svg" alt="" width="80" height="80" loading="lazy">
+        <h3>Huawei AppGallery</h3>
+        <p>Coming soon to Huawei AppGallery.</p>
+        <a class="btn btn-light" style="border:1px solid rgba(0,0,0,.1)" href="https://appgallery.huawei.com/" target="_blank" rel="noopener">App Gallery</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="legal-links">
+  <a href="/arcanekey/privacy-policy">Privacy Policy</a>
+  {' · '}
+  <a href="/arcanekey/user-agreement">User Agreement</a>
+  {' · '}
+  <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener">京ICP备2026021298号-4A</a>
+</div>
+
+<script>
+(function(){
+  var els = document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return;}
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+  },{threshold:.15});
+  els.forEach(function(e){io.observe(e)});
+})();
+
+(function(){
+  var THEMES = [
+    {name:'Ocean Blue',c:'#4080D0'},{name:'Royal Purple',c:'#7B4DD0'},{name:'Aurora Green',c:'#1FAE83'},
+    {name:'Sunset Orange',c:'#E07B39'},{name:'Cherry Blossom',c:'#E36B9E'},{name:'Amber',c:'#D9A521'},
+    {name:'Celadon',c:'#2BA6A6'},{name:'Rose Red',c:'#D94A5A'},{name:'Graphite',c:'#6E6E78'},{name:'Indigo',c:'#3A56C0'}
+  ];
+  var box = document.getElementById('swatches');
+  var dev = document.getElementById('themeDevice');
+  if(!box) return;
+  THEMES.forEach(function(t,i){
+    var s = document.createElement('div');
+    s.className = 'swatch' + (i===0?' sel':'');
+    s.style.background = t.c;
+    s.title = t.name;
+    s.setAttribute('role','button');
+    s.setAttribute('aria-label','Theme: '+t.name);
+    s.addEventListener('click', function(){
+      box!.querySelectorAll('.swatch').forEach(function(x){x.classList.remove('sel')});
+      s.classList.add('sel');
+      if(dev) dev.style.setProperty('--accent', t.c);
+    });
+    if(box) box.appendChild(s);
+  });
+})();
+</script>
+</Base>

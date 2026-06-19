@@ -1,0 +1,91 @@
+---
+import Base from '../layouts/Base.astro';
+import { getT } from '../i18n/utils';
+
+const t = getT('zh');
+const { apps } = t;
+
+const products = [
+  {
+    key: 'arcanekey',
+    app: apps.arcanekey,
+    href: '/arcanekey',
+    icon: '/images/arcanekey-icon.png',
+    iconAlt: '星枢令图标',
+  },
+  {
+    key: 'winterFortress',
+    app: apps.winterFortress,
+    href: '/winter-fortress',
+    icon: '/images/winter-fortress-logo.svg',
+    iconAlt: '无尽冬日活动图标',
+  },
+  {
+    key: 'lumibox',
+    app: apps.lumibox,
+    href: '/lumibox',
+    icon: '/images/lumibox-icon.png',
+    iconAlt: '拾光匣图标',
+  },
+  {
+    key: 'autovolume',
+    app: apps.autovolume,
+    href: '/autovolume',
+    icon: '/images/autovolume-icon.png',
+    iconAlt: '智卷图标',
+  },
+  {
+    key: 'autoprint',
+    app: apps.autoprint,
+    href: '/autoprint',
+    icon: '/images/autoprint-icon.png',
+    iconAlt: '自动打印图标',
+  },
+];
+---
+<Base
+  title="小安之家 · 小安工作室"
+  description="小安工作室独立开发者作品集，涵盖 HarmonyOS、macOS 与微信小程序应用。"
+  lang="zh"
+>
+  <!-- Dark hero -->
+  <section class="home-hero sec-dark">
+    <div class="wrap">
+      <p class="eyebrow">小安工作室 · 独立开发者</p>
+      <h1>{t.home.heroTitle}</h1>
+      <p class="lead">{t.home.appsSubtitle}</p>
+    </div>
+  </section>
+
+  <!-- Product spots — alternating left/right -->
+  <div class="home-spots">
+    {products.map((p, i) => (
+      <div class="wrap">
+        <div class={`home-spot reveal${i % 2 === 1 ? ' rev' : ''}`}>
+          <div class="home-spot-visual">
+            <div class="home-spot-icon">
+              <img src={p.icon} alt={p.iconAlt} width="110" height="110" loading={i === 0 ? 'eager' : 'lazy'} />
+            </div>
+          </div>
+          <div class="home-spot-text">
+            <p class="platform-tag">{p.app.platform.join(' · ')}</p>
+            <h2>{p.app.name}</h2>
+            <p class="lead">{p.app.tagline}</p>
+            <a href={p.href} class="tile-cta">了解详情 ›</a>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <script>
+    (function(){
+      var els = document.querySelectorAll('.reveal');
+      if(!('IntersectionObserver' in window)){els.forEach(function(e){(e as HTMLElement).classList.add('in')});return;}
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+      },{threshold:.12});
+      els.forEach(function(e){io.observe(e)});
+    })();
+  </script>
+</Base>

@@ -1,0 +1,11 @@
+---
+import Legal from '../../layouts/Legal.astro';
+import { getEntry, render } from 'astro:content';
+
+const entry = await getEntry('legal', 'lumibox-user-agreement');
+if (!entry) throw new Error('Legal entry not found: lumibox-user-agreement');
+const { Content } = await render(entry);
+---
+<Legal title="拾光匣 LumiBox 用户协议" date="2026年6月18日">
+  <Content />
+</Legal>

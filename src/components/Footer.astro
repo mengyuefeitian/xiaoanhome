@@ -1,0 +1,18 @@
+---
+// src/components/Footer.astro
+import { getT } from '../i18n/utils';
+import type { Lang } from '../i18n/utils';
+
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const t = getT(lang);
+---
+<footer class="footer">
+  <div class="wrap">
+    <div>{t.footer.copyright} · <a href={`mailto:${t.footer.contact}`}>{t.footer.contact}</a></div>
+    <div class="footer-links">
+      <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">{t.footer.icp}</a>
+      <a href="https://beian.mps.gov.cn/#/query/webSearch" target="_blank" rel="noopener noreferrer">{t.footer.police}</a>
+    </div>
+  </div>
+</footer>

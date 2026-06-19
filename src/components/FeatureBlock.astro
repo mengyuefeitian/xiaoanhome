@@ -1,0 +1,14 @@
+---
+// src/components/FeatureBlock.astro
+interface Props {
+  icon: string;
+  title: string;
+  desc: string;
+}
+const { icon, title, desc } = Astro.props;
+---
+<div class="feature-card">
+  <div class="feature-icon">{icon}</div>
+  <div class="feature-title">{title}</div>
+  <p class="feature-desc">{desc}</p>
+</div>
