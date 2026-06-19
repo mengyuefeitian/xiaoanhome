@@ -157,7 +157,7 @@ export const zh: Translations = {
       tagline: 'macOS 自动打印工具，监控文件夹有新文件就自动发送打印机',
       platform: ['macOS'],
       desc: '自动打印是一款 macOS 桌面应用，用于自动化本地打印工作流。用户将文件放入指定文件夹，应用定期扫描并发送到配置的打印机，记录打印结果。',
-      downloadLabel: 'GitHub 获取',
+      downloadLabel: '下载 DMG',
       downloadUrl: 'https://github.com/mengyuefeitian/autoprint',
       features: [
         { icon: '📁', title: '监控文件夹', desc: '指定一个或多个本地文件夹作为监控目录，新文件出现自动触发打印任务' },

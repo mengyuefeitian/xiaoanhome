@@ -104,7 +104,7 @@ export const en: Translations = {
       tagline: 'macOS automatic print queue. Drop files in a folder, they print.',
       platform: ['macOS'],
       desc: 'AutoPrint is a macOS desktop app for automatic local printing. Place files in a watched folder, and the app periodically scans and sends them to a configured printer, recording each result.',
-      downloadLabel: 'Get on GitHub',
+      downloadLabel: 'Download DMG',
       downloadUrl: 'https://github.com/mengyuefeitian/autoprint',
       features: [
         { icon: '📁', title: 'Watch Folders', desc: 'Choose one or more local folders to monitor. New files trigger automatic print jobs.' },
