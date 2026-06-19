@@ -52,7 +52,7 @@ const isActive = (href: string): boolean => {
       </li>
     </ul>
 
-    <button class="nav-hamburger" aria-label="菜单" id="nav-toggle">
+    <button class="nav-hamburger" aria-label="菜单" aria-expanded="false" id="nav-toggle">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -60,11 +60,31 @@ const isActive = (href: string): boolean => {
 
 <script>
   const toggle = document.getElementById('nav-toggle')!;
-  const links  = document.getElementById('nav-links')!;
-  toggle.addEventListener('click', () => links.classList.toggle('open'));
+  const menu   = document.getElementById('nav-links')!;
+
+  function openMenu() {
+    menu.classList.add('open');
+    toggle.classList.add('active');
+    toggle.setAttribute('aria-expanded', 'true');
+  }
+  function closeMenu() {
+    menu.classList.remove('open');
+    toggle.classList.remove('active');
+    toggle.setAttribute('aria-expanded', 'false');
+  }
+
+  toggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    menu.classList.contains('open') ? closeMenu() : openMenu();
+  });
+
+  // 点击菜单链接后自动关闭
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+
+  // 点击外部关闭
   document.addEventListener('click', (e) => {
-    if (!toggle.contains(e.target as Node) && !links.contains(e.target as Node)) {
-      links.classList.remove('open');
+    if (!toggle.contains(e.target as Node) && !menu.contains(e.target as Node)) {
+      closeMenu();
     }
   });
 </script>

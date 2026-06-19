@@ -98,18 +98,29 @@ h3 { font-size: 20px; font-weight: 600; }
   opacity: 1 !important;
 }
 .nav-cta:hover { background: var(--accent-2); }
-.nav-hamburger { display: none; flex-direction: column; gap: 5px; width: 24px; }
-.nav-hamburger span { display: block; height: 1.5px; background: var(--muted-dark); border-radius: 2px; }
+.nav-hamburger {
+  display: none; flex-direction: column; justify-content: center; align-items: center;
+  gap: 6px; width: 44px; height: 44px; margin-right: -10px;
+}
+.nav-hamburger span {
+  display: block; width: 22px; height: 2px;
+  background: var(--muted-dark); border-radius: 2px;
+  transition: transform .25s ease, opacity .2s ease;
+}
+.nav-hamburger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.nav-hamburger.active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.nav-hamburger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
 @media (max-width: 768px) {
   .nav-hamburger { display: flex; }
   .nav-links {
-    position: fixed; top: var(--nav-h); left: 0; right: 0;
+    position: fixed; top: var(--nav-h); left: 0; right: 0; z-index: 199;
     flex-direction: column; align-items: stretch; gap: 0;
-    background: rgba(251,251,253,.95);
+    background: rgba(251,251,253,.97);
     backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid rgba(0,0,0,.08);
     padding: 8px 0; display: none;
+    max-height: calc(100vh - var(--nav-h)); overflow-y: auto;
   }
   .nav-links.open { display: flex; }
   .nav-links li a { padding: 14px 24px; height: auto; font-size: 1rem; display: block; }
