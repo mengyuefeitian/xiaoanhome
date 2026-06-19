@@ -10,9 +10,11 @@ interface Props {
   title: string;
   description: string;
   lang: Lang;
+  themeColor?: string;
+  ogImage?: string;
 }
 
-const { title, description, lang } = Astro.props;
+const { title, description, lang, themeColor = '#0d0d12', ogImage } = Astro.props;
 const pathname = Astro.url.pathname;
 const canonical = `https://www.xiaoanhome.xyz${pathname}`;
 const altLang = lang === 'zh' ? 'en' : 'zh';
@@ -24,9 +26,10 @@ const htmlLang = lang === 'zh' ? 'zh-CN' : 'en';
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#fbfbfd" />
+  <meta name="theme-color" content={themeColor} />
   <title>{title}</title>
   <meta name="description" content={description} />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="canonical" href={canonical} />
   <link rel="alternate" hreflang={htmlLang} href={canonical} />
   <link rel="alternate" hreflang={altLang === 'zh' ? 'zh-CN' : 'en'} href={altUrl} />
@@ -36,6 +39,7 @@ const htmlLang = lang === 'zh' ? 'zh-CN' : 'en';
   <meta property="og:type" content="website" />
   <meta property="og:url" content={canonical} />
   <meta property="og:site_name" content="小安之家" />
+  {ogImage && <meta property="og:image" content={`https://www.xiaoanhome.xyz${ogImage}`} />}
 </head>
 <body>
   <Nav lang={lang} currentPath={pathname} />
@@ -43,5 +47,15 @@ const htmlLang = lang === 'zh' ? 'zh-CN' : 'en';
     <slot />
   </main>
   <Footer lang={lang} />
+  <script>
+  (function(){
+    var els = document.querySelectorAll('.reveal');
+    if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return;}
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+    },{threshold:.15});
+    els.forEach(function(e){io.observe(e)});
+  })();
+  </script>
 </body>
 </html>

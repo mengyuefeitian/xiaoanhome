@@ -22,6 +22,12 @@ const links = [
 ];
 
 const langTarget = getLangUrl(currentPath, lang === 'zh' ? 'en' : 'zh');
+
+const isActive = (href: string): boolean => {
+  if (currentPath === href) return true;
+  if (href !== '/' && href !== '/en' && currentPath.startsWith(href + '/')) return true;
+  return false;
+};
 ---
 <nav class="nav" aria-label="主导航">
   <div class="nav-inner">
@@ -35,7 +41,7 @@ const langTarget = getLangUrl(currentPath, lang === 'zh' ? 'en' : 'zh');
         <li>
           <a
             href={href}
-            aria-current={currentPath === href || currentPath === href + '/' ? 'page' : undefined}
+            aria-current={isActive(href) ? 'page' : undefined}
           >
             {label}
           </a>
@@ -56,4 +62,9 @@ const langTarget = getLangUrl(currentPath, lang === 'zh' ? 'en' : 'zh');
   const toggle = document.getElementById('nav-toggle')!;
   const links  = document.getElementById('nav-links')!;
   toggle.addEventListener('click', () => links.classList.toggle('open'));
+  document.addEventListener('click', (e) => {
+    if (!toggle.contains(e.target as Node) && !links.contains(e.target as Node)) {
+      links.classList.remove('open');
+    }
+  });
 </script>

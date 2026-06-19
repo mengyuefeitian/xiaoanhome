@@ -208,15 +208,6 @@ const app = t.apps.arcanekey;
 
 <script>
 (function(){
-  var els = document.querySelectorAll('.reveal');
-  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return;}
-  var io = new IntersectionObserver(function(entries){
-    entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
-  },{threshold:.15});
-  els.forEach(function(e){io.observe(e)});
-})();
-
-(function(){
   var THEMES = [
     {name:'Ocean Blue',c:'#4080D0'},{name:'Royal Purple',c:'#7B4DD0'},{name:'Aurora Green',c:'#1FAE83'},
     {name:'Sunset Orange',c:'#E07B39'},{name:'Cherry Blossom',c:'#E36B9E'},{name:'Amber',c:'#D9A521'},
