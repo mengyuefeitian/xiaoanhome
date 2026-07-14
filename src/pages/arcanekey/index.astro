@@ -61,17 +61,15 @@ const app = t.apps.arcanekey;
         <p class="lead">遵循 TOTP 标准，每 30 秒自动刷新。倒计时环实时可视化，验证码以分组大字呈现，一眼读取、一键复制。</p>
       </div>
       <div class="spot-visual">
-        <div class="device" style="width:260px;flex-basis:260px">
-          <div class="device-screen" style="height:520px">
-            <div class="island"></div>
-            <div class="app-title">星枢令</div>
-            <div class="tk"><div class="tk-avatar" style="background:#24292f">G</div>
-              <div class="tk-info"><div class="tk-name">GitHub</div><div class="tk-acct">dev@arcanekey</div><div class="tk-code">428 913</div></div>
-              <div class="ring" style="--p:78%"></div></div>
-            <div class="tk"><div class="tk-avatar" style="background:#EA4335">M</div>
-              <div class="tk-info"><div class="tk-name">Microsoft</div><div class="tk-acct">work@out.com</div><div class="tk-code">662 540</div></div>
-              <div class="ring" style="--p:60%"></div></div>
-          </div>
+        <div class="app-showcase feature">
+          <img
+            src="/images/arcanekey/feature-totp.webp"
+            alt="动态验证码分组显示与倒计时环示意"
+            class="showcase-feature"
+            width="320"
+            height="320"
+            loading="lazy"
+          />
         </div>
       </div>
     </div>
@@ -83,7 +81,16 @@ const app = t.apps.arcanekey;
         <p class="lead">相机扫码或相册识别二维码，账号一键导入，无需手动抄写密钥。也支持 Base32 手动输入。</p>
       </div>
       <div class="spot-visual">
-        <div class="scanbox"><div class="scanline"></div></div>
+        <div class="app-showcase feature">
+          <img
+            src="/images/arcanekey/feature-scan.webp"
+            alt="扫码添加账户一键导入示意"
+            class="showcase-feature"
+            width="320"
+            height="320"
+            loading="lazy"
+          />
+        </div>
       </div>
     </div>
 
@@ -95,15 +102,15 @@ const app = t.apps.arcanekey;
         <div class="swatches" id="swatches" style="margin-top:24px"></div>
       </div>
       <div class="spot-visual">
-        <div class="device" id="themeDevice" style="width:240px;flex-basis:240px">
-          <div class="device-screen" style="height:480px">
-            <div class="island"></div>
-            <div class="app-title">星枢令</div>
-            <div class="tk"><div class="tk-avatar" style="background:var(--accent)">A</div>
-              <div class="tk-info"><div class="tk-name">Apple ID</div><div class="tk-acct">me@icloud.com</div><div class="tk-code">309 175</div></div>
-              <div class="ring" style="--p:66%"></div></div>
-            <div class="app-nav"><span class="on"></span><span></span><span></span></div>
-          </div>
+        <div class="app-showcase feature">
+          <img
+            src="/images/arcanekey/feature-themes.webp"
+            alt="10 款主题色板随心切换示意"
+            class="showcase-feature"
+            width="320"
+            height="320"
+            loading="lazy"
+          />
         </div>
       </div>
     </div>
@@ -115,7 +122,18 @@ const app = t.apps.arcanekey;
         <p class="lead">所有 TOTP 密钥仅存储在你的设备本地，从不上传任何服务器。备份采用加密导出，换机无忧。</p>
         <a class="btn btn-ghost" href="/arcanekey/privacy-policy" style="margin-top:16px">查看隐私政策 ›</a>
       </div>
-      <div class="spot-visual"><div class="privacy-gfx">🔒</div></div>
+      <div class="spot-visual">
+        <div class="app-showcase feature">
+          <img
+            src="/images/arcanekey/feature-privacy.webp"
+            alt="密钥本地存储从不上传服务器示意"
+            class="showcase-feature"
+            width="320"
+            height="320"
+            loading="lazy"
+          />
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -190,7 +208,7 @@ const app = t.apps.arcanekey;
         <img class="qr-real" src="/images/arcanekey-qrcode.jpg" alt="星枢令微信小程序二维码" width="120" height="120" loading="lazy" />
         <h3>微信小程序</h3>
         <p>微信搜索「星枢令」，免安装即用。</p>
-        <a class="btn btn-light" style="border:1px solid rgba(0,0,0,.1)" href="#">扫码进入</a>
+        <a class="btn btn-primary" href="#get">扫码进入</a>
       </div>
       <div class="get-card reveal">
         <img src="/images/icon-appgallery.svg" alt="" width="80" height="80" loading="lazy">
@@ -220,7 +238,6 @@ const app = t.apps.arcanekey;
     {name:'青瓷',c:'#2BA6A6'},{name:'玫瑰红',c:'#D94A5A'},{name:'石墨灰',c:'#6E6E78'},{name:'靛蓝',c:'#3A56C0'}
   ];
   var box = document.getElementById('swatches');
-  var dev = document.getElementById('themeDevice');
   if(!box) return;
   THEMES.forEach(function(t,i){
     var s = document.createElement('div');
@@ -232,7 +249,6 @@ const app = t.apps.arcanekey;
     s.addEventListener('click', function(){
       box!.querySelectorAll('.swatch').forEach(function(x){x.classList.remove('sel')});
       s.classList.add('sel');
-      if(dev) dev.style.setProperty('--accent', t.c);
     });
     if(box) box.appendChild(s);
   });
