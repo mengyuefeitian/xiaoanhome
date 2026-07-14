@@ -61,17 +61,15 @@ const app = t.apps.arcanekey;
         <p class="lead">遵循 TOTP 标准，每 30 秒自动刷新。倒计时环实时可视化，验证码以分组大字呈现，一眼读取、一键复制。</p>
       </div>
       <div class="spot-visual">
-        <div class="device" style="width:260px;flex-basis:260px">
-          <div class="device-screen" style="height:520px">
-            <div class="island"></div>
-            <div class="app-title">星枢令</div>
-            <div class="tk"><div class="tk-avatar" style="background:#24292f">G</div>
-              <div class="tk-info"><div class="tk-name">GitHub</div><div class="tk-acct">dev@arcanekey</div><div class="tk-code">428 913</div></div>
-              <div class="ring" style="--p:78%"></div></div>
-            <div class="tk"><div class="tk-avatar" style="background:#EA4335">M</div>
-              <div class="tk-info"><div class="tk-name">Microsoft</div><div class="tk-acct">work@out.com</div><div class="tk-code">662 540</div></div>
-              <div class="ring" style="--p:60%"></div></div>
-          </div>
+        <div class="app-showcase feature">
+          <img
+            src="/images/arcanekey/feature-totp.webp"
+            alt="动态验证码分组显示与倒计时环示意"
+            class="showcase-feature"
+            width="320"
+            height="320"
+            loading="lazy"
+          />
         </div>
       </div>
     </div>
@@ -83,7 +81,16 @@ const app = t.apps.arcanekey;
         <p class="lead">相机扫码或相册识别二维码，账号一键导入，无需手动抄写密钥。也支持 Base32 手动输入。</p>
       </div>
       <div class="spot-visual">
-        <div class="scanbox"><div class="scanline"></div></div>
+        <div class="app-showcase feature">
+          <img
+            src="/images/arcanekey/feature-scan.webp"
+            alt="扫码添加账户一键导入示意"
+            class="showcase-feature"
+            width="320"
+            height="320"
+            loading="lazy"
+          />
+        </div>
       </div>
     </div>
 
