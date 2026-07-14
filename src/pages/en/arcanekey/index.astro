@@ -92,15 +92,15 @@ const app = t.apps.arcanekey;
         <div class="swatches" id="swatches" style="margin-top:24px"></div>
       </div>
       <div class="spot-visual">
-        <div class="device" id="themeDevice" style="width:240px;flex-basis:240px">
-          <div class="device-screen" style="height:480px">
-            <div class="island"></div>
-            <div class="app-title">ArcaneKey</div>
-            <div class="tk"><div class="tk-avatar" style="background:var(--accent)">A</div>
-              <div class="tk-info"><div class="tk-name">Apple ID</div><div class="tk-acct">me@icloud.com</div><div class="tk-code">309 175</div></div>
-              <div class="ring" style="--p:66%"></div></div>
-            <div class="app-nav"><span class="on"></span><span></span><span></span></div>
-          </div>
+        <div class="app-showcase feature">
+          <img
+            src="/images/arcanekey/feature-themes.webp"
+            alt="Illustration of ten accent themes to switch freely"
+            class="showcase-feature"
+            width="320"
+            height="320"
+            loading="lazy"
+          />
         </div>
       </div>
     </div>
@@ -111,7 +111,18 @@ const app = t.apps.arcanekey;
         <p class="lead">All TOTP secrets are stored only on your device — never uploaded to any server. Encrypted export for worry-free device migration.</p>
         <a class="btn btn-ghost" href="/arcanekey/privacy-policy" style="margin-top:16px">Privacy Policy ›</a>
       </div>
-      <div class="spot-visual"><div class="privacy-gfx">🔒</div></div>
+      <div class="spot-visual">
+        <div class="app-showcase feature">
+          <img
+            src="/images/arcanekey/feature-privacy.webp"
+            alt="Illustration of local-only secrets never uploaded to servers"
+            class="showcase-feature"
+            width="320"
+            height="320"
+            loading="lazy"
+          />
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -186,7 +197,7 @@ const app = t.apps.arcanekey;
         <img class="qr-real" src="/images/arcanekey-qrcode.jpg" alt="ArcaneKey WeChat Mini Program QR code" width="120" height="120" loading="lazy" />
         <h3>WeChat Mini Program</h3>
         <p>Search "星枢令" in WeChat — no installation needed.</p>
-        <a class="btn btn-light" style="border:1px solid rgba(0,0,0,.1)" href="#">Scan to Open</a>
+        <a class="btn btn-primary" href="#get">Scan to Open</a>
       </div>
       <div class="get-card reveal">
         <img src="/images/icon-appgallery.svg" alt="" width="80" height="80" loading="lazy">
@@ -214,7 +225,6 @@ const app = t.apps.arcanekey;
     {name:'Celadon',c:'#2BA6A6'},{name:'Rose Red',c:'#D94A5A'},{name:'Graphite',c:'#6E6E78'},{name:'Indigo',c:'#3A56C0'}
   ];
   var box = document.getElementById('swatches');
-  var dev = document.getElementById('themeDevice');
   if(!box) return;
   THEMES.forEach(function(t,i){
     var s = document.createElement('div');
@@ -226,7 +236,6 @@ const app = t.apps.arcanekey;
     s.addEventListener('click', function(){
       box!.querySelectorAll('.swatch').forEach(function(x){x.classList.remove('sel')});
       s.classList.add('sel');
-      if(dev) dev.style.setProperty('--accent', t.c);
     });
     if(box) box.appendChild(s);
   });
