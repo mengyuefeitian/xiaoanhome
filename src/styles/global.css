@@ -246,6 +246,23 @@ h3 { font-size: 20px; font-weight: 600; }
 }
 .showcase-icon { width: 140px; height: 140px; border-radius: 32px; }
 
+/* Feature illustration showcase (product spotlights) */
+.app-showcase.feature {
+  width: 320px;
+  height: 320px;
+  border-radius: 40px;
+  padding: 0;
+  overflow: hidden;
+  background: #0c0c12;
+}
+.showcase-feature {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 0;
+}
+
 @media (max-width: 768px) {
   .spot, .spot.rev { flex-direction: column; gap: 36px; text-align: center; margin-bottom: 80px; }
   .spot-text h2 { font-size: 30px; }
@@ -253,6 +270,7 @@ h3 { font-size: 20px; font-weight: 600; }
   .spot-visual { flex: none; }
   .app-showcase { width: 220px; height: 220px; }
   .showcase-icon { width: 110px; height: 110px; }
+  .app-showcase.feature { width: 260px; height: 260px; border-radius: 32px; }
 }
 
 /* ===== Feature grid ===== */
