@@ -6,7 +6,7 @@ const t = getT('en');
 const app = t.apps.lumibox;
 ---
 <Base
-  title="LumiBox · NAS Photo Sync & Browser"
+  title="LumiBox · Private Photo Sync & Browser"
   description={app.tagline}
   lang="en"
 >
@@ -30,10 +30,29 @@ const app = t.apps.lumibox;
     <div class="spot-head reveal">
       <p class="eyebrow">Why LumiBox</p>
       <h2>Backup. Browse. Done.</h2>
-      <p class="lead">Seamlessly connect your Synology NAS with your Huawei phone gallery. Your photo data stays entirely under your control.</p>
+      <p class="lead">Connect Synology NAS or Immich, and bridge your Huawei gallery with your private photo server. Your photo data stays entirely under your control.</p>
     </div>
 
     <div class="spot reveal">
+      <div class="spot-text">
+        <h2>Beyond Synology.<br>Open-source Immich support.</h2>
+        <p class="lead">Alongside Synology NAS, LumiBox now connects to Immich—self-hosted open-source photo servers or private instances on a cloud VPS, with the same smooth sync and browse. Existing Synology users are unaffected; Immich users finally get a native HarmonyOS client.</p>
+      </div>
+      <div class="spot-visual">
+        <div class="app-showcase feature">
+          <img
+            src="/images/lumibox/feature-server-choice.webp"
+            alt="Illustration of choosing Synology NAS or Immich as your photo server"
+            class="showcase-feature"
+            width="320"
+            height="320"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="spot rev reveal">
       <div class="spot-text">
         <h2>Live Photo.<br>Still moving after upload.</h2>
         <p class="lead">LumiBox fully recognizes HarmonyOS Live Photo format, preserving the motion on upload. Press to play, release to pause — the era of backups turning Live Photos into stills is over.</p>
@@ -52,7 +71,7 @@ const app = t.apps.lumibox;
       </div>
     </div>
 
-    <div class="spot rev reveal">
+    <div class="spot reveal">
       <div class="spot-text">
         <h2>HDR Vivid.<br>Every bit of color, intact.</h2>
         <p class="lead">Open LumiBox and supported Huawei devices automatically play photos and videos with HDR Vivid rendering — as vibrant when browsing as the moment you shot them.</p>
@@ -71,10 +90,10 @@ const app = t.apps.lumibox;
       </div>
     </div>
 
-    <div class="spot reveal">
+    <div class="spot rev reveal">
       <div class="spot-text">
         <h2>Delta Sync.<br>Already uploaded, never again.</h2>
-        <p class="lead">LumiBox only transfers files not yet on your NAS. Resumable mid-transfer — no starting over, no wasted bandwidth.</p>
+        <p class="lead">LumiBox only transfers files not yet on your server. Resumable mid-transfer — no starting over, no wasted bandwidth.</p>
       </div>
       <div class="spot-visual">
         <div class="app-showcase feature">
@@ -90,10 +109,10 @@ const app = t.apps.lumibox;
       </div>
     </div>
 
-    <div class="spot rev reveal">
+    <div class="spot reveal">
       <div class="spot-text">
         <h2>Photo Timeline.<br>Feels just like your phone gallery.</h2>
-        <p class="lead">Browse all NAS photos by year, month, and day, with folder structure fully preserved — opening your NAS gallery feels exactly like opening your phone gallery.</p>
+        <p class="lead">Browse all server photos by year, month, and day, with folder structure fully preserved — opening your gallery feels exactly like opening your phone gallery.</p>
       </div>
       <div class="spot-visual">
         <div class="app-showcase feature">
@@ -109,16 +128,35 @@ const app = t.apps.lumibox;
       </div>
     </div>
 
-    <div class="spot reveal">
+    <div class="spot rev reveal">
       <div class="spot-text">
         <h2>Your photos.<br>Only between your devices.</h2>
-        <p class="lead">Photos go directly to your Synology NAS — never through third-party cloud services. Visual cache management, one-tap clear — your storage, your rules.</p>
+        <p class="lead">Photos go directly to your configured Synology NAS or Immich server — never through third-party cloud relays. Visual cache management, one-tap clear — your storage, your rules.</p>
       </div>
       <div class="spot-visual">
         <div class="app-showcase feature">
           <img
             src="/images/lumibox/feature-local-control.webp"
-            alt="Illustration of photos transferring only between your devices and NAS"
+            alt="Illustration of photos transferring only between your devices and private server"
+            class="showcase-feature"
+            width="320"
+            height="320"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="spot reveal">
+      <div class="spot-text">
+        <h2>Selective folder backup.<br>Privacy fully under your control.</h2>
+        <p class="lead">Whether backing up to Synology or Immich, you precisely choose which folders to upload—finally taking real control of what leaves your phone, instead of handing over the entire device.</p>
+      </div>
+      <div class="spot-visual">
+        <div class="app-showcase feature">
+          <img
+            src="/images/lumibox/feature-selective-backup.webp"
+            alt="Illustration of selective folder backup and choosing what to upload"
             class="showcase-feature"
             width="320"
             height="320"
@@ -161,7 +199,7 @@ const app = t.apps.lumibox;
         <ul>
           <li>ArkTS native development, HarmonyOS design language</li>
           <li>HDR Vivid rendering, full Live Photo support</li>
-          <li>Direct Synology NAS WebDAV connection</li>
+          <li>Synology NAS and Immich dual backend support</li>
           <li>Resumable uploads, incremental delta sync</li>
         </ul>
       </div>
@@ -197,6 +235,8 @@ const app = t.apps.lumibox;
   <a href="/lumibox/privacy-policy">Privacy Policy</a>
   {' · '}
   <a href="/lumibox/user-agreement">User Agreement</a>
+  {' · '}
+  <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener">京ICP备2026021298号-5A</a>
 </div>
 
 </Base>

@@ -6,7 +6,7 @@ const t = getT('zh');
 const app = t.apps.lumibox;
 ---
 <Base
-  title="拾光匣 LumiBox · NAS 相册同步与浏览"
+  title="拾光匣 LumiBox · 私有相册同步与浏览"
   description={app.tagline}
   lang="zh"
 >
@@ -32,10 +32,29 @@ const app = t.apps.lumibox;
     <div class="spot-head reveal">
       <p class="eyebrow">为什么选择拾光匣</p>
       <h2>备份、浏览、一气呵成</h2>
-      <p class="lead">将群晖 NAS 与华为手机相册无缝打通，照片数据始终在你自己手中。</p>
+      <p class="lead">连接群晖 NAS 或 Immich，将华为手机相册与私有相册服务无缝打通，照片数据始终在你自己手中。</p>
     </div>
 
     <div class="spot reveal">
+      <div class="spot-text">
+        <h2>不止群晖<br>开源相册 Immich支持</h2>
+        <p class="lead">除了群晖 NAS，拾光匣现在也支持连接 Immich——无论是自建的开源相册服务，还是部署在云主机上的私有实例，都能一样流畅同步、浏览。群晖用户不受影响，Immich 用户终于也有了原生鸿蒙客户端。</p>
+      </div>
+      <div class="spot-visual">
+        <div class="app-showcase feature">
+          <img
+            src="/images/lumibox/feature-server-choice.webp"
+            alt="支持群晖 NAS 与 Immich 双服务端的示意"
+            class="showcase-feature"
+            width="320"
+            height="320"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="spot rev reveal">
       <div class="spot-text">
         <h2>动态照片<br>上传照样会动</h2>
         <p class="lead">拾光匣完整识别鸿蒙动态照片格式，上传时保留动态效果，浏览时按住就动、松手就停——动态照片因备份而变成静态图的时代结束了。</p>
@@ -54,7 +73,7 @@ const app = t.apps.lumibox;
       </div>
     </div>
 
-    <div class="spot rev reveal">
+    <div class="spot reveal">
       <div class="spot-text">
         <h2>HDR Vivid<br>色彩一分不少</h2>
         <p class="lead">打开拾光匣，支持的华为设备自动以 HDR Vivid 渲染意图播放照片与视频——手机拍出来多亮丽，浏览时依旧亮丽。</p>
@@ -73,10 +92,10 @@ const app = t.apps.lumibox;
       </div>
     </div>
 
-    <div class="spot reveal">
+    <div class="spot rev reveal">
       <div class="spot-text">
         <h2>增量同步<br>传过的不再传</h2>
-        <p class="lead">Delta 同步策略让拾光匣只传 NAS 上还没有的文件。断点续传，中途断网也能从断点继续——不用重头开始，不浪费一次流量。</p>
+        <p class="lead">Delta 同步策略让拾光匣只传服务端上还没有的文件。断点续传，中途断网也能从断点继续——不用重头开始，不浪费一次流量。</p>
       </div>
       <div class="spot-visual">
         <div class="app-showcase feature">
@@ -92,10 +111,10 @@ const app = t.apps.lumibox;
       </div>
     </div>
 
-    <div class="spot rev reveal">
+    <div class="spot reveal">
       <div class="spot-text">
         <h2>相册时间线<br>翻起来像在手机里</h2>
-        <p class="lead">按年、月、日浏览 NAS 里的全部照片，目录结构完整保留——打开 NAS 相册那一刻，和打开手机相册一样自然熟悉。</p>
+        <p class="lead">按年、月、日浏览服务端里的全部照片，目录结构完整保留——打开相册那一刻，和打开手机相册一样自然熟悉。</p>
       </div>
       <div class="spot-visual">
         <div class="app-showcase feature">
@@ -111,16 +130,35 @@ const app = t.apps.lumibox;
       </div>
     </div>
 
-    <div class="spot reveal">
+    <div class="spot rev reveal">
       <div class="spot-text">
         <h2>你的照片<br>只在你的设备之间</h2>
-        <p class="lead">照片直连群晖 NAS，绝不经过第三方云服务。可视化缓存管理，一键清理缩略图与预览缓存——存储怎么用，你说了算。</p>
+        <p class="lead">照片直连你配置的群晖 NAS 或 Immich 服务，绝不经过第三方云中转。可视化缓存管理，一键清理缩略图与预览缓存——存储怎么用，你说了算。</p>
       </div>
       <div class="spot-visual">
         <div class="app-showcase feature">
           <img
             src="/images/lumibox/feature-local-control.webp"
-            alt="照片仅在本机与 NAS 之间直连传输示意"
+            alt="照片仅在本机与私有服务端之间直连传输示意"
+            class="showcase-feature"
+            width="320"
+            height="320"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="spot reveal">
+      <div class="spot-text">
+        <h2>选择性目录备份<br>隐私掌控感极强</h2>
+        <p class="lead">无论是群晖备份还是 Immich 备份，你都可以精确选择要上传的目录——第一次真正掌控自己的照片上传范围，而不是被动把整部手机交出去。</p>
+      </div>
+      <div class="spot-visual">
+        <div class="app-showcase feature">
+          <img
+            src="/images/lumibox/feature-selective-backup.webp"
+            alt="选择性目录备份、精确选择上传范围的示意"
             class="showcase-feature"
             width="320"
             height="320"
@@ -165,7 +203,7 @@ const app = t.apps.lumibox;
         <ul>
           <li>ArkTS 原生开发，适配鸿蒙设计规范</li>
           <li>HDR Vivid 渲染，动态照片完整支持</li>
-          <li>群晖 Synology NAS WebDAV 直连</li>
+          <li>支持群晖 Synology NAS 与 Immich 双服务端</li>
           <li>断点续传，增量同步</li>
         </ul>
       </div>
@@ -202,6 +240,8 @@ const app = t.apps.lumibox;
   <a href="/lumibox/privacy-policy">隐私政策</a>
   {' · '}
   <a href="/lumibox/user-agreement">用户协议</a>
+  {' · '}
+  <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener">京ICP备2026021298号-5A</a>
 </div>
 
 </Base>
