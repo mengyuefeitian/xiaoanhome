@@ -1,0 +1,11 @@
+---
+import Legal from '../../layouts/Legal.astro';
+import { getEntry, render } from 'astro:content';
+
+const entry = await getEntry('legal', 'lumibox-auto-renewal-agreement');
+if (!entry) throw new Error('Legal entry not found: lumibox-auto-renewal-agreement');
+const { Content } = await render(entry);
+---
+<Legal title="拾光匣 LumiBox 自动续费服务协议" date="2026年8月1日">
+  <Content />
+</Legal>
