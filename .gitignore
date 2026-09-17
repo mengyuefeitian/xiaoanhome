@@ -28,6 +28,7 @@ pnpm-debug.log*
 
 # superpowers plans (local only)
 docs/superpowers/
+.superpowers/
 
 # Claude Code project rules (local only)
 CLAUDE.md
