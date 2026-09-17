@@ -1,0 +1,150 @@
+---
+// src/components/updates/v1-7-0.astro
+const img = (name: string) => `/images/winter-fortress/updates/v1-7-0/${name}`;
+---
+<div class="upd-sec">
+  <p class="upd-sec-eyebrow">功能入口</p>
+  <p class="upd-sec-title">统计数据 → 联盟活跃</p>
+  <p class="upd-sec-desc">盟管和区管账号登录小程序后，在控制台「统计数据」分组下即可看到新增的「联盟活跃」入口。</p>
+
+  <div class="upd-step">
+    <div class="upd-step-head">
+      <div class="upd-step-num">1</div>
+      <div>
+        <div class="upd-step-title">进入联盟活跃模块</div>
+        <div class="upd-step-path">操作路径：<code>盟管/区管控制台 → 统计数据 → 联盟活跃</code></div>
+      </div>
+    </div>
+    <div class="upd-shot"><img src={img('entry.png')} alt="控制台统计数据分组下的联盟活跃入口" loading="lazy" /></div>
+    <div class="upd-result"><b>结果：</b>点击卡片进入「登记联盟活跃成员」页面。盟管进入的是自己联盟的登记页；区管进入的是本分区所有联盟的汇总列表（见下文「区管怎么用」）。</div>
+  </div>
+</div>
+
+<div class="upd-sec">
+  <span class="upd-role-tag leader">盟管视角</span>
+  <p class="upd-sec-eyebrow">日常登记与管理</p>
+  <p class="upd-sec-title">今日谁活跃了，一眼看清</p>
+  <p class="upd-sec-desc">页面顶部实时显示活跃人数，下方两个列表分别是「今日活跃玩家」和「今日未活跃玩家」，勾选/删除即可互相切换。</p>
+
+  <div class="upd-step">
+    <div class="upd-step-head">
+      <div class="upd-step-num">1</div>
+      <div>
+        <div class="upd-step-title">查看统计 · 勾选切换活跃状态</div>
+        <div class="upd-step-path">操作路径：<code>联盟活跃</code> 页面首屏</div>
+      </div>
+    </div>
+    <div class="upd-shot"><img src={img('manage.png')} alt="联盟活跃管理页面，顶部统计与添加/保存截图按钮，下方活跃与未活跃两个列表" loading="lazy" /></div>
+    <div class="upd-result"><b>结果：</b>顶部一行同时显示「今日活跃成员：X / Y」（X 为活跃人数，Y 为联盟总人数）和「添加」「保存截图」两个按钮。下方两个列表按 2～3 列自适应排列：</div>
+    <div class="upd-note"><b>今日未活跃玩家</b>：每天 0:00 起，联盟全部成员默认在这里，昵称前带复选框。勾选后立即从此列表消失，移入「今日活跃玩家」。</div>
+    <div class="upd-note"><b>今日活跃玩家</b>：昵称前是叉形按钮。点击后立即从此列表消失，移回「今日未活跃玩家」。</div>
+  </div>
+
+  <div class="upd-step">
+    <div class="upd-step-head">
+      <div class="upd-step-num">2</div>
+      <div>
+        <div class="upd-step-title">手动添加成员</div>
+        <div class="upd-step-path">操作路径：<code>联盟活跃</code> → 右上角「添加」</div>
+      </div>
+    </div>
+    <div class="upd-shot"><img src={img('add.png')} alt="点击添加按钮弹出输入成员游戏昵称的弹窗" loading="lazy" /></div>
+    <div class="upd-result"><b>结果：</b>输入游戏昵称并确认后，新成员默认加入「今日未活跃玩家」列表，之后按需勾选为活跃。</div>
+  </div>
+
+  <div class="upd-step">
+    <div class="upd-step-head">
+      <div class="upd-step-num">3</div>
+      <div>
+        <div class="upd-step-title">长按删除本周活跃记录</div>
+        <div class="upd-step-path">操作路径：<code>长按任意成员所在行</code> → 二次确认</div>
+      </div>
+    </div>
+    <div class="upd-shot"><img src={img('delete.png')} alt="长按用户行弹出二次确认删除弹窗" loading="lazy" /></div>
+    <div class="upd-result"><b>结果：</b>确认删除后，该成员本周的活跃记录被清除。用户下次登录小程序时，只要报名联盟仍是当前联盟，会被自动重新登记，不影响后续使用。</div>
+    <div class="upd-warn"><b>注意：</b>这里删除的是「本周活跃登记」，不是把成员移出联盟。</div>
+  </div>
+
+  <div class="upd-step">
+    <div class="upd-step-head">
+      <div class="upd-step-num">4</div>
+      <div>
+        <div class="upd-step-title">保存本周截图</div>
+        <div class="upd-step-path">操作路径：<code>联盟活跃</code> → 右上角「保存截图」</div>
+      </div>
+    </div>
+    <div class="upd-shot"><img src={img('save-result.png')} alt="保存的联盟活跃周报截图，8列表格：用户+周一到周日" loading="lazy" /></div>
+    <div class="upd-result"><b>结果：</b>生成一张 8 列表格图片并保存到相册：第一列是「用户」，后面 7 列固定是本周周一到周日，日期格式如 <code>0916(三)</code>；活跃打 ✓，不活跃打 ✗。</div>
+    <div class="upd-legend">
+      <span><i class="upd-dot ok">✓</i>活跃</span>
+      <span><i class="upd-dot no">✗</i>不活跃</span>
+    </div>
+    <div class="upd-note"><b>说明：</b>已经过去的日期和今天，按当天实际登记结果显示；本周内还没到的日期，生成截图时同样按「不活跃」处理，等到了那一天再随实际操作更新。截图内容以点击「保存截图」那一刻的最新数据为准，之后的改动不会影响已保存的图片。</div>
+    <div class="upd-warn"><b>注意：</b>系统只保留本周数据，跨到下一周后，上周及更早的活跃记录会被自动清理，不再占用列表。</div>
+  </div>
+</div>
+
+<div class="upd-sec">
+  <span class="upd-role-tag admin">区管视角</span>
+  <p class="upd-sec-eyebrow">跨联盟汇总</p>
+  <p class="upd-sec-title">一屏看完全区活跃情况</p>
+  <p class="upd-sec-desc">区管进入「联盟活跃」看到的是本分区所有联盟的汇总表格，点联盟名可直接进入该联盟的登记页面进行管理。</p>
+
+  <div class="upd-step">
+    <div class="upd-step-head">
+      <div class="upd-step-num">1</div>
+      <div>
+        <div class="upd-step-title">查看分区汇总</div>
+        <div class="upd-step-path">操作路径：<code>区管控制台 → 统计数据 → 联盟活跃</code></div>
+      </div>
+    </div>
+    <div class="upd-shot"><img src={img('district-view.png')} alt="区管查看的联盟活跃汇总表，8列：联盟+周一到周日，当天列高亮显示当天活跃人数" loading="lazy" /></div>
+    <div class="upd-result"><b>结果：</b>同样是 8 列表格，第一列为「联盟」，后面 7 列是本周周一到周日（格式如 <code>0917(四)</code>），当天所在列会高亮标注。每个格子里的数字是该联盟当天的活跃人数，仅供查看、不可点开。</div>
+    <div class="upd-note"><b>说明：</b>已经过去的数据是固定的；只有重新进入这个页面时才会刷新，不做实时更新。成员活跃数为 0 的联盟不会出现在列表里，只展示本周有过活跃成员的联盟。</div>
+  </div>
+
+  <div class="upd-step">
+    <div class="upd-step-head">
+      <div class="upd-step-num">2</div>
+      <div>
+        <div class="upd-step-title">点联盟名进入管理</div>
+        <div class="upd-step-path">操作路径：<code>点击表格中的联盟名称</code></div>
+      </div>
+    </div>
+    <div class="upd-result"><b>结果：</b>直接跳转到该联盟的登记页面，界面和权限与盟管完全一致——可以「添加」成员、长按删除、保存本周截图，方便区管直接代为维护某个联盟的数据。</div>
+  </div>
+
+  <div class="upd-step">
+    <div class="upd-step-head">
+      <div class="upd-step-num">3</div>
+      <div>
+        <div class="upd-step-title">手机上左右滑动看全周数据</div>
+        <div class="upd-step-path">操作方式：<code>左右滑动表格</code></div>
+      </div>
+    </div>
+    <div class="upd-result"><b>结果：</b>手机屏幕放不下 8 列时，第一列「联盟」固定不动，后面 7 天数据可以左右滑动查看。默认滚动位置会自动保证「今天」这一列在可视范围内，不会出现今天的数据被滑到看不见的情况。</div>
+  </div>
+</div>
+
+<div class="upd-sec">
+  <p class="upd-sec-eyebrow">自动规则</p>
+  <p class="upd-sec-title">不用管理员手动维护的部分</p>
+  <div class="upd-facts">
+    <div class="upd-fact">
+      <div class="k">谁会出现在花名册里</div>
+      <div class="v">填写游戏昵称、选好分区，并通过任意报名成功加入某联盟的用户（以最后一次成功报名的联盟为准）</div>
+    </div>
+    <div class="upd-fact">
+      <div class="k">用户打开小程序</div>
+      <div class="v">自动把自己标记为「今日活跃」，无需管理员手动操作</div>
+    </div>
+    <div class="upd-fact">
+      <div class="k">管理员手动改回未活跃后</div>
+      <div class="v">该用户下次登录小程序时，会再次被自动标记为活跃</div>
+    </div>
+    <div class="upd-fact">
+      <div class="k">数据保留范围</div>
+      <div class="v">仅保留本周（周一至周日），上一周及更早数据自动清理</div>
+    </div>
+  </div>
+</div>

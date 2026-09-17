@@ -1,0 +1,226 @@
+---
+// src/components/updates/WinterFortressUpdateShell.astro
+import Base from '../../layouts/Base.astro';
+import { winterFortressUpdates } from '../../data/winterFortressUpdates';
+
+interface Props {
+  activeSlug: string;
+  title: string;
+  description: string;
+}
+
+const { activeSlug, title, description } = Astro.props;
+const active = winterFortressUpdates.find((v) => v.slug === activeSlug) ?? winterFortressUpdates[0];
+---
+<Base title={title} description={description} lang="zh" themeColor="#0b1120">
+
+<section class="sec-darker upd-hero">
+  <div class="wrap">
+    <p class="eyebrow">无尽冬日活动</p>
+    <h1 class="upd-h1">版本更新说明</h1>
+    <p class="lead">每次更新做了什么、在哪里能找到，这里有截图和操作路径。</p>
+  </div>
+</section>
+
+<section class="sec-dark upd-body">
+  <div class="wrap upd-shell">
+    <aside class="upd-side">
+      <p class="upd-side-label">版本记录</p>
+      <ul class="upd-side-list" role="list">
+        {winterFortressUpdates.map((v) => (
+          <li>
+            <a href={`/winter-fortress/updates/${v.slug}/`} aria-current={v.slug === activeSlug ? 'page' : undefined}>
+              <span class="v-num">{v.version}</span>
+              <span class="v-title">{v.title}</span>
+              <span class="v-date">{v.date}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+      <p class="upd-side-hint">每个版本都有独立链接，可直接分享或嵌入 App 内快速访问。</p>
+    </aside>
+
+    <div class="upd-content">
+      <div class="upd-content-head">
+        <span class="upd-version-tag">{active.version}</span>
+        <h2>{active.title}</h2>
+        <p class="upd-date">更新时间：{active.date}</p>
+      </div>
+      <slot />
+    </div>
+  </div>
+</section>
+
+</Base>
+
+<style>
+  .upd-hero { padding: 72px 0 40px; }
+  .upd-h1 { font-size: clamp(32px, 6vw, 48px); color: var(--text-light); margin-top: 4px; }
+  .upd-body { padding: 0 0 100px; }
+
+  .upd-shell {
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+    padding-top: 8px;
+  }
+
+  /* ---- sidebar ---- */
+  .upd-side {
+    flex: 0 0 240px;
+    position: sticky;
+    top: calc(var(--nav-h) + 24px);
+  }
+  .upd-side-label {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .04em;
+    color: var(--muted-light);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .upd-side-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .upd-side-list a {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 12px 16px;
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,.08);
+    background: rgba(255,255,255,.02);
+    transition: background .15s ease, border-color .15s ease;
+  }
+  .upd-side-list a:hover { background: rgba(255,255,255,.05); }
+  .upd-side-list a[aria-current="page"] {
+    border-color: var(--accent);
+    background: rgba(64,128,208,.14);
+  }
+  .upd-side-list .v-num { font-size: 15px; font-weight: 700; color: var(--text-light); }
+  .upd-side-list a[aria-current="page"] .v-num { color: var(--accent-2); }
+  .upd-side-list .v-title { font-size: 13px; color: #c6c6cc; }
+  .upd-side-list .v-date { font-size: 12px; color: var(--muted-light); }
+  .upd-side-hint {
+    margin-top: 18px;
+    font-size: 12.5px;
+    line-height: 1.6;
+    color: var(--muted-light);
+  }
+
+  /* ---- content ---- */
+  .upd-content { flex: 1 1 auto; min-width: 0; }
+  .upd-content-head { margin-bottom: 28px; }
+  .upd-version-tag {
+    display: inline-block;
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--accent-2);
+    background: rgba(64,128,208,.14);
+    border: 1px solid rgba(64,128,208,.35);
+    padding: 4px 12px;
+    border-radius: 999px;
+    margin-bottom: 12px;
+  }
+  .upd-content-head h2 { font-size: clamp(24px, 4vw, 32px); color: var(--text-light); }
+  .upd-date { font-size: 13px; color: var(--muted-light); margin-top: 6px; }
+
+  @media (max-width: 860px) {
+    .upd-shell { flex-direction: column; gap: 24px; }
+    .upd-side {
+      position: static;
+      flex: none;
+      width: 100%;
+    }
+    .upd-side-list {
+      flex-direction: row;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 4px;
+    }
+    .upd-side-list li { flex: 0 0 auto; }
+    .upd-side-list a { flex-direction: row; align-items: baseline; gap: 8px; white-space: nowrap; }
+    .upd-side-hint { display: none; }
+  }
+</style>
+
+<style is:global>
+  /* ---- shared building blocks for update-note content ---- */
+  .upd-sec { margin-bottom: 44px; }
+  .upd-sec:last-child { margin-bottom: 0; }
+  .upd-sec-eyebrow { font-size: 12.5px; font-weight: 700; letter-spacing: .04em; color: var(--accent-2); margin-bottom: 6px; }
+  .upd-sec-title { font-size: 20px; font-weight: 700; color: var(--text-light); margin-bottom: 6px; }
+  .upd-sec-desc { font-size: 14.5px; color: #b9b9c0; margin-bottom: 20px; }
+  .upd-role-tag {
+    display: inline-block;
+    font-size: 11.5px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 999px;
+    margin-bottom: 10px;
+  }
+  .upd-role-tag.leader { background: rgba(64,128,208,.18); color: var(--accent-2); }
+  .upd-role-tag.admin  { background: rgba(255,193,7,.16); color: #ffc107; }
+
+  .upd-step {
+    background: var(--card-dark);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 18px;
+    padding: 20px 20px 22px;
+    margin-bottom: 18px;
+  }
+  .upd-step-head { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 14px; }
+  .upd-step-num {
+    flex: 0 0 auto; width: 26px; height: 26px; border-radius: 50%;
+    background: var(--accent); color: #06122b;
+    font-size: 13px; font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .upd-step-title { font-size: 16px; font-weight: 700; color: var(--text-light); margin-bottom: 4px; }
+  .upd-step-path { font-size: 13px; color: #8a8a92; }
+  .upd-step-path code {
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 6px; padding: 1px 6px;
+    font-family: inherit; color: #c6c6cc;
+  }
+  .upd-shot {
+    border-radius: 14px; overflow: hidden;
+    border: 1px solid rgba(255,255,255,.08);
+    margin: 4px 0 12px; background: #000;
+  }
+  .upd-shot img { width: 100%; display: block; }
+
+  .upd-result, .upd-note, .upd-warn {
+    font-size: 14px; color: #c6c6cc;
+    border-radius: 10px; padding: 10px 12px;
+  }
+  .upd-note, .upd-warn { font-size: 13.5px; margin-top: 10px; }
+  .upd-result { background: rgba(52,201,143,.08); border: 1px solid rgba(52,201,143,.25); }
+  .upd-result b { color: #34c98f; font-weight: 700; white-space: nowrap; margin-right: 4px; }
+  .upd-note { background: rgba(64,128,208,.10); border: 1px solid rgba(64,128,208,.3); }
+  .upd-note b { color: var(--accent-2); font-weight: 700; white-space: nowrap; margin-right: 4px; }
+  .upd-warn { background: rgba(255,107,107,.08); border: 1px solid rgba(255,107,107,.25); }
+  .upd-warn b { color: #ff6b6b; font-weight: 700; white-space: nowrap; margin-right: 4px; }
+
+  .upd-legend { display: flex; gap: 16px; font-size: 13px; color: #b9b9c0; margin: 10px 0 0; }
+  .upd-legend span { display: flex; align-items: center; gap: 5px; }
+  .upd-dot {
+    width: 16px; height: 16px; border-radius: 5px;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 800;
+  }
+  .upd-dot.ok { background: rgba(52,201,143,.18); color: #34c98f; border: 1px solid rgba(52,201,143,.4); }
+  .upd-dot.no { background: rgba(255,107,107,.14); color: #ff6b6b; border: 1px solid rgba(255,107,107,.35); }
+
+  .upd-facts { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 4px; }
+  .upd-fact {
+    background: var(--bg-dark-2);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 12px; padding: 12px 14px;
+  }
+  .upd-fact .k { font-size: 12px; color: #8a8a92; margin-bottom: 4px; }
+  .upd-fact .v { font-size: 14px; color: var(--text-light); font-weight: 600; }
+
+  @media (max-width: 520px) {
+    .upd-facts { grid-template-columns: 1fr; }
+  }
+</style>
