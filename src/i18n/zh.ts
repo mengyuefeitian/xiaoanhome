@@ -29,6 +29,7 @@ export interface Translations {
     lumibox: string;
     autovolume: string;
     autoprint: string;
+    ilaunch: string;
     langSwitch: string;
     langSwitchTarget: string;
   };
@@ -51,6 +52,7 @@ export interface Translations {
     winterFortress: AppEntry;
     autovolume: AppEntry;
     autoprint: AppEntry;
+    ilaunch: AppEntry;
   };
 }
 
@@ -62,6 +64,7 @@ export const zh: Translations = {
     lumibox: '拾光匣',
     autovolume: '智卷',
     autoprint: '自动打印',
+    ilaunch: '启动台',
     langSwitch: 'EN',
     langSwitchTarget: '/en',
   },
@@ -171,6 +174,24 @@ export const zh: Translations = {
         { icon: '🏢', title: '轻量方案', desc: '专为小型办公室、教室、家庭 NAS 打印工作流打造，部署简单持续运行' },
       ],
       scenarios: '适合需要将 NAS 同步目录或共享文件夹中的文档自动发送打印机的用户，无需手动打开每个文件，配置一次后持续自动打印，适合周期性批量打印场景。',
+    },
+    ilaunch: {
+      name: '启动台',
+      nameEn: 'iLaunch',
+      tagline: '把 macOS 26 拿走的 Launchpad 找回来——原生、飞快',
+      platform: ['macOS'],
+      desc: '启动台是一款 macOS 原生应用，找回经典 Launchpad 的全屏应用网格体验，支持文件夹、拼音即时搜索和手动布局，整理一次，终生可靠。',
+      downloadLabel: '下载 DMG',
+      downloadUrl: 'https://github.com/mengyuefeitian/iLaunch/releases',
+      features: [
+        { icon: '🖥️', title: '全屏网格', desc: '无边框 overlay，真实系统图标，行列与图标大小可调' },
+        { icon: '🔍', title: '即时搜索', desc: '实时过滤，完整拼音支持，键盘导航' },
+        { icon: '📁', title: '文件夹', desc: '拖拽成组，3×3 预览，放大后可直点迷你图标启动' },
+        { icon: '🍎', title: 'Apple 智能成夹', desc: '系统应用自动收入「Apple」文件夹，不打乱你的布局' },
+        { icon: '✋', title: '实时拖拽', desc: '瓦片自动让位，跨页移动，布局自动保存' },
+        { icon: '⌨️', title: '全局热键', desc: '默认 ⌥ Space，设置中可改；菜单栏与 Dock 亦可唤起' },
+      ],
+      scenarios: '适合怀念经典 Launchpad 全屏应用网格、需要空间记忆和拼音搜索的 macOS 用户，是 macOS 26 移除 Launchpad 后的原生替代方案。',
     },
   },
 };

@@ -1,0 +1,171 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getT } from '../../i18n/utils';
+
+const t = getT('zh');
+const app = t.apps.ilaunch;
+---
+<Base
+  title="启动台 iLaunch · macOS Launchpad 替代"
+  description={app.tagline}
+  lang="zh"
+>
+
+<section class="hero sec-dark" id="top">
+  <div class="wrap">
+    <p class="eyebrow">启动台</p>
+    <h1>把 Launchpad<br>找回来</h1>
+    <p class="lead">{app.desc}</p>
+    <p class="hero-sub"><img src="/images/icon-macos.svg" class="pi" alt="" width="17" height="17">macOS 桌面应用</p>
+    <div class="hero-device" style="padding-bottom:60px">
+      <div class="app-showcase" style="transform:translateY(40px)">
+        <img src="/images/ilaunch-icon.png" alt="启动台图标" class="showcase-icon" width="140" height="140" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec-dark" id="features">
+  <div class="wrap">
+    <div class="spot-head reveal">
+      <p class="eyebrow">为什么选择启动台</p>
+      <h2>整理一次，终生可靠</h2>
+      <p class="lead">macOS 26 用类 Spotlight 的 Apps 入口取代了经典 Launchpad。启动台把空间记忆带回来。</p>
+    </div>
+
+    <div class="spot reveal">
+      <div class="spot-text">
+        <h2>全屏网格<br>空间记忆还在</h2>
+        <p class="lead">无边框 overlay，真实系统图标，页面指示器。行列数、图标大小（S/M/L）、应用名称均可在设置中自定义。知道应用在第几页、哪个角落，往往比每次打字更快。</p>
+      </div>
+      <div class="spot-visual">
+        <div class="app-showcase feature">
+          <img
+            src="/images/ilaunch/feature-grid.webp"
+            alt="全屏应用网格示意"
+            class="showcase-feature"
+            width="320"
+            height="320"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="spot rev reveal">
+      <div class="spot-text">
+        <h2>即时搜索<br>拼音也能找</h2>
+        <p class="lead">实时过滤，完整拼音支持（输入 yy 即可找到「音乐」）。键盘导航，点任意空白处即退出。</p>
+      </div>
+      <div class="spot-visual">
+        <div class="app-showcase feature">
+          <img
+            src="/images/ilaunch/feature-search.webp"
+            alt="拼音即时搜索示意"
+            class="showcase-feature"
+            width="320"
+            height="320"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="spot reveal">
+      <div class="spot-text">
+        <h2>拖到一起<br>就是文件夹</h2>
+        <p class="lead">把一个应用拖到另一个上即可成组。弹窗从瓦片放大打开、关闭时缩回。关闭态 3×3 预览；放大文件夹可直点迷你图标启动。首次启动会把系统 Apple 应用收入独立文件夹，之后新装的也会悄悄归入，不打乱布局。</p>
+      </div>
+      <div class="spot-visual">
+        <div class="app-showcase feature">
+          <img
+            src="/images/ilaunch/feature-folders.webp"
+            alt="拖拽文件夹示意"
+            class="showcase-feature"
+            width="320"
+            height="320"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="spot rev reveal">
+      <div class="spot-text">
+        <h2>全局热键<br>随时唤起</h2>
+        <p class="lead">默认 ⌥ Space，可在设置中自定义。菜单栏与 Dock 亦可打开。启动应用后立即退出大屏，不卡顿。</p>
+      </div>
+      <div class="spot-visual">
+        <div class="app-showcase feature">
+          <img
+            src="/images/ilaunch/feature-hotkey.webp"
+            alt="全局热键唤起示意"
+            class="showcase-feature"
+            width="320"
+            height="320"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec-light">
+  <div class="wrap">
+    <div class="spot-head reveal">
+      <p class="eyebrow">全部功能</p>
+      <h2>把 Launchpad 的手感找回来</h2>
+    </div>
+    <div class="grid">
+      {app.features.map(f => (
+        <div class="cell reveal">
+          <div class="cell-ico">{f.icon}</div>
+          <h3>{f.title}</h3>
+          <p>{f.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="sec-darker" id="platforms">
+  <div class="wrap">
+    <div class="spot-head reveal">
+      <p class="eyebrow">平台</p>
+      <h2>专为 macOS 打造</h2>
+    </div>
+    <div class="plats" style="grid-template-columns:1fr">
+      <div class="plat reveal" style="max-width:560px;margin:0 auto">
+        <span class="plat-tag">macOS</span>
+        <h3>macOS 桌面应用</h3>
+        <ul>
+          <li>全屏网格与手动布局</li>
+          <li>拼音即时搜索</li>
+          <li>文件夹与 Apple 智能成夹</li>
+          <li>可配置全局热键</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec-light get" id="get">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow">立即获取</p>
+      <h2>下载启动台</h2>
+      <p class="lead">GitHub 免费开源。</p>
+    </div>
+    <div class="get-cards" style="grid-template-columns:1fr;max-width:320px;margin-left:auto;margin-right:auto">
+      <div class="get-card reveal">
+        <img src="/images/icon-github.svg" alt="" width="80" height="80" loading="lazy">
+        <h3>GitHub</h3>
+        <p>下载最新版 DMG，拖入 Applications 即可使用。MIT 开源。首次启动如遇 Gatekeeper，请右键 → 打开。</p>
+        <a class="btn btn-primary" href={app.downloadUrl} target="_blank" rel="noopener">下载 DMG</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</Base>
