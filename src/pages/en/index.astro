@@ -3,6 +3,8 @@ import Base from '../../layouts/Base.astro';
 import { getT } from '../../i18n/utils';
 
 const t = getT('en');
+import { organizationSchema, webSiteSchema } from '../../data/seo';
+const siteJsonLd = [organizationSchema('en'), webSiteSchema('en')];
 const { apps } = t;
 
 const products = [
@@ -15,8 +17,9 @@ const products = [
 ];
 ---
 <Base
-  title="XiaoAn Home · XiaoAn Studio"
-  description="XiaoAn Studio independent developer portfolio — HarmonyOS, macOS & WeChat Mini Program apps."
+  jsonLd={siteJsonLd}
+  title="XiaoAn Home · XiaoAn Studio | Apps for HarmonyOS, macOS & WeChat"
+  description="Official site of XiaoAn Studio — ArcaneKey TOTP authenticator, LumiBox NAS photo sync, Winter Fortress event registration and more free apps for HarmonyOS, macOS and WeChat."
   lang="en"
 >
   <!-- Dark hero -->
@@ -25,6 +28,13 @@ const products = [
       <p class="eyebrow">XiaoAn Studio · Independent Developer</p>
       <h1>{t.home.heroTitle}</h1>
       <p class="lead">{t.home.appsSubtitle}</p>
+      <p class="home-hero-intro">
+        XiaoAn Home (www.xiaoanhome.xyz) gathers every app built by XiaoAn Studio:
+        ArcaneKey keeps your two-factor codes safe on-device, LumiBox syncs your photo library
+        to your own NAS, and Winter Fortress helps game alliances manage event sign-ups.
+        All apps are free to get from their official stores, with release notes and privacy
+        policies maintained right here on this site.
+      </p>
       <div class="home-hero-apps">
         {products.map(p => (
           <a href={p.href} class="home-hero-app">

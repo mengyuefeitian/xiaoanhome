@@ -3,6 +3,8 @@ import Base from '../layouts/Base.astro';
 import { getT } from '../i18n/utils';
 
 const t = getT('zh');
+import { organizationSchema, webSiteSchema } from '../data/seo';
+const siteJsonLd = [organizationSchema('zh'), webSiteSchema('zh')];
 const { apps } = t;
 
 const products = [
@@ -51,8 +53,9 @@ const products = [
 ];
 ---
 <Base
-  title="小安之家 · 小安工作室"
-  description="小安工作室独立开发者作品集，涵盖 HarmonyOS、macOS 与微信小程序应用。"
+  jsonLd={siteJsonLd}
+  title="小安之家 · 小安工作室 | HarmonyOS、macOS 应用与微信小程序"
+  description="小安之家是小安工作室的独立开发者作品集：星枢令（TOTP 双因素验证器）、拾光匣（NAS 私有相册同步）、无尽冬日活动（联盟活动报名管理微信小程序）、智卷、自动打印、启动台等原创应用，覆盖 HarmonyOS、macOS 与微信小程序三大平台。"
   lang="zh"
 >
   <!-- Dark hero -->
@@ -61,6 +64,11 @@ const products = [
       <p class="eyebrow">小安工作室 · 独立开发者</p>
       <h1>{t.home.heroTitle}</h1>
       <p class="lead">{t.home.appsSubtitle}</p>
+      <p class="home-hero-intro">
+        小安之家（www.xiaoanhome.xyz）收录小安工作室的全部原创应用：从保护账号安全的双因素验证器「星枢令」，
+        到把照片留在自己设备之间的「拾光匣」，再到服务游戏公会的「无尽冬日活动」报名管理小程序。
+        所有应用均可在对应应用商店或微信中免费获取，产品介绍、更新日志与隐私政策都在本站维护。
+      </p>
       <div class="home-hero-apps">
         {products.map(p => (
           <a href={p.href} class="home-hero-app">

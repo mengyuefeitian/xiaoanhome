@@ -7,12 +7,21 @@ interface Props {
   activeSlug: string;
   title: string;
   description: string;
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
 
-const { activeSlug, title, description } = Astro.props;
+const { activeSlug, title, description, jsonLd } = Astro.props;
 const active = winterFortressUpdates.find((v) => v.slug === activeSlug) ?? winterFortressUpdates[0];
 ---
-<Base title={title} description={description} lang="zh" themeColor="#0b1120">
+<Base
+  title={title}
+  description={description}
+  lang="zh"
+  themeColor="#0b1120"
+  ogType="article"
+  jsonLd={jsonLd}
+  langTargetOverride="/en/winter-fortress"
+>
 
 <section class="sec-darker upd-hero">
   <div class="wrap">

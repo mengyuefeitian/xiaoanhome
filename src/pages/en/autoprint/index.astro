@@ -4,9 +4,12 @@ import { getT } from '../../../i18n/utils';
 
 const t = getT('en');
 const app = t.apps.autoprint;
+import { buildAppJsonLd } from '../../../data/seo';
+const appJsonLd = buildAppJsonLd(app, 'autoprint', 'en', '/en/autoprint');
 ---
 <Base
-  title="AutoPrint · macOS Automatic Folder Print Queue"
+  jsonLd={appJsonLd}
+  title="AutoPrint · macOS Folder Auto Print Tool | XiaoAn Home"
   description={app.tagline}
   lang="en"
 >

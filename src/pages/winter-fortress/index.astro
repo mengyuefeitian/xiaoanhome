@@ -4,10 +4,13 @@ import { getT } from '../../i18n/utils';
 
 const t = getT('zh');
 const app = t.apps.winterFortress;
+import { buildAppJsonLd } from '../../data/seo';
+const appJsonLd = buildAppJsonLd(app, 'winterFortress', 'zh', '/winter-fortress');
 ---
 <Base
-  title="无尽冬日活动 · 联盟活动报名管理小程序"
-  description={app.tagline}
+  jsonLd={appJsonLd}
+  title="无尽冬日活动 · 游戏联盟活动报名管理微信小程序 - 小安之家"
+  description={app.desc}
   lang="zh"
 >
 

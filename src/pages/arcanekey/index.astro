@@ -4,10 +4,13 @@ import { getT } from '../../i18n/utils';
 
 const t = getT('zh');
 const app = t.apps.arcanekey;
+import { buildAppJsonLd } from '../../data/seo';
+const appJsonLd = buildAppJsonLd(app, 'arcanekey', 'zh', '/arcanekey');
 ---
 <Base
-  title="星枢令 ArcaneKey · 双平台 TOTP 身份验证器"
-  description={app.tagline}
+  jsonLd={appJsonLd}
+  title="星枢令 ArcaneKey · 双平台 TOTP 身份验证器 - 小安之家"
+  description={app.desc}
   lang="zh"
 >
 
@@ -17,7 +20,7 @@ const app = t.apps.arcanekey;
     <p class="eyebrow">星枢令</p>
     <h1>你的密钥<br>只属于这台设备</h1>
     <p class="lead">跨平台 TOTP 身份验证器。验证码每 30 秒自动刷新，密钥仅存于本地，从不上传服务器。</p>
-    <p class="hero-sub"><img src="/images/icon-harmonyos.svg" class="pi" alt="" width="22" height="22" style="width:22px;height:22px">HarmonyOS App · <img src="/images/icon-wechat.svg" class="pi" alt="" width="17" height="17">微信小程序</p>
+    <p class="hero-sub"><img src="/images/icon-harmonyos.svg" class="pi" alt="HarmonyOS" width="22" height="22" style="width:22px;height:22px">HarmonyOS App · <img src="/images/icon-wechat.svg" class="pi" alt="微信小程序" width="17" height="17">微信小程序</p>
     <div class="hero-device">
       <div class="device">
         <div class="device-screen">
@@ -199,7 +202,7 @@ const app = t.apps.arcanekey;
     </div>
     <div class="get-cards">
       <div class="get-card reveal">
-        <img src="/images/icon-github.svg" alt="" width="80" height="80" loading="lazy">
+        <img src="/images/icon-github.svg" alt="GitHub" width="80" height="80" loading="lazy">
         <h3>GitHub</h3>
         <p>查看源码、下载发布版、参与共建。MIT 开源。</p>
         <a class="btn btn-primary" href="https://github.com/mengyuefeitian/ArcaneKey" target="_blank" rel="noopener">前往仓库</a>
@@ -211,7 +214,7 @@ const app = t.apps.arcanekey;
         <a class="btn btn-primary" href="#get">扫码进入</a>
       </div>
       <div class="get-card reveal">
-        <img src="/images/icon-appgallery.svg" alt="" width="80" height="80" loading="lazy">
+        <img src="/images/icon-appgallery.svg" alt="华为 AppGallery" width="80" height="80" loading="lazy">
         <h3>鸿蒙应用市场</h3>
         <p>HarmonyOS 原生应用，已上架华为应用市场。</p>
         <a class="btn btn-primary" href="https://appgallery.huawei.com/app/detail?id=com.arcanekey.authenticator&channelId=SHARE&source=appshare" target="_blank" rel="noopener">立即下载</a>

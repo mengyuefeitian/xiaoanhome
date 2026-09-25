@@ -6,9 +6,11 @@ import type { Lang } from '../i18n/utils';
 interface Props {
   lang: Lang;
   currentPath: string;
+  /** 当前页无对应语言版本时，手动指定语言切换目标（避免 404） */
+  langTargetOverride?: string;
 }
 
-const { lang, currentPath } = Astro.props;
+const { lang, currentPath, langTargetOverride } = Astro.props;
 const t = getT(lang);
 const prefix = lang === 'en' ? '/en' : '';
 
@@ -34,7 +36,7 @@ const appKeyByHref: Record<string, keyof typeof t.apps> = {
 const descOf = (href: string): string | null =>
   appKeyByHref[href] ? t.apps[appKeyByHref[href]].tagline : null;
 
-const langTarget = getLangUrl(currentPath, lang === 'zh' ? 'en' : 'zh');
+const langTarget = langTargetOverride ?? getLangUrl(currentPath, lang === 'zh' ? 'en' : 'zh');
 
 const isActive = (href: string): boolean => {
   if (currentPath === href) return true;

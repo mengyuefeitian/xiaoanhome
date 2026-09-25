@@ -4,9 +4,12 @@ import { getT } from '../../../i18n/utils';
 
 const t = getT('en');
 const app = t.apps.ilaunch;
+import { buildAppJsonLd } from '../../../data/seo';
+const appJsonLd = buildAppJsonLd(app, 'ilaunch', 'en', '/en/ilaunch');
 ---
 <Base
-  title="iLaunch · Native macOS Launchpad Replacement"
+  jsonLd={appJsonLd}
+  title="iLaunch · macOS Launchpad Replacement | XiaoAn Home"
   description={app.tagline}
   lang="en"
 >

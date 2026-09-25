@@ -2,6 +2,7 @@
 // src/layouts/Base.astro
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import JsonLd from '../components/JsonLd.astro';
 import '../styles/global.css';
 import { getLangUrl } from '../i18n/utils';
 import type { Lang } from '../i18n/utils';
@@ -12,13 +13,28 @@ interface Props {
   lang: Lang;
   themeColor?: string;
   ogImage?: string;
+  ogType?: 'website' | 'article';
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+  /** 该页无对应语言版本时，手动指定语言切换 / hreflang 的目标（避免生成 404 死链） */
+  langTargetOverride?: string;
 }
 
-const { title, description, lang, themeColor = '#0d0d12', ogImage } = Astro.props;
+const {
+  title,
+  description,
+  lang,
+  themeColor = '#0d0d12',
+  ogImage,
+  ogType = 'website',
+  jsonLd,
+  langTargetOverride,
+} = Astro.props;
 const pathname = Astro.url.pathname;
 const canonical = `https://www.xiaoanhome.xyz${pathname}`;
 const altLang = lang === 'zh' ? 'en' : 'zh';
-const altUrl = `https://www.xiaoanhome.xyz${getLangUrl(pathname, altLang)}`;
+const altUrl = langTargetOverride
+  ? `https://www.xiaoanhome.xyz${langTargetOverride}`
+  : `https://www.xiaoanhome.xyz${getLangUrl(pathname, altLang)}`;
 const htmlLang = lang === 'zh' ? 'zh-CN' : 'en';
 ---
 <!DOCTYPE html>
@@ -33,16 +49,25 @@ const htmlLang = lang === 'zh' ? 'zh-CN' : 'en';
   <link rel="canonical" href={canonical} />
   <link rel="alternate" hreflang={htmlLang} href={canonical} />
   <link rel="alternate" hreflang={altLang === 'zh' ? 'zh-CN' : 'en'} href={altUrl} />
-  <link rel="alternate" hreflang="x-default" href={`https://www.xiaoanhome.xyz${getLangUrl(pathname, 'zh')}`} />
+  <link rel="alternate" hreflang="x-default" href={lang === 'zh' ? canonical : `https://www.xiaoanhome.xyz${getLangUrl(pathname, 'zh')}`} />
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
-  <meta property="og:type" content="website" />
+  <meta property="og:type" content={ogType} />
   <meta property="og:url" content={canonical} />
-  <meta property="og:site_name" content="小安之家" />
-  {ogImage && <meta property="og:image" content={`https://www.xiaoanhome.xyz${ogImage}`} />}
+  <meta property="og:site_name" content={lang === 'zh' ? '小安之家' : 'XiaoAn Home'} />
+  <meta property="og:locale" content={lang === 'zh' ? 'zh_CN' : 'en_US'} />
+  <meta property="og:locale:alternate" content={lang === 'zh' ? 'en_US' : 'zh_CN'} />
+  <meta property="og:image" content={`https://www.xiaoanhome.xyz${ogImage ?? '/images/og-cover.png'}`} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={`https://www.xiaoanhome.xyz${ogImage ?? '/images/og-cover.png'}`} />
+  {jsonLd && <JsonLd data={jsonLd} />}
 </head>
 <body>
-  <Nav lang={lang} currentPath={pathname} />
+  <Nav lang={lang} currentPath={pathname} langTargetOverride={langTargetOverride} />
   <main>
     <slot />
   </main>

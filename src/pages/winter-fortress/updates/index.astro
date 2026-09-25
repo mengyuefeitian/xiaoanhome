@@ -3,6 +3,7 @@ import WinterFortressUpdateShell from '../../../components/updates/WinterFortres
 import V1_7_0 from '../../../components/updates/v1-7-0.astro';
 import V1_17_0 from '../../../components/updates/v1-17-0.astro';
 import { winterFortressUpdates } from '../../../data/winterFortressUpdates';
+import { breadcrumbSchema, techArticleSchema, absUrl } from '../../../data/seo';
 
 // slug → 对应版本的内容组件；新增版本时在这里补一条即可
 const bodies: Record<string, typeof V1_7_0> = {
@@ -13,11 +14,27 @@ const bodies: Record<string, typeof V1_7_0> = {
 // winterFortressUpdates 数组首项即最新版本 —— 进入列表页默认展示它
 const latest = winterFortressUpdates[0];
 const LatestBody = bodies[latest.slug];
+
+const jsonLd = [
+  breadcrumbSchema([
+    { name: '小安之家', url: 'https://www.xiaoanhome.xyz/' },
+    { name: '无尽冬日活动', url: absUrl('/winter-fortress') },
+    { name: '版本更新说明', url: absUrl('/winter-fortress/updates') },
+  ]),
+  techArticleSchema({
+    url: absUrl(`/winter-fortress/updates/${latest.slug}`),
+    headline: `${latest.version} ${latest.title} · 无尽冬日活动版本更新说明`,
+    description: latest.summary,
+    datePublished: latest.date,
+    lang: 'zh',
+  }),
+];
 ---
 <WinterFortressUpdateShell
   activeSlug={latest.slug}
   title={`${latest.version} ${latest.title} · 无尽冬日活动版本更新说明`}
   description={latest.summary}
+  jsonLd={jsonLd}
 >
   <LatestBody />
 </WinterFortressUpdateShell>

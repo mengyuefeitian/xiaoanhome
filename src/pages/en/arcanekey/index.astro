@@ -4,9 +4,12 @@ import { getT } from '../../../i18n/utils';
 
 const t = getT('en');
 const app = t.apps.arcanekey;
+import { buildAppJsonLd } from '../../../data/seo';
+const appJsonLd = buildAppJsonLd(app, 'arcanekey', 'en', '/en/arcanekey');
 ---
 <Base
-  title="ArcaneKey · Dual-Platform TOTP Authenticator"
+  jsonLd={appJsonLd}
+  title="ArcaneKey · Dual-Platform TOTP Authenticator | XiaoAn Home"
   description={app.tagline}
   lang="en"
 >
@@ -17,7 +20,7 @@ const app = t.apps.arcanekey;
     <p class="eyebrow">ArcaneKey</p>
     <h1>Your keys.<br>Your device only.</h1>
     <p class="lead">Cross-platform TOTP authenticator. Codes refresh every 30 seconds. Keys stored locally, never uploaded.</p>
-    <p class="hero-sub"><img src="/images/icon-harmonyos.svg" class="pi" alt="" width="22" height="22" style="width:22px;height:22px">HarmonyOS App · <img src="/images/icon-wechat.svg" class="pi" alt="" width="17" height="17">WeChat Mini Program</p>
+    <p class="hero-sub"><img src="/images/icon-harmonyos.svg" class="pi" alt="HarmonyOS" width="22" height="22" style="width:22px;height:22px">HarmonyOS App · <img src="/images/icon-wechat.svg" class="pi" alt="WeChat Mini Program" width="17" height="17">WeChat Mini Program</p>
     <div class="hero-device">
       <div class="device">
         <div class="device-screen">
@@ -195,7 +198,7 @@ const app = t.apps.arcanekey;
     </div>
     <div class="get-cards">
       <div class="get-card reveal">
-        <img src="/images/icon-github.svg" alt="" width="80" height="80" loading="lazy">
+        <img src="/images/icon-github.svg" alt="GitHub" width="80" height="80" loading="lazy">
         <h3>GitHub</h3>
         <p>Browse source code, download releases, contribute. MIT license.</p>
         <a class="btn btn-primary" href="https://github.com/mengyuefeitian/ArcaneKey" target="_blank" rel="noopener">View Repository</a>
@@ -207,7 +210,7 @@ const app = t.apps.arcanekey;
         <a class="btn btn-primary" href="#get">Scan to Open</a>
       </div>
       <div class="get-card reveal">
-        <img src="/images/icon-appgallery.svg" alt="" width="80" height="80" loading="lazy">
+        <img src="/images/icon-appgallery.svg" alt="Huawei AppGallery" width="80" height="80" loading="lazy">
         <h3>Huawei AppGallery</h3>
         <p>Now available on Huawei AppGallery for HarmonyOS.</p>
         <a class="btn btn-primary" href="https://appgallery.huawei.com/app/detail?id=com.arcanekey.authenticator&channelId=SHARE&source=appshare" target="_blank" rel="noopener">Download Now</a>

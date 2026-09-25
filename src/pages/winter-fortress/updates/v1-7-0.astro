@@ -1,11 +1,29 @@
 ---
 import WinterFortressUpdateShell from '../../../components/updates/WinterFortressUpdateShell.astro';
 import V1_7_0 from '../../../components/updates/v1-7-0.astro';
+import { breadcrumbSchema, techArticleSchema, absUrl } from '../../../data/seo';
+
+const jsonLd = [
+  breadcrumbSchema([
+    { name: '小安之家', url: 'https://www.xiaoanhome.xyz/' },
+    { name: '无尽冬日活动', url: absUrl('/winter-fortress') },
+    { name: '版本更新说明', url: absUrl('/winter-fortress/updates') },
+    { name: 'V1.7.0', url: absUrl('/winter-fortress/updates/v1-7-0') },
+  ]),
+  techArticleSchema({
+    url: absUrl('/winter-fortress/updates/v1-7-0'),
+    headline: 'V1.7.0 联盟活跃 · 无尽冬日活动版本更新说明',
+    description: '无尽冬日活动 V1.7.0：区管/盟管控制台新增联盟活跃模块，登记联盟成员每日活跃情况。',
+    datePublished: '2026-09-17',
+    lang: 'zh',
+  }),
+];
 ---
 <WinterFortressUpdateShell
   activeSlug="v1-7-0"
   title="V1.7.0 联盟活跃 · 无尽冬日活动版本更新说明"
   description="无尽冬日活动 V1.7.0：区管/盟管控制台新增联盟活跃模块，登记联盟成员每日活跃情况。"
+  jsonLd={jsonLd}
 >
   <V1_7_0 />
 </WinterFortressUpdateShell>

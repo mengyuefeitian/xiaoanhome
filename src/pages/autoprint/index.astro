@@ -4,10 +4,13 @@ import { getT } from '../../i18n/utils';
 
 const t = getT('zh');
 const app = t.apps.autoprint;
+import { buildAppJsonLd } from '../../data/seo';
+const appJsonLd = buildAppJsonLd(app, 'autoprint', 'zh', '/autoprint');
 ---
 <Base
-  title="自动打印 AutoPrint · macOS 文件夹监控自动打印"
-  description={app.tagline}
+  jsonLd={appJsonLd}
+  title="自动打印 AutoPrint · macOS 文件夹监控自动打印工具 - 小安之家"
+  description={app.desc}
   lang="zh"
 >
 

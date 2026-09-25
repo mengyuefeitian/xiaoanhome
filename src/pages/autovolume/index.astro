@@ -4,10 +4,13 @@ import { getT } from '../../i18n/utils';
 
 const t = getT('zh');
 const app = t.apps.autovolume;
+import { buildAppJsonLd } from '../../data/seo';
+const appJsonLd = buildAppJsonLd(app, 'autovolume', 'zh', '/autovolume');
 ---
 <Base
-  title="智卷 AutoVolume · macOS 网络卷自动挂载"
-  description={app.tagline}
+  jsonLd={appJsonLd}
+  title="智卷 AutoVolume · macOS 网络卷自动挂载工具 - 小安之家"
+  description={app.desc}
   lang="zh"
 >
 

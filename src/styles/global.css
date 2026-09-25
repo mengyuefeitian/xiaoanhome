@@ -339,6 +339,12 @@ h3 { font-size: 20px; font-weight: 600; }
 }
 .home-hero h1 { color: var(--text-light); margin-bottom: 18px; }
 .home-hero .lead { color: #aeaeb2; max-width: 540px; margin: 0 auto; }
+.home-hero-intro {
+  max-width: 720px; margin: 22px auto 0;
+  font-size: 14.5px; line-height: 1.9; color: rgba(255,255,255,.52);
+}
+.home-hero-intro { text-align: justify; text-justify: inter-ideograph; }
+@media (max-width: 640px) { .home-hero-intro { font-size: 13.5px; } }
 
 /* App icons row */
 .home-hero-apps {

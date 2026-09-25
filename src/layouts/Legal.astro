@@ -6,17 +6,22 @@ import '../styles/global.css';
 interface Props {
   title: string;
   date: string;
+  description?: string;
 }
 
-const { title, date } = Astro.props;
+const { title, date, description } = Astro.props;
+const canonical = `https://www.xiaoanhome.xyz${Astro.url.pathname}`;
+const metaDesc = description ?? `${title} · 小安工作室官方法律与协议文档，生效日期 ${date}。`;
 ---
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="robots" content="noindex" />
+  <meta name="robots" content="noindex, follow" />
   <title>{title} · 小安之家</title>
+  <meta name="description" content={metaDesc} />
+  <link rel="canonical" href={canonical} />
   <meta name="theme-color" content="#0d1117" />
 </head>
 <body>

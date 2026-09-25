@@ -4,10 +4,13 @@ import { getT } from '../../i18n/utils';
 
 const t = getT('zh');
 const app = t.apps.lumibox;
+import { buildAppJsonLd } from '../../data/seo';
+const appJsonLd = buildAppJsonLd(app, 'lumibox', 'zh', '/lumibox');
 ---
 <Base
-  title="拾光匣 LumiBox · 私有相册同步与浏览"
-  description={app.tagline}
+  jsonLd={appJsonLd}
+  title="拾光匣 LumiBox · NAS 私有相册同步与浏览 App - 小安之家"
+  description={app.desc}
   lang="zh"
 >
 

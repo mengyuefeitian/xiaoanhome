@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# 法律/协议页已在页面级声明 noindex，同时禁止抓取以免浪费配额
+Disallow: /*/privacy-policy
+Disallow: /*/user-agreement
+Disallow: /*/auto-renewal-agreement
+Disallow: /404
+
+Sitemap: https://www.xiaoanhome.xyz/sitemap-index.xml

@@ -4,10 +4,13 @@ import { getT } from '../../i18n/utils';
 
 const t = getT('zh');
 const app = t.apps.ilaunch;
+import { buildAppJsonLd } from '../../data/seo';
+const appJsonLd = buildAppJsonLd(app, 'ilaunch', 'zh', '/ilaunch');
 ---
 <Base
-  title="启动台 iLaunch · macOS Launchpad 替代"
-  description={app.tagline}
+  jsonLd={appJsonLd}
+  title="启动台 iLaunch · macOS Launchpad 替代启动器 - 小安之家"
+  description={app.desc}
   lang="zh"
 >
 
