@@ -12,6 +12,13 @@ export interface UpdateVersion {
 
 export const winterFortressUpdates: UpdateVersion[] = [
   {
+    version: 'V1.17.0',
+    slug: 'v1-17-0',
+    date: '2026-09-25',
+    title: '游戏账号全面升级',
+    summary: '多游戏账号统一管理，报名一键切换角色自动填充等级与联盟，兵种阶级 T11/T12 全链路同步，另新增「功能介绍」与「关于」入口。',
+  },
+  {
     version: 'V1.7.0',
     slug: 'v1-7-0',
     date: '2026-09-17',

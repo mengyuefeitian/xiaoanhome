@@ -32,3 +32,6 @@ docs/superpowers/
 
 # Claude Code project rules (local only)
 CLAUDE.md
+
+# WorkBuddy project data & memory (local only)
+.workbuddy/

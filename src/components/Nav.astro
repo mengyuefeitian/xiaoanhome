@@ -22,6 +22,18 @@ const links = [
   { label: t.nav.ilaunch,        href: `${prefix}/ilaunch` },
 ];
 
+// 产品 → 一句话简介（复用首页产品卡 tagline），仅在移动端折叠菜单中展示
+const appKeyByHref: Record<string, keyof typeof t.apps> = {
+  [`${prefix}/arcanekey`]: 'arcanekey',
+  [`${prefix}/winter-fortress`]: 'winterFortress',
+  [`${prefix}/lumibox`]: 'lumibox',
+  [`${prefix}/autovolume`]: 'autovolume',
+  [`${prefix}/autoprint`]: 'autoprint',
+  [`${prefix}/ilaunch`]: 'ilaunch',
+};
+const descOf = (href: string): string | null =>
+  appKeyByHref[href] ? t.apps[appKeyByHref[href]].tagline : null;
+
 const langTarget = getLangUrl(currentPath, lang === 'zh' ? 'en' : 'zh');
 
 const isActive = (href: string): boolean => {
@@ -29,6 +41,9 @@ const isActive = (href: string): boolean => {
   if (href !== '/' && href !== '/en' && currentPath.startsWith(href + '/')) return true;
   return false;
 };
+
+// 当前所在的产品页（首页除外）——所有产品页都显示，右侧产品名 + 「›」指向菜单
+const activeProduct = links.find(({ href }) => href !== '/' && href !== '/en' && isActive(href));
 ---
 <nav class="nav" aria-label="主导航">
   <div class="nav-inner">
@@ -37,17 +52,25 @@ const isActive = (href: string): boolean => {
       {lang === 'zh' ? '小安之家' : 'XiaoAn Home'}
     </a>
 
+    {activeProduct && (
+      <a class="nav-page-bc" href={activeProduct.href}>
+        {activeProduct.label}
+        <span class="bc-arrow" aria-hidden="true">›</span>
+      </a>
+    )}
+
     <ul class="nav-links" id="nav-links" role="list">
-      {links.map(({ label, href }) => (
-        <li>
-          <a
-            href={href}
-            aria-current={isActive(href) ? 'page' : undefined}
-          >
-            {label}
-          </a>
-        </li>
-      ))}
+      {links.map(({ label, href }) => {
+        const desc = descOf(href);
+        return (
+          <li>
+            <a href={href} class={desc ? 'has-desc' : undefined} aria-current={isActive(href) ? 'page' : undefined}>
+              <span class="nav-link-label">{label}</span>
+              {desc && <span class="nav-link-desc">{desc}</span>}
+            </a>
+          </li>
+        );
+      })}
       <li>
         <a href={langTarget} class="nav-cta">{t.nav.langSwitch}</a>
       </li>
@@ -58,6 +81,67 @@ const isActive = (href: string): boolean => {
     </button>
   </div>
 </nav>
+
+<style>
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  /* 标题栏右侧：产品名 + 「›」指向旁边的菜单，引导切换产品（移动端显示） */
+  .nav-page-bc { display: none; }
+  @media (max-width: 768px) {
+    .nav-page-bc {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin-left: auto;   /* 推到右侧，紧挨 ☰ */
+      margin-right: 2px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent);
+      text-decoration: none;
+      white-space: nowrap;
+      min-width: 0;
+    }
+    .bc-arrow {
+      color: rgba(0, 0, 0, .35);
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+  }
+  @media (max-width: 380px) {
+    .nav-brand { font-size: 15.5px; }
+    .nav-page-bc { font-size: 12px; }
+  }
+
+  /* 产品简介：桌面端隐藏，仅折叠菜单内展示 */
+  .nav-link-label { display: inline; }
+  .nav-link-desc { display: none; }
+  @media (max-width: 768px) {
+    .nav-links li a.has-desc { padding: 11px 24px; }
+    .nav-link-label {
+      display: block;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+    .nav-link-desc {
+      display: block;
+      font-size: 12.5px;
+      font-weight: 400;
+      line-height: 1.55;
+      color: rgba(0, 0, 0, .48);
+      margin-top: 2px;
+      overflow-wrap: anywhere; /* 长简介换行，绝不超出屏幕 */
+    }
+    .nav-links a[aria-current="page"] .nav-link-label { color: var(--accent); }
+  }
+</style>
 
 <script>
   const toggle = document.getElementById('nav-toggle')!;

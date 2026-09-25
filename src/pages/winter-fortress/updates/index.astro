@@ -1,11 +1,23 @@
 ---
 import WinterFortressUpdateShell from '../../../components/updates/WinterFortressUpdateShell.astro';
 import V1_7_0 from '../../../components/updates/v1-7-0.astro';
+import V1_17_0 from '../../../components/updates/v1-17-0.astro';
+import { winterFortressUpdates } from '../../../data/winterFortressUpdates';
+
+// slug → 对应版本的内容组件；新增版本时在这里补一条即可
+const bodies: Record<string, typeof V1_7_0> = {
+  'v1-7-0': V1_7_0,
+  'v1-17-0': V1_17_0,
+};
+
+// winterFortressUpdates 数组首项即最新版本 —— 进入列表页默认展示它
+const latest = winterFortressUpdates[0];
+const LatestBody = bodies[latest.slug];
 ---
 <WinterFortressUpdateShell
-  activeSlug="v1-7-0"
-  title="版本更新说明 · 无尽冬日活动"
-  description="无尽冬日活动小程序版本更新说明，按版本查看新功能的操作路径与截图。"
+  activeSlug={latest.slug}
+  title={`${latest.version} ${latest.title} · 无尽冬日活动版本更新说明`}
+  description={latest.summary}
 >
-  <V1_7_0 />
+  <LatestBody />
 </WinterFortressUpdateShell>

@@ -1,0 +1,193 @@
+---
+// src/components/updates/v1-17-0.astro
+const img = (name: string) => `/images/winter-fortress/updates/v1-17-0/${name}`;
+---
+<div class="upd-sec">
+  <p class="upd-sec-eyebrow">本次更新概览</p>
+  <p class="upd-sec-title">游戏账号全面升级：多账号管理 + 报名自动填充 + 兵种阶级同步</p>
+  <p class="upd-sec-desc">这个版本围绕「游戏账号」做了一次全面升级：多个游戏账号统一管理、报名时一键切换自动填充、等级选择器全站统一，并新增兵种阶级（T11 / T12）的展示与同步。另外，「帮助与反馈」里还新增了「功能介绍」与「关于」两个入口。</p>
+</div>
+
+<div class="upd-sec">
+  <p class="upd-sec-eyebrow">重点功能 ①</p>
+  <p class="upd-sec-title">我的 · 多游戏账号管理</p>
+  <p class="upd-sec-desc">多个游戏号集中管理：添加、编辑、删除、设主账号，每个账号的熔炉等级、三个兵营等级（含兵种阶级）、地心探险一目了然。</p>
+
+  <div class="upd-step">
+    <div class="upd-step-head">
+      <div class="upd-step-num">1</div>
+      <div>
+        <div class="upd-step-title">查看与管理游戏账号</div>
+        <div class="upd-step-path">操作路径：<code>我的 → 游戏账号</code></div>
+      </div>
+    </div>
+    <div class="upd-shot"><img src={img('my-accounts.png')} alt="我的页面游戏账号列表，展示主账号标记、熔炉等级、三兵营等级与兵种阶级角标、地心探险、编辑和删除按钮" loading="lazy" /></div>
+    <div class="upd-result"><b>结果：</b>每个账号一张卡片：昵称前展示熔炉等级图标，下方三个兵营等级徽章（右下角带 <code>T11 / T12</code> 兵种阶级角标），再往下是地心探险数值。卡片右侧三个按钮：<code>★</code> 设为主账号、<code>✎</code> 编辑、<code>🗑</code> 删除。</div>
+    <div class="upd-note"><b>主账号：</b>带「主账号」标签的是默认账号——各报名页自动填充、联盟活跃登记用的都是它。列表默认折叠只显示主账号，点「展开全部」可查看所有账号。</div>
+    <div class="upd-note"><b>添加账号：</b>点右上角 <code>+</code> 按钮即可新增，填写游戏昵称（必填）、熔炉等级、兵营等级、兵种阶级、地心探险。</div>
+  </div>
+
+  <div class="upd-step">
+    <div class="upd-step-head">
+      <div class="upd-step-num">2</div>
+      <div>
+        <div class="upd-step-title">等级选择弹窗全面升级（与国战报名统一）</div>
+        <div class="upd-step-path">操作路径：<code>我的 → 游戏账号 → 添加 / 编辑账号 → 点熔炉或兵营等级</code></div>
+      </div>
+    </div>
+    <div class="upd-shot"><img src={img('level-picker.png')} alt="等级选择弹窗：熔炉等级、盾兵营等级、射手营等级，支持标准等级与火晶等级切换，兵营可选兵种阶级 T11/T12" loading="lazy" /></div>
+    <div class="upd-result"><b>结果：</b>弹窗支持「标准等级 / 火晶等级」两栏切换：标准等级为数字圆环网格，火晶等级为火1～火10 宝石图标。兵营还可选「兵种阶级（默认无）：<code>无 / T11 / T12</code>」。</div>
+    <div class="upd-note"><b>说明：</b>「我的」页原本自带的等级弹窗已替换为与国战报名完全相同的统一组件——标题、图标、尺寸、默认选中（默认停在火晶等级）全部一致，不会再出现两边长得不一样的情况。</div>
+  </div>
+</div>
+
+<div class="upd-sec">
+  <p class="upd-sec-eyebrow">重点功能 ②</p>
+  <p class="upd-sec-title">国战报名 · 选择游戏角色自动填充</p>
+  <p class="upd-sec-desc">报名不再手动重复填写：选一个已有游戏角色，昵称、熔炉等级、兵营等级（含兵种阶级）、上次报名的联盟自动带出；填了新昵称则自动加入游戏账号库。</p>
+
+  <div class="upd-step">
+    <div class="upd-step-head">
+      <div class="upd-step-num">1</div>
+      <div>
+        <div class="upd-step-title">切换游戏角色，资料自动带出</div>
+        <div class="upd-step-path">操作路径：<code>国战报名 → 游戏昵称下拉选择</code></div>
+      </div>
+    </div>
+    <div class="upd-shot"><img src={img('battle-registration.png')} alt="国战报名页，游戏昵称下拉选择角色青衣，熔炉等级、三个兵营等级带T11角标、联盟均自动填充" loading="lazy" /></div>
+    <div class="upd-result"><b>结果：</b>选中角色后，熔炉等级、盾 / 矛 / 射三个兵营等级（含兵种阶级角标）自动填充，联盟也会预填为该账号上次报名用的联盟，核对无误直接提交。</div>
+    <div class="upd-note"><b>说明：</b>切换账号是整体同步——熔炉 + 三兵营等级（含兵种阶级）+ 最近报名联盟一起切换过去，不会出现改了昵称但等级还是上一个账号的串号情况。手动填写的新昵称不受影响。</div>
+  </div>
+
+  <div class="upd-step">
+    <div class="upd-step-head">
+      <div class="upd-step-num">2</div>
+      <div>
+        <div class="upd-step-title">新角色自动入库，无需先去「我的」页添加</div>
+        <div class="upd-step-path">操作路径：<code>国战报名 → 游戏昵称手动输入 → 提交报名</code></div>
+      </div>
+    </div>
+    <div class="upd-result"><b>结果：</b>提交时如果昵称是新的，会自动加入「我的 → 游戏账号」列表并设为主账号；已有账号本次填写的等级也会回写到账号资料，下次报名直接带出。</div>
+  </div>
+</div>
+
+<div class="upd-sec">
+  <p class="upd-sec-eyebrow">重点功能 ③</p>
+  <p class="upd-sec-title">堡垒 / 兵工厂 / 峡谷 / 官职报名 · 新老成员都能一键报</p>
+  <p class="upd-sec-desc">四类报名的昵称输入统一升级为复合选择器：老成员下拉直接选角色，新成员手动填写即可，填完自动存入游戏账号库。</p>
+
+  <div class="upd-step">
+    <div class="upd-step-head">
+      <div class="upd-step-num">1</div>
+      <div>
+        <div class="upd-step-title">报名时选择或填写昵称</div>
+        <div class="upd-step-path">操作路径：<code>兵工厂 / 堡垒 / 峡谷 / 官职报名 → 昵称</code></div>
+      </div>
+    </div>
+    <div class="upd-shot"><img src={img('arsenal-registration.png')} alt="兵工厂报名页，昵称为下拉选择器，已报名人员列表中昵称前展示熔炉等级徽章" loading="lazy" /></div>
+    <div class="upd-result"><b>结果：</b>点昵称框弹出选择面板：默认显示主账号昵称，可下拉切换其它已有游戏账号，也可手动输入新昵称。手动填写的新昵称提交后自动追加到游戏账号列表。</div>
+    <div class="upd-note"><b>说明：</b>已报名人员列表中，昵称前会展示熔炉等级图标（老记录没有等级的，会自动按填报人补齐），管理端统计与截图同样展示。</div>
+  </div>
+</div>
+
+<div class="upd-sec">
+  <p class="upd-sec-eyebrow">重点功能 ④</p>
+  <p class="upd-sec-title">国战统计截图 · 等级图标 + 兵种阶级角标</p>
+  <p class="upd-sec-desc">保存到相册的国战统计表全面升级：熔炉等级、各兵营等级以图标展示，带兵种阶级的还会显示 T11 / T12 角标，发群里更有信息量。</p>
+
+  <div class="upd-step">
+    <div class="upd-step-head">
+      <div class="upd-step-num">1</div>
+      <div>
+        <div class="upd-step-title">保存国战统计截图</div>
+        <div class="upd-step-path">操作路径：<code>国战统计页 → 保存截图</code></div>
+      </div>
+    </div>
+    <div class="upd-shot"><img src={img('battle-stats.png')} alt="国战统计表截图，车头车身双表格，昵称前熔炉等级徽章，兵种实力列三兵营等级徽章带T11角标" loading="lazy" /></div>
+    <div class="upd-result"><b>结果：</b>车头 / 车身双表格布局：「熔炉」列画熔炉等级徽章；「兵种实力(万)」列画盾 / 矛 / 射三个等级徽章（斜杠分隔），下方一行对应兵种数量。带兵种阶级的徽章右下角有 <code>T11 / T12</code> 橙色角标。</div>
+    <div class="upd-note"><b>说明：</b>老数据（纯文本等级）也会自动解析成图标展示；联盟活跃等其它统计截图同样带熔炉等级图标。</div>
+  </div>
+</div>
+
+<div class="upd-sec">
+  <p class="upd-sec-eyebrow">重点功能 ⑤</p>
+  <p class="upd-sec-title">我的 → 帮助与反馈：新增「功能介绍」与「关于」</p>
+  <p class="upd-sec-desc">以前更新了什么只能靠群公告，现在 App 内置了版本说明入口，还有一个随时能看的产品信息页。</p>
+
+  <div class="upd-step">
+    <div class="upd-step-head">
+      <div class="upd-step-num">1</div>
+      <div>
+        <div class="upd-step-title">功能介绍：按版本查阅更新说明</div>
+        <div class="upd-step-path">操作路径：<code>我的 → 帮助与反馈 → 功能介绍</code></div>
+      </div>
+    </div>
+    <div class="upd-result"><b>结果：</b>进入后是版本列表，每行显示版本号、发布日期、版本主题和一句话摘要，点击某一版本即可查看该版本的详细说明。</div>
+    <div class="upd-note"><b>说明：</b>后续每发一个版本，列表里就会多一条，不用再到处找历史说明。</div>
+  </div>
+
+  <div class="upd-step">
+    <div class="upd-step-head">
+      <div class="upd-step-num">2</div>
+      <div>
+        <div class="upd-step-title">把说明分享到群里：点一下复制链接</div>
+        <div class="upd-step-path">操作方式：<code>在版本列表点击对应版本</code></div>
+      </div>
+    </div>
+    <div class="upd-result"><b>结果：</b>提示「链接已复制，请粘贴到浏览器打开」，把复制到的链接发到微信群，成员在浏览器打开即可看到完整说明页。</div>
+    <div class="upd-note"><b>为什么要在浏览器打开：</b>本小程序为个人主体，微信不开放个人主体的站内网页浏览能力，App 内无法直接打开外部网页。「复制链接 → 浏览器查看」是目前唯一可行的方式。</div>
+  </div>
+
+  <div class="upd-step">
+    <div class="upd-step-head">
+      <div class="upd-step-num">3</div>
+      <div>
+        <div class="upd-step-title">关于：产品信息与客服入口</div>
+        <div class="upd-step-path">操作路径：<code>我的 → 帮助与反馈 → 关于</code></div>
+      </div>
+    </div>
+    <div class="upd-result"><b>结果：</b>页面顶部居中显示产品 logo、产品名称与当前版本号（可在里面确认自己是否已经是最新版）。下方三个入口：</div>
+    <div class="upd-facts">
+      <div class="upd-fact">
+        <div class="k">官网</div>
+        <div class="v">右侧标签为「复制」，点击复制链接后粘贴到浏览器打开</div>
+      </div>
+      <div class="upd-fact">
+        <div class="k">客服微信</div>
+        <div class="v">点击一下即复制客服微信号，提示「复制成功，请在微信添加客服」，2 秒后自动消失</div>
+      </div>
+      <div class="upd-fact">
+        <div class="k">备案号</div>
+        <div class="v">右侧同为「复制」，可到工信部备案查询站核实备案信息</div>
+      </div>
+      <div class="upd-fact">
+        <div class="k">版本号</div>
+        <div class="v">与本次发布的版本一致，反馈问题时可直接报给客服</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="upd-sec">
+  <p class="upd-sec-eyebrow">体验优化</p>
+  <p class="upd-sec-title">近期版本其它值得关注的能力</p>
+  <div class="upd-facts">
+    <div class="upd-fact">
+      <div class="k">管理页秒开</div>
+      <div class="v">分区 / 联盟数据本地缓存，管理页不再「转圈 3–6 秒」，命中缓存 0 毫秒返回</div>
+    </div>
+    <div class="upd-fact">
+      <div class="k">联盟选择器升级</div>
+      <div class="v">全站 14 处联盟选择改为弹窗网格，一屏铺满、点一下即选中，不再拨滚轮</div>
+    </div>
+    <div class="upd-fact">
+      <div class="k">联盟活跃支持多账号</div>
+      <div class="v">打开小程序自动把游戏账号列表里的全部账号登记为当日活跃</div>
+    </div>
+    <div class="upd-fact">
+      <div class="k">等级图标统一</div>
+      <div class="v">报名页、统计列表、各类截图中的熔炉 / 兵营等级统一为图标徽章展示</div>
+    </div>
+  </div>
+  <div class="upd-note" style="margin-top:14px;"><b>提示：</b>发现问题可随时通过 <code>我的 → 帮助与反馈</code> 联系我们；各历史版本说明可在「帮助与反馈 → 功能介绍」中查看。</div>
+</div>
