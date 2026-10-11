@@ -1,10 +1,7 @@
 User-agent: *
 Allow: /
 
-# 法律/协议页已在页面级声明 noindex，同时禁止抓取以免浪费配额
-Disallow: /*/privacy-policy
-Disallow: /*/user-agreement
-Disallow: /*/auto-renewal-agreement
-Disallow: /404
+# 法律/协议页由页面级 <meta name="robots" content="noindex, follow"> 控制收录；
+# 不能在此 Disallow，否则爬虫读不到 noindex，且 Bing 站长工具会报「被 robots.txt 阻挡」
 
 Sitemap: https://www.xiaoanhome.xyz/sitemap-index.xml

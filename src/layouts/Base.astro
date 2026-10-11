@@ -66,6 +66,21 @@ const htmlLang = lang === 'zh' ? 'zh-CN' : 'en';
   <meta name="twitter:description" content={description} />
   <meta name="twitter:image" content={`https://www.xiaoanhome.xyz${ogImage ?? '/images/og-cover.png'}`} />
   {jsonLd && <JsonLd data={jsonLd} />}
+  {(pathname === '/' || pathname === '/en') && (
+    <script is:inline>
+    (function(){
+      try {
+        // 仅首页：用户没手动选过语言时，按浏览器语言跳转到对应版本
+        if (localStorage.getItem('lang-pref')) return;
+        if (/bot|crawl|spider|slurp|bing|google/i.test(navigator.userAgent)) return;
+        var isZh = /^zh\b/i.test(navigator.language || '');
+        var onEn = location.pathname === '/en';
+        if (isZh && onEn) location.replace('/');
+        else if (!isZh && !onEn) location.replace('/en');
+      } catch (e) {}
+    })();
+    </script>
+  )}
 </head>
 <body>
   <Nav lang={lang} currentPath={pathname} langTargetOverride={langTargetOverride} />
