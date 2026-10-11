@@ -74,7 +74,7 @@ const activeProduct = links.find(({ href }) => href !== '/' && href !== '/en' &&
         );
       })}
       <li>
-        <a href={langTarget} class="nav-cta">{t.nav.langSwitch}</a>
+        <a href={langTarget} class="nav-cta" data-lang-switch={lang === 'zh' ? 'en' : 'zh'}>{t.nav.langSwitch}</a>
       </li>
     </ul>
 
@@ -173,5 +173,12 @@ const activeProduct = links.find(({ href }) => href !== '/' && href !== '/en' &&
     if (!toggle.contains(e.target as Node) && !menu.contains(e.target as Node)) {
       closeMenu();
     }
+  });
+
+  // 记住用户手动选择的语言，首页自动跳转不再覆盖
+  document.querySelectorAll<HTMLElement>('[data-lang-switch]').forEach((el) => {
+    el.addEventListener('click', () => {
+      try { localStorage.setItem('lang-pref', el.dataset.langSwitch ?? ''); } catch {}
+    });
   });
 </script>
