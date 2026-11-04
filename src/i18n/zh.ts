@@ -62,7 +62,7 @@ export const zh: Translations = {
     arcanekey: '星枢令',
     winterFortress: '无尽冬日活动',
     lumibox: '拾光匣',
-    autovolume: 'NetDiskMount',
+    autovolume: '网络磁盘挂载',
     autoprint: '自动打印',
     ilaunch: '启动台',
     langSwitch: 'EN',
@@ -139,12 +139,12 @@ export const zh: Translations = {
       scenarios: '解决游戏联盟活动人工报名混乱的痛点，支持完整权限申请与审核流程，让联盟管理员从繁杂的群消息统计中解放出来。',
     },
     autovolume: {
-      name: 'NetDiskMount',
+      name: '网络磁盘挂载',
       nameEn: 'NetDiskMount',
       tagline: '让 NAS、网盘和移动硬盘在 Mac 上一直在线——网络磁盘自动挂载与断线重连',
       platform: ['macOS'],
       version: '1.0.9',
-      desc: 'NetDiskMount 是一款 macOS 菜单栏工具，专注网络磁盘自动挂载与断线重连：让 NAS、网盘和 SMB/WebDAV/AFP/NFS 共享一次配置长期在线，休眠或切换 Wi-Fi 后静默重连，NTFS 移动硬盘也能读写，并支持自动更新、多语言界面与一键诊断导出，适合长期挂载影音媒体库。',
+      desc: '网络磁盘挂载（NetDiskMount）是一款 macOS 菜单栏工具，专注网络磁盘自动挂载与断线重连：让 NAS、网盘和 SMB/WebDAV/AFP/NFS 共享一次配置长期在线，休眠或切换 Wi-Fi 后静默重连，NTFS 移动硬盘也能读写，并支持自动更新、多语言界面与一键诊断导出，适合长期挂载影音媒体库。',
       downloadLabel: '下载 DMG',
       downloadUrl: 'https://github.com/mengyuefeitian/AutoVolume/releases',
       features: [
