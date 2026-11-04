@@ -17,6 +17,8 @@ interface Props {
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
   /** 该页无对应语言版本时，手动指定语言切换 / hreflang 的目标（避免生成 404 死链） */
   langTargetOverride?: string;
+  /** 该页本身没有对应语言版本：不输出 alternate hreflang，避免 hreflang 指向内容不匹配的页面 */
+  noAltLang?: boolean;
 }
 
 const {
@@ -28,6 +30,7 @@ const {
   ogType = 'website',
   jsonLd,
   langTargetOverride,
+  noAltLang = false,
 } = Astro.props;
 const pathname = Astro.url.pathname;
 const canonical = `https://www.xiaoanhome.xyz${pathname}`;
@@ -43,13 +46,23 @@ const htmlLang = lang === 'zh' ? 'zh-CN' : 'en';
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content={themeColor} />
+  <!-- Google tag (gtag.js) -->
+  <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-28DMPDQZ4E"></script>
+  <script is:inline>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-28DMPDQZ4E');
+  </script>
   <title>{title}</title>
   <meta name="description" content={description} />
   <meta name="baidu-site-verification" content="codeva-QKJfYqkF7T" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="canonical" href={canonical} />
   <link rel="alternate" hreflang={htmlLang} href={canonical} />
-  <link rel="alternate" hreflang={altLang === 'zh' ? 'zh-CN' : 'en'} href={altUrl} />
+  {!noAltLang && (
+    <link rel="alternate" hreflang={altLang === 'zh' ? 'zh-CN' : 'en'} href={altUrl} />
+  )}
   <link rel="alternate" hreflang="x-default" href={lang === 'zh' ? canonical : `https://www.xiaoanhome.xyz${getLangUrl(pathname, 'zh')}`} />
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />

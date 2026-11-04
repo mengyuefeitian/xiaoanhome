@@ -7,13 +7,24 @@ import { organizationSchema, webSiteSchema } from '../data/seo';
 const siteJsonLd = [organizationSchema('zh'), webSiteSchema('zh')];
 const { apps } = t;
 
-const products = [
+interface ProductCard {
+  key: string;
+  app: { name: string; nameEn: string; tagline: string; platform: readonly string[] };
+  href: string;
+  icon: string;
+  iconAlt: string;
+  /** 公开 GitHub 仓库地址，私有仓库不填则不渲染链接 */
+  repo?: string;
+}
+
+const products: ProductCard[] = [
   {
     key: 'arcanekey',
     app: apps.arcanekey,
     href: '/arcanekey',
     icon: '/images/arcanekey-icon.png',
     iconAlt: '星枢令图标',
+    repo: 'https://github.com/mengyuefeitian/ArcaneKey',
   },
   {
     key: 'winterFortress',
@@ -21,6 +32,7 @@ const products = [
     href: '/winter-fortress',
     icon: '/images/winter-fortress-logo.svg',
     iconAlt: '无尽冬日活动图标',
+    repo: 'https://github.com/mengyuefeitian/winter-fortress-registration',
   },
   {
     key: 'lumibox',
@@ -28,13 +40,15 @@ const products = [
     href: '/lumibox',
     icon: '/images/lumibox-icon.png',
     iconAlt: '拾光匣图标',
+    // 仓库暂为私有，暂不展示 GitHub 链接
   },
   {
-    key: 'autovolume',
+    key: 'netdiskmount',
     app: apps.autovolume,
-    href: '/autovolume',
+    href: '/netdiskmount',
     icon: '/images/autovolume-icon.png',
-    iconAlt: '智卷图标',
+    iconAlt: 'NetDiskMount 图标',
+    repo: 'https://github.com/mengyuefeitian/AutoVolume',
   },
   {
     key: 'autoprint',
@@ -42,6 +56,7 @@ const products = [
     href: '/autoprint',
     icon: '/images/autoprint-icon.png',
     iconAlt: '自动打印图标',
+    repo: 'https://github.com/mengyuefeitian/autoprint',
   },
   {
     key: 'ilaunch',
@@ -49,13 +64,14 @@ const products = [
     href: '/ilaunch',
     icon: '/images/ilaunch-icon.png',
     iconAlt: '启动台图标',
+    repo: 'https://github.com/mengyuefeitian/iLaunch',
   },
 ];
 ---
 <Base
   jsonLd={siteJsonLd}
-  title="小安之家 · 小安工作室 | HarmonyOS、macOS 应用与微信小程序"
-  description="小安之家是小安工作室的独立开发者作品集：星枢令（TOTP 双因素验证器）、拾光匣（NAS 私有相册同步）、无尽冬日活动（联盟活动报名管理微信小程序）、智卷、自动打印、启动台等原创应用，覆盖 HarmonyOS、macOS 与微信小程序三大平台。"
+  title="小安之家 · 小安工作室 | HarmonyOS、macOS 与微信小程序原创应用"
+  description="小安之家（www.xiaoanhome.xyz）是小安工作室的独立开发者作品集，收录星枢令、无尽冬日活动、拾光匣、NetDiskMount、自动打印、启动台六款原创应用，覆盖 HarmonyOS、macOS 与微信小程序三大平台，可在应用商店免费获取，并提供完整的产品介绍、更新日志、下载入口与隐私政策。"
   lang="zh"
 >
   <!-- Dark hero -->
@@ -93,7 +109,20 @@ const products = [
             <p class="platform-tag">{p.app.platform.join(' · ')}</p>
             <h2>{p.app.name}</h2>
             <p class="lead">{p.app.tagline}</p>
-            <a href={p.href} class="tile-cta">了解详情 ›</a>
+            <div class="spot-actions">
+              <a href={p.href} class="tile-cta">了解详情 ›</a>
+              {p.repo && (
+                <a
+                  href={p.repo}
+                  class="gh-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`在 GitHub 查看 ${p.app.name} 项目`}
+                >
+                  <img src="/images/icon-github.svg" alt="" width="16" height="16" aria-hidden="true" loading="lazy" />
+                </a>
+              )}
+            </div>
           </div>
         </div>
       </div>
@@ -101,3 +130,31 @@ const products = [
   </div>
 
 </Base>
+
+<style>
+  .spot-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .gh-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    opacity: 0.32;
+    transition: opacity 0.2s ease, background-color 0.2s ease;
+  }
+  .gh-link:hover,
+  .gh-link:focus-visible {
+    opacity: 0.85;
+    background-color: rgba(0, 0, 0, 0.06);
+  }
+  @media (max-width: 768px) {
+    .spot-actions {
+      justify-content: center;
+    }
+  }
+</style>

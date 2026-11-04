@@ -1,5 +1,6 @@
 ---
 import Base from '../../../layouts/Base.astro';
+import ProductCrossLinks from '../../../components/ProductCrossLinks.astro';
 import { getT } from '../../../i18n/utils';
 
 const t = getT('en');
@@ -10,7 +11,7 @@ const appJsonLd = buildAppJsonLd(app, 'autoprint', 'en', '/en/autoprint');
 <Base
   jsonLd={appJsonLd}
   title="AutoPrint · macOS Folder Auto Print Tool | XiaoAn Home"
-  description={app.tagline}
+  description={app.desc}
   lang="en"
 >
 
@@ -170,5 +171,7 @@ const appJsonLd = buildAppJsonLd(app, 'autoprint', 'en', '/en/autoprint');
     </div>
   </div>
 </section>
+
+<ProductCrossLinks lang="en" current="autoprint" />
 
 </Base>

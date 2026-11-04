@@ -1,5 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
+import ProductCrossLinks from '../../components/ProductCrossLinks.astro';
 import { getT } from '../../i18n/utils';
 
 const t = getT('zh');
@@ -205,7 +206,7 @@ const appJsonLd = buildAppJsonLd(app, 'arcanekey', 'zh', '/arcanekey');
         <img src="/images/icon-github.svg" alt="GitHub" width="80" height="80" loading="lazy">
         <h3>GitHub</h3>
         <p>查看源码、下载发布版、参与共建。MIT 开源。</p>
-        <a class="btn btn-primary" href="https://github.com/mengyuefeitian/ArcaneKey" target="_blank" rel="noopener">前往仓库</a>
+        <a class="btn btn-primary" href="https://github.com/mengyuefeitian/ArcaneKey" target="_blank" rel="noopener noreferrer">前往仓库</a>
       </div>
       <div class="get-card reveal">
         <img class="qr-real" src="/images/arcanekey-qrcode.jpg" alt="星枢令微信小程序二维码" width="120" height="120" loading="lazy" />
@@ -222,6 +223,8 @@ const appJsonLd = buildAppJsonLd(app, 'arcanekey', 'zh', '/arcanekey');
     </div>
   </div>
 </section>
+
+<ProductCrossLinks lang="zh" current="arcanekey" />
 
 <!-- Legal -->
 <div class="legal-links">

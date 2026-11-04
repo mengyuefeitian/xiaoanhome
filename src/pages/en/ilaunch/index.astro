@@ -1,5 +1,6 @@
 ---
 import Base from '../../../layouts/Base.astro';
+import ProductCrossLinks from '../../../components/ProductCrossLinks.astro';
 import { getT } from '../../../i18n/utils';
 
 const t = getT('en');
@@ -10,7 +11,7 @@ const appJsonLd = buildAppJsonLd(app, 'ilaunch', 'en', '/en/ilaunch');
 <Base
   jsonLd={appJsonLd}
   title="iLaunch · macOS Launchpad Replacement | XiaoAn Home"
-  description={app.tagline}
+  description={app.desc}
   lang="en"
 >
 
@@ -185,9 +186,12 @@ const appJsonLd = buildAppJsonLd(app, 'ilaunch', 'en', '/en/ilaunch');
         <h3>GitHub</h3>
         <p>Download the latest DMG and drag it to Applications. MIT license. If Gatekeeper blocks the first launch, right-click → Open.</p>
         <a class="btn btn-primary" href={app.downloadUrl} target="_blank" rel="noopener">{app.downloadLabel}</a>
+        <a class="btn btn-ghost" href="https://github.com/mengyuefeitian/iLaunch" target="_blank" rel="noopener noreferrer" style="font-size:15px"><img src="/images/icon-github.svg" alt="" width="16" height="16" style="width:16px;height:16px">View on GitHub</a>
       </div>
     </div>
   </div>
 </section>
+
+<ProductCrossLinks lang="en" current="ilaunch" />
 
 </Base>

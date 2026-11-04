@@ -1,5 +1,6 @@
 ---
 import Base from '../../../layouts/Base.astro';
+import ProductCrossLinks from '../../../components/ProductCrossLinks.astro';
 import { getT } from '../../../i18n/utils';
 
 const t = getT('en');
@@ -10,7 +11,7 @@ const appJsonLd = buildAppJsonLd(app, 'lumibox', 'en', '/en/lumibox');
 <Base
   jsonLd={appJsonLd}
   title="LumiBox · Private NAS Photo Sync App | XiaoAn Home"
-  description={app.tagline}
+  description={app.desc}
   lang="en"
 >
 
@@ -233,6 +234,8 @@ const appJsonLd = buildAppJsonLd(app, 'lumibox', 'en', '/en/lumibox');
     </div>
   </div>
 </section>
+
+<ProductCrossLinks lang="en" current="lumibox" />
 
 <div class="legal-links">
   <a href="/lumibox/privacy-policy">Privacy Policy</a>

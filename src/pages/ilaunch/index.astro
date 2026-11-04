@@ -1,5 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
+import ProductCrossLinks from '../../components/ProductCrossLinks.astro';
 import { getT } from '../../i18n/utils';
 
 const t = getT('zh');
@@ -185,9 +186,12 @@ const appJsonLd = buildAppJsonLd(app, 'ilaunch', 'zh', '/ilaunch');
         <h3>GitHub</h3>
         <p>下载最新版 DMG，拖入 Applications 即可使用。MIT 开源。首次启动如遇 Gatekeeper，请右键 → 打开。</p>
         <a class="btn btn-primary" href={app.downloadUrl} target="_blank" rel="noopener">下载 DMG</a>
+        <a class="btn btn-ghost" href="https://github.com/mengyuefeitian/iLaunch" target="_blank" rel="noopener noreferrer" style="font-size:15px"><img src="/images/icon-github.svg" alt="" width="16" height="16" style="width:16px;height:16px">在 GitHub 查看项目</a>
       </div>
     </div>
   </div>
 </section>
+
+<ProductCrossLinks lang="zh" current="ilaunch" />
 
 </Base>

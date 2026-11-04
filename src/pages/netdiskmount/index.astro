@@ -5,60 +5,46 @@ import { getT } from '../../i18n/utils';
 const t = getT('zh');
 const app = t.apps.autovolume;
 import { buildAppJsonLd } from '../../data/seo';
-const appJsonLd = buildAppJsonLd(app, 'autovolume', 'zh', '/autovolume');
+import ProductCrossLinks from '../../components/ProductCrossLinks.astro';
+const appJsonLd = buildAppJsonLd(app, 'autovolume', 'zh', '/netdiskmount');
+const repoUrl = 'https://github.com/mengyuefeitian/AutoVolume';
 ---
 <Base
   jsonLd={appJsonLd}
-  title="智卷 AutoVolume · macOS 网络卷自动挂载工具 - 小安之家"
+  title="NetDiskMount · macOS 网络磁盘与 NAS 自动挂载工具 - 小安之家"
   description={app.desc}
   lang="zh"
 >
 
 <section class="hero sec-dark" id="top">
   <div class="wrap">
-    <p class="eyebrow">智卷</p>
-    <h1>设置一次<br>再也不用管</h1>
+    <p class="eyebrow">NetDiskMount · v{app.version}</p>
+    <h1>让 NAS 和网盘<br>一直挂在 Mac 上</h1>
     <p class="lead">{app.desc}</p>
-    <p class="hero-sub"><img src="/images/icon-macos.svg" class="pi" alt="macOS 图标" width="17" height="17">macOS 桌面应用</p>
+    <p class="hero-sub"><img src="/images/icon-macos.svg" class="pi" alt="macOS 图标" width="17" height="17">macOS 菜单栏应用 · 网络磁盘自动挂载与断线重连</p>
     <div class="hero-device" style="padding-bottom:60px">
       <div class="app-showcase" style="transform:translateY(40px)">
-        <img src="/images/autovolume-icon.png" alt="智卷图标" class="showcase-icon" width="140" height="140" />
+        <img src="/images/autovolume-icon.png" alt="NetDiskMount 图标" class="showcase-icon" width="140" height="140" />
       </div>
     </div>
+    <p style="margin-top:72px">
+      <a class="btn btn-outline" href={repoUrl} target="_blank" rel="noopener"><img src="/images/icon-github.svg" alt="" width="18" height="18" style="filter:invert(1)" aria-hidden="true">在 GitHub 查看项目</a>
+    </p>
   </div>
 </section>
 
 <section class="sec-dark" id="features">
   <div class="wrap">
     <div class="spot-head reveal">
-      <p class="eyebrow">为什么选择智卷</p>
-      <h2>静默运行，断线自愈</h2>
-      <p class="lead">网络恢复即自动重连，彻底告别手动挂载烦恼。</p>
+      <p class="eyebrow">为什么选择 NetDiskMount</p>
+      <h2>挂上一次，之后不用再管</h2>
+      <p class="lead">断网、休眠、换 Wi-Fi 之后，网络文件夹自己回来。</p>
     </div>
 
     <div class="spot reveal">
       <div class="spot-text">
-        <h2>四种协议<br>全面覆盖</h2>
-        <p class="lead">支持 SMB、WebDAV、AFP、NFS 四种网络文件协议，覆盖主流 NAS、路由器外接硬盘、公司文件服务器与 WebDAV 云盘。</p>
-      </div>
-      <div class="spot-visual">
-        <div class="app-showcase feature">
-          <img
-            src="/images/autovolume/feature-protocols.webp"
-            alt="SMB WebDAV AFP NFS 四种协议支持示意"
-            class="showcase-feature"
-            width="320"
-            height="320"
-            loading="lazy"
-          />
-        </div>
-      </div>
-    </div>
-
-    <div class="spot rev reveal">
-      <div class="spot-text">
-        <h2>自动重连<br>静默运行</h2>
-        <p class="lead">网络中断后自动检测服务器恢复，静默重新挂载，无需手动打开 Finder，也不会弹出打扰通知。</p>
+        <h2>自动重连<br>断线静默恢复</h2>
+        <p class="lead">网络断开又恢复、Mac 从睡眠中醒来之后，自动把网络文件夹重新挂上。不用再打开访达「连接服务器」，也不会弹窗打扰。</p>
       </div>
       <div class="spot-visual">
         <div class="app-showcase feature">
@@ -74,16 +60,35 @@ const appJsonLd = buildAppJsonLd(app, 'autovolume', 'zh', '/autovolume');
       </div>
     </div>
 
-    <div class="spot reveal">
+    <div class="spot rev reveal">
       <div class="spot-text">
-        <h2>子目录挂载<br>精准定位</h2>
-        <p class="lead">支持挂载服务器内部子目录，例如 smb://nas.local/share/tools，精准挂载你需要的路径，而非整个共享。</p>
+        <h2>一次配置<br>开机即用</h2>
+        <p class="lead">服务器地址、路径、账号、密码和挂载位置保存一次就好，之后开机自动挂载。也能只挂共享里的某个子目录，例如 smb://nas.local/share/tools。</p>
       </div>
       <div class="spot-visual">
         <div class="app-showcase feature">
           <img
             src="/images/autovolume/feature-subdir.webp"
-            alt="挂载服务器子目录精准定位示意"
+            alt="挂载服务器子目录并保存配置示意"
+            class="showcase-feature"
+            width="320"
+            height="320"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="spot reveal">
+      <div class="spot-text">
+        <h2>NTFS 移动硬盘<br>插上就能写</h2>
+        <p class="lead">突破 macOS 对 NTFS 的只读限制，Windows 格式的移动硬盘和 U 盘即插即写。首次开启需要输入一次电脑密码安装驱动，之后不用再管。</p>
+      </div>
+      <div class="spot-visual">
+        <div class="app-showcase feature">
+          <img
+            src="/images/autovolume/feature-ntfs.webp"
+            alt="NTFS 移动硬盘读写功能示意"
             class="showcase-feature"
             width="320"
             height="320"
@@ -95,14 +100,14 @@ const appJsonLd = buildAppJsonLd(app, 'autovolume', 'zh', '/autovolume');
 
     <div class="spot rev reveal">
       <div class="spot-text">
-        <h2>本地加密存储<br>不依赖钥匙串</h2>
-        <p class="lead">密码保存在本地加密文件，不依赖 macOS 钥匙串，与各类 VPN 和网络环境兼容性更好，迁移更简单。</p>
+        <h2>四种协议<br>一次覆盖</h2>
+        <p class="lead">SMB、WebDAV、AFP、NFS 全都支持——群晖、威联通、坚果云、Linux 服务器、老款 Time Capsule 都能挂上。SMB 默认走 SMB2–SMB3 协商，还能开启 SMB3 多通道。</p>
       </div>
       <div class="spot-visual">
         <div class="app-showcase feature">
           <img
-            src="/images/autovolume/feature-encrypted.webp"
-            alt="密码本地加密存储不依赖钥匙串示意"
+            src="/images/autovolume/feature-protocols.webp"
+            alt="SMB WebDAV AFP NFS 四种协议支持示意"
             class="showcase-feature"
             width="320"
             height="320"
@@ -114,14 +119,14 @@ const appJsonLd = buildAppJsonLd(app, 'autovolume', 'zh', '/autovolume');
 
     <div class="spot reveal">
       <div class="spot-text">
-        <h2>NTFS 读写<br>本地磁盘全兼容</h2>
-        <p class="lead">突破 macOS 对 NTFS 磁盘的只读限制，Windows 格式的移动硬盘、U 盘即插即写，外接存储也能统一挂载管理。</p>
+        <h2>密码留在本机<br>不依赖钥匙串</h2>
+        <p class="lead">账号密码保存在本地加密文件，不写进日志，也不依赖 macOS 钥匙串。导出的诊断包里没有密码，账号名也会自动隐去。</p>
       </div>
       <div class="spot-visual">
         <div class="app-showcase feature">
           <img
-            src="/images/autovolume/feature-ntfs.webp"
-            alt="NTFS 本地磁盘读写功能示意"
+            src="/images/autovolume/feature-encrypted.webp"
+            alt="密码本地加密存储不依赖钥匙串示意"
             class="showcase-feature"
             width="320"
             height="320"
@@ -137,7 +142,7 @@ const appJsonLd = buildAppJsonLd(app, 'autovolume', 'zh', '/autovolume');
   <div class="wrap">
     <div class="spot-head reveal">
       <p class="eyebrow">全部功能</p>
-      <h2>轻量但不简陋</h2>
+      <h2>一个菜单栏图标，管好所有磁盘</h2>
     </div>
     <div class="grid">
       {app.features.map(f => (
@@ -165,7 +170,9 @@ const appJsonLd = buildAppJsonLd(app, 'autovolume', 'zh', '/autovolume');
           <li>常驻菜单栏，不打扰日常使用</li>
           <li>支持 SMB / WebDAV / AFP / NFS 四种协议</li>
           <li>静默自动重连，无需用户介入</li>
-          <li>中英双语，随系统语言自动切换</li>
+          <li>NTFS 移动硬盘可读写</li>
+          <li>中文 / English / 한국어 / 日本語 / Русский</li>
+          <li>每天自动检查更新，一键安装</li>
         </ul>
       </div>
     </div>
@@ -176,18 +183,23 @@ const appJsonLd = buildAppJsonLd(app, 'autovolume', 'zh', '/autovolume');
   <div class="wrap">
     <div class="reveal">
       <p class="eyebrow">立即获取</p>
-      <h2>下载智卷</h2>
-      <p class="lead">GitHub 免费下载，MIT 开源。</p>
+      <h2>下载 NetDiskMount</h2>
+      <p class="lead">GitHub 免费下载，MIT 开源。当前版本 v{app.version}，需要 macOS 14 及以上，Apple 芯片与 Intel 芯片均可运行。</p>
     </div>
     <div class="get-cards" style="grid-template-columns:1fr;max-width:320px;margin-left:auto;margin-right:auto">
       <div class="get-card reveal">
         <img src="/images/icon-github.svg" alt="GitHub 图标" width="80" height="80" loading="lazy">
         <h3>GitHub</h3>
-        <p>下载最新版 DMG，拖入 Applications 即可使用。MIT 开源。</p>
+        <p>下载最新版 DMG，按芯片选择安装包，拖入「应用程序」即可使用。</p>
         <a class="btn btn-primary" href={app.downloadUrl} target="_blank" rel="noopener">{app.downloadLabel}</a>
       </div>
     </div>
+    <p class="reveal" style="text-align:center;margin-top:28px">
+      <a class="btn btn-outline" href={repoUrl} target="_blank" rel="noopener"><img src="/images/icon-github.svg" alt="" width="18" height="18" aria-hidden="true">在 GitHub 查看项目</a>
+    </p>
   </div>
 </section>
+
+<ProductCrossLinks lang="zh" current="netdiskmount" />
 
 </Base>

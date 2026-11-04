@@ -7,19 +7,34 @@ import { organizationSchema, webSiteSchema } from '../../data/seo';
 const siteJsonLd = [organizationSchema('en'), webSiteSchema('en')];
 const { apps } = t;
 
-const products = [
-  { app: apps.arcanekey,      href: '/en/arcanekey',        icon: '/images/arcanekey-icon.png',       iconAlt: 'ArcaneKey icon' },
-  { app: apps.winterFortress, href: '/en/winter-fortress',  icon: '/images/winter-fortress-logo.svg', iconAlt: 'Winter Fortress Activity icon' },
+interface ProductCard {
+  app: { name: string; nameEn: string; tagline: string; platform: readonly string[] };
+  href: string;
+  icon: string;
+  iconAlt: string;
+  /** 公开 GitHub 仓库地址，私有仓库不填则不渲染链接 */
+  repo?: string;
+}
+
+const products: ProductCard[] = [
+  { app: apps.arcanekey,      href: '/en/arcanekey',        icon: '/images/arcanekey-icon.png',       iconAlt: 'ArcaneKey icon',                repo: 'https://github.com/mengyuefeitian/ArcaneKey' },
+  { app: apps.winterFortress, href: '/en/winter-fortress',  icon: '/images/winter-fortress-logo.svg', iconAlt: 'Winter Fortress Activity icon', repo: 'https://github.com/mengyuefeitian/winter-fortress-registration' },
   { app: apps.lumibox,        href: '/en/lumibox',          icon: '/images/lumibox-icon.png',         iconAlt: 'LumiBox icon' },
-  { app: apps.autovolume,     href: '/en/autovolume',       icon: '/images/autovolume-icon.png',      iconAlt: 'AutoVolume icon' },
-  { app: apps.autoprint,      href: '/en/autoprint',        icon: '/images/autoprint-icon.png',       iconAlt: 'AutoPrint icon' },
-  { app: apps.ilaunch,        href: '/en/ilaunch',          icon: '/images/ilaunch-icon.png',         iconAlt: 'iLaunch icon' },
+  {
+    app: apps.autovolume,
+    href: '/en/netdiskmount',
+    icon: '/images/autovolume-icon.png',
+    iconAlt: 'NetDiskMount icon',
+    repo: 'https://github.com/mengyuefeitian/AutoVolume',
+  },
+  { app: apps.autoprint,      href: '/en/autoprint',        icon: '/images/autoprint-icon.png',       iconAlt: 'AutoPrint icon',                repo: 'https://github.com/mengyuefeitian/autoprint' },
+  { app: apps.ilaunch,        href: '/en/ilaunch',          icon: '/images/ilaunch-icon.png',         iconAlt: 'iLaunch icon',                  repo: 'https://github.com/mengyuefeitian/iLaunch' },
 ];
 ---
 <Base
   jsonLd={siteJsonLd}
-  title="XiaoAn Home · XiaoAn Studio | Apps for HarmonyOS, macOS & WeChat"
-  description="Official site of XiaoAn Studio — ArcaneKey TOTP authenticator, LumiBox NAS photo sync, Winter Fortress event registration and more free apps for HarmonyOS, macOS and WeChat."
+  title="XiaoAn Home · XiaoAn Studio | HarmonyOS, macOS & WeChat Apps"
+  description="Official site of XiaoAn Studio: ArcaneKey, Winter Fortress, LumiBox, NetDiskMount, AutoPrint and iLaunch — original apps for HarmonyOS, macOS and WeChat."
   lang="en"
 >
   <!-- Dark hero -->
@@ -59,7 +74,20 @@ const products = [
             <p class="platform-tag">{p.app.platform.join(' · ')}</p>
             <h2>{p.app.nameEn}</h2>
             <p class="lead">{p.app.tagline}</p>
-            <a href={p.href} class="tile-cta">Learn More ›</a>
+            <div class="spot-actions">
+              <a href={p.href} class="tile-cta">Learn More ›</a>
+              {p.repo && (
+                <a
+                  href={p.repo}
+                  class="gh-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`View ${p.app.nameEn} on GitHub`}
+                >
+                  <img src="/images/icon-github.svg" alt="" width="16" height="16" aria-hidden="true" loading="lazy" />
+                </a>
+              )}
+            </div>
           </div>
         </div>
       </div>
@@ -67,3 +95,31 @@ const products = [
   </div>
 
 </Base>
+
+<style>
+  .spot-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .gh-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    opacity: 0.32;
+    transition: opacity 0.2s ease, background-color 0.2s ease;
+  }
+  .gh-link:hover,
+  .gh-link:focus-visible {
+    opacity: 0.85;
+    background-color: rgba(0, 0, 0, 0.06);
+  }
+  @media (max-width: 768px) {
+    .spot-actions {
+      justify-content: center;
+    }
+  }
+</style>

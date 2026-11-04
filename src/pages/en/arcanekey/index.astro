@@ -1,5 +1,6 @@
 ---
 import Base from '../../../layouts/Base.astro';
+import ProductCrossLinks from '../../../components/ProductCrossLinks.astro';
 import { getT } from '../../../i18n/utils';
 
 const t = getT('en');
@@ -10,7 +11,7 @@ const appJsonLd = buildAppJsonLd(app, 'arcanekey', 'en', '/en/arcanekey');
 <Base
   jsonLd={appJsonLd}
   title="ArcaneKey · Dual-Platform TOTP Authenticator | XiaoAn Home"
-  description={app.tagline}
+  description={app.desc}
   lang="en"
 >
 
@@ -201,7 +202,7 @@ const appJsonLd = buildAppJsonLd(app, 'arcanekey', 'en', '/en/arcanekey');
         <img src="/images/icon-github.svg" alt="GitHub" width="80" height="80" loading="lazy">
         <h3>GitHub</h3>
         <p>Browse source code, download releases, contribute. MIT license.</p>
-        <a class="btn btn-primary" href="https://github.com/mengyuefeitian/ArcaneKey" target="_blank" rel="noopener">View Repository</a>
+        <a class="btn btn-primary" href="https://github.com/mengyuefeitian/ArcaneKey" target="_blank" rel="noopener noreferrer">View Repository</a>
       </div>
       <div class="get-card reveal">
         <img class="qr-real" src="/images/arcanekey-qrcode.jpg" alt="ArcaneKey WeChat Mini Program QR code" width="120" height="120" loading="lazy" />
@@ -218,6 +219,8 @@ const appJsonLd = buildAppJsonLd(app, 'arcanekey', 'en', '/en/arcanekey');
     </div>
   </div>
 </section>
+
+<ProductCrossLinks lang="en" current="arcanekey" />
 
 <div class="legal-links">
   <a href="/arcanekey/privacy-policy">Privacy Policy</a>

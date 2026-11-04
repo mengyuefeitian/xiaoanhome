@@ -1,5 +1,6 @@
 ---
 import Base from '../../../layouts/Base.astro';
+import ProductCrossLinks from '../../../components/ProductCrossLinks.astro';
 import { getT } from '../../../i18n/utils';
 
 const t = getT('en');
@@ -10,7 +11,7 @@ const appJsonLd = buildAppJsonLd(app, 'winterFortress', 'en', '/en/winter-fortre
 <Base
   jsonLd={appJsonLd}
   title="Winter Fortress · Event Registration App | XiaoAn Home"
-  description={app.tagline}
+  description={app.desc}
   lang="en"
 >
 
@@ -166,9 +167,12 @@ const appJsonLd = buildAppJsonLd(app, 'winterFortress', 'en', '/en/winter-fortre
         <h3>WeChat Mini Program</h3>
         <p>Scan the QR code in WeChat or search "无尽冬日活动" — no installation needed.</p>
         <span class="btn btn-primary" style="cursor:default">Scan to Enter</span>
+        <a class="btn btn-ghost" href="https://github.com/mengyuefeitian/winter-fortress-registration" target="_blank" rel="noopener noreferrer" style="font-size:15px"><img src="/images/icon-github.svg" alt="" width="16" height="16" style="width:16px;height:16px">View on GitHub</a>
       </div>
     </div>
   </div>
 </section>
+
+<ProductCrossLinks lang="en" current="winterFortress" />
 
 </Base>

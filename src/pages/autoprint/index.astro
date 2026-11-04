@@ -1,5 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
+import ProductCrossLinks from '../../components/ProductCrossLinks.astro';
 import { getT } from '../../i18n/utils';
 
 const t = getT('zh');
@@ -170,5 +171,7 @@ const appJsonLd = buildAppJsonLd(app, 'autoprint', 'zh', '/autoprint');
     </div>
   </div>
 </section>
+
+<ProductCrossLinks lang="zh" current="autoprint" />
 
 </Base>

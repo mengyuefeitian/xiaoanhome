@@ -1,0 +1,68 @@
+---
+// 产品页底部的轻量交叉链接：其余应用的站内入口 + 返回首页
+interface Props {
+  lang: 'zh' | 'en';
+  current: 'arcanekey' | 'lumibox' | 'winterFortress' | 'netdiskmount' | 'autoprint' | 'ilaunch';
+}
+const { lang, current } = Astro.props;
+
+const apps = [
+  { key: 'arcanekey', zh: '星枢令', en: 'ArcaneKey', zhHref: '/arcanekey', enHref: '/en/arcanekey' },
+  { key: 'lumibox', zh: '拾光匣', en: 'LumiBox', zhHref: '/lumibox', enHref: '/en/lumibox' },
+  { key: 'winterFortress', zh: '无尽冬日活动', en: 'Winter Fortress', zhHref: '/winter-fortress', enHref: '/en/winter-fortress' },
+  { key: 'netdiskmount', zh: 'NetDiskMount', en: 'NetDiskMount', zhHref: '/netdiskmount', enHref: '/en/netdiskmount' },
+  { key: 'autoprint', zh: '自动打印', en: 'AutoPrint', zhHref: '/autoprint', enHref: '/en/autoprint' },
+  { key: 'ilaunch', zh: '启动台', en: 'iLaunch', zhHref: '/ilaunch', enHref: '/en/ilaunch' },
+] as const;
+
+const links = apps
+  .filter((a) => a.key !== current)
+  .map((a) => ({ name: lang === 'zh' ? a.zh : a.en, href: lang === 'zh' ? a.zhHref : a.enHref }));
+
+const label = lang === 'zh' ? '其他应用' : 'More apps';
+const home = lang === 'zh' ? { name: '返回首页', href: '/' } : { name: 'Back to home', href: '/en' };
+---
+<nav class="xlink sec-light" aria-label={label}>
+  <div class="wrap">
+    <p class="xlink-label">{label}</p>
+    <ul class="xlink-list" role="list">
+      {links.map((l) => <li><a href={l.href}>{l.name}</a></li>)}
+      <li><a href={home.href}>{home.name}</a></li>
+    </ul>
+  </div>
+</nav>
+
+<style>
+  .xlink {
+    padding: 0 0 88px;
+    margin-top: -24px;
+    text-align: center;
+  }
+  .xlink-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: #a1a1a6;
+    margin-bottom: 10px;
+  }
+  .xlink-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4px 0;
+  }
+  .xlink-list li + li::before {
+    content: '·';
+    margin: 0 10px;
+    color: #c7c7cc;
+  }
+  .xlink-list a {
+    font-size: 13.5px;
+    color: #86868b;
+    text-decoration: none;
+    transition: color .18s ease;
+  }
+  .xlink-list a:hover { color: var(--accent); }
+</style>

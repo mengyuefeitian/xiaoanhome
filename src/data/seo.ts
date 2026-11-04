@@ -61,6 +61,8 @@ export interface AppSeoInput {
   lang: 'zh' | 'en';
   /** 应用图标或截图（必须是站内真实存在的资源） */
   image?: string;
+  /** 同源外部链接，如 GitHub 仓库地址 */
+  sameAs?: readonly string[];
 }
 
 /**
@@ -68,7 +70,7 @@ export interface AppSeoInput {
  * 不写 offers / aggregateRating / downloadCount —— 站点未提供真实价格与评分数据。
  */
 export function softwareApplicationSchema(input: AppSeoInput) {
-  const { url, name, nameEn, description, platforms, category, lang, image } = input;
+  const { url, name, nameEn, description, platforms, category, lang, image, sameAs } = input;
   return {
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
@@ -80,6 +82,7 @@ export function softwareApplicationSchema(input: AppSeoInput) {
     applicationCategory: category,
     operatingSystem: platforms.join(', '),
     ...(image ? { image: absUrl(image), screenshot: absUrl(image) } : {}),
+    ...(sameAs && sameAs.length ? { sameAs } : {}),
     author: { '@id': `${SITE.domain}/#organization` },
     publisher: { '@id': `${SITE.domain}/#organization` },
     inLanguage: lang === 'zh' ? 'zh-CN' : 'en',
@@ -138,6 +141,7 @@ export const appCategory: Record<string, string> = {
   lumibox: 'MultimediaApplication',
   winterFortress: 'LifestyleApplication',
   autovolume: 'UtilitiesApplication',
+  netdiskmount: 'UtilitiesApplication',
   autoprint: 'ProductivityApplication',
   ilaunch: 'UtilitiesApplication',
 };
@@ -148,31 +152,42 @@ export const appImage: Record<string, string> = {
   lumibox: '/images/lumibox-icon.png',
   winterFortress: '/images/winter-fortress-logo.svg',
   autovolume: '/images/autovolume-icon.png',
+  netdiskmount: '/images/autovolume-icon.png',
   autoprint: '/images/autoprint-icon.png',
   ilaunch: '/images/ilaunch-icon.png',
 };
 
+/** 产品 → 外部同源链接（目前仅 NetDiskMount 有公开仓库） */
+export const appSameAs: Record<string, readonly string[]> = {
+  autovolume: ['https://github.com/mengyuefeitian/AutoVolume'],
+  netdiskmount: ['https://github.com/mengyuefeitian/AutoVolume'],
+};
+
 /**
  * 产品页一键组装 JSON-LD：SoftwareApplication + BreadcrumbList。
- * app 直接传 i18n 里的 t.apps[key]，字段（name/nameEn/tagline/platform）均为站点真实数据。
+ * app 直接传 i18n 里的 t.apps[key]，字段（name/nameEn/tagline/desc/platform）均为站点真实数据。
+ * description 默认取 tagline（一句话简介）；NetDiskMount 改用更完整的 desc，
+ * 因为它的 tagline 只有 39 字符，低于结构化数据 50-200 字符的建议区间。
  */
 export function buildAppJsonLd(
-  app: { name: string; nameEn?: string; tagline: string; platform: readonly string[] },
+  app: { name: string; nameEn?: string; tagline: string; desc?: string; platform: readonly string[] },
   key: string,
   lang: 'zh' | 'en',
   path: string,
 ) {
   const homeName = lang === 'zh' ? '小安之家' : 'XiaoAn Home';
+  const isNetDiskMount = key === 'autovolume' || key === 'netdiskmount';
   return [
     softwareApplicationSchema({
       url: absUrl(path),
       name: app.name,
       nameEn: app.nameEn,
-      description: app.tagline,
+      description: isNetDiskMount && app.desc ? app.desc : app.tagline,
       platforms: app.platform,
       category: appCategory[key] ?? 'UtilitiesApplication',
       lang,
       image: appImage[key],
+      sameAs: appSameAs[key],
     }),
     breadcrumbSchema([
       { name: homeName, url: `${SITE.domain}${lang === 'zh' ? '/' : '/en'}` },

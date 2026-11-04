@@ -8,9 +8,11 @@ interface Props {
   title: string;
   description: string;
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+  /** 索引页传 false：槽内自带版本列表，不再渲染单个版本的标题头（避免与列表重复） */
+  showVersionHead?: boolean;
 }
 
-const { activeSlug, title, description, jsonLd } = Astro.props;
+const { activeSlug, title, description, jsonLd, showVersionHead = true } = Astro.props;
 const active = winterFortressUpdates.find((v) => v.slug === activeSlug) ?? winterFortressUpdates[0];
 ---
 <Base
@@ -21,6 +23,7 @@ const active = winterFortressUpdates.find((v) => v.slug === activeSlug) ?? winte
   ogType="article"
   jsonLd={jsonLd}
   langTargetOverride="/en/winter-fortress"
+  noAltLang
 >
 
 <section class="sec-darker upd-hero">
@@ -54,11 +57,13 @@ const active = winterFortressUpdates.find((v) => v.slug === activeSlug) ?? winte
     </aside>
 
     <div class="upd-content">
-      <div class="upd-content-head">
-        <span class="upd-version-tag">{active.version}</span>
-        <h2>{active.title}</h2>
-        <p class="upd-date">更新时间：{active.date}</p>
-      </div>
+      {showVersionHead && (
+        <div class="upd-content-head">
+          <span class="upd-version-tag">{active.version}</span>
+          <h2>{active.title}</h2>
+          <p class="upd-date">更新时间：{active.date}</p>
+        </div>
+      )}
       <slot />
     </div>
   </div>

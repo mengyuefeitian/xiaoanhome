@@ -1,19 +1,11 @@
 ---
 import WinterFortressUpdateShell from '../../../components/updates/WinterFortressUpdateShell.astro';
-import V1_7_0 from '../../../components/updates/v1-7-0.astro';
-import V1_17_0 from '../../../components/updates/v1-17-0.astro';
 import { winterFortressUpdates } from '../../../data/winterFortressUpdates';
-import { breadcrumbSchema, techArticleSchema, absUrl } from '../../../data/seo';
+import { breadcrumbSchema, absUrl } from '../../../data/seo';
 
-// slug → 对应版本的内容组件；新增版本时在这里补一条即可
-const bodies: Record<string, typeof V1_7_0> = {
-  'v1-7-0': V1_7_0,
-  'v1-17-0': V1_17_0,
-};
-
-// winterFortressUpdates 数组首项即最新版本 —— 进入列表页默认展示它
-const latest = winterFortressUpdates[0];
-const LatestBody = bodies[latest.slug];
+// 本页是「版本索引」：只放版本列表与摘要，正文在各版本自己的详情页（/updates/<slug>）
+const description =
+  '无尽冬日活动微信小程序的全部版本更新记录：按版本号归档每次改动的内容、操作路径与界面截图，覆盖多游戏账号管理、联盟活跃登记、活动报名与权限审核等功能变化。每个版本都有独立链接与更新时间，可单独分享到联盟群里，联盟管理员、区管和普通成员都能快速查到某次更新到底改了什么、需要在哪个页面怎么操作，以及遇到问题如何自查。';
 
 const jsonLd = [
   breadcrumbSchema([
@@ -21,20 +13,106 @@ const jsonLd = [
     { name: '无尽冬日活动', url: absUrl('/winter-fortress') },
     { name: '版本更新说明', url: absUrl('/winter-fortress/updates') },
   ]),
-  techArticleSchema({
-    url: absUrl(`/winter-fortress/updates/${latest.slug}`),
-    headline: `${latest.version} ${latest.title} · 无尽冬日活动版本更新说明`,
-    description: latest.summary,
-    datePublished: latest.date,
-    lang: 'zh',
-  }),
+  {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: '无尽冬日活动版本更新说明',
+    url: absUrl('/winter-fortress/updates'),
+    description,
+    inLanguage: 'zh-CN',
+    mainEntity: {
+      '@type': 'ItemList',
+      itemListElement: winterFortressUpdates.map((v, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        name: `${v.version} ${v.title}`,
+        url: absUrl(`/winter-fortress/updates/${v.slug}`),
+      })),
+    },
+  },
 ];
 ---
 <WinterFortressUpdateShell
-  activeSlug={latest.slug}
-  title={`${latest.version} ${latest.title} · 无尽冬日活动版本更新说明`}
-  description={latest.summary}
+  activeSlug=""
+  showVersionHead={false}
+  title="无尽冬日活动版本更新说明 · 全部版本改动记录与截图 - 小安之家"
+  description={description}
   jsonLd={jsonLd}
 >
-  <LatestBody />
+  <p class="upd-idx-label">全部版本</p>
+  <ul class="upd-idx-list" role="list">
+    {winterFortressUpdates.map((v) => (
+      <li>
+        <a class="upd-idx-card" href={`/winter-fortress/updates/${v.slug}`}>
+          <span class="upd-idx-top">
+            <span class="upd-idx-num">{v.version}</span>
+            <span class="upd-idx-date">{v.date}</span>
+          </span>
+          <h3>{v.title}</h3>
+          <p>{v.summary}</p>
+          <span class="upd-idx-cta">查看详情 ›</span>
+        </a>
+      </li>
+    ))}
+  </ul>
 </WinterFortressUpdateShell>
+
+<style>
+  .upd-idx-label {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    color: var(--muted-light);
+    margin-bottom: 16px;
+  }
+  .upd-idx-list {
+    list-style: none;
+    display: grid;
+    gap: 14px;
+  }
+  .upd-idx-card {
+    display: block;
+    padding: 22px 24px;
+    border-radius: 18px;
+    border: 1px solid rgba(255,255,255,.08);
+    background: var(--card-dark);
+    transition: border-color .18s ease, transform .18s ease;
+  }
+  .upd-idx-card:hover {
+    border-color: rgba(64,128,208,.55);
+    transform: translateY(-2px);
+  }
+  .upd-idx-top {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .upd-idx-num {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--accent-2);
+    background: rgba(64,128,208,.14);
+    border: 1px solid rgba(64,128,208,.35);
+    border-radius: 999px;
+    padding: 3px 11px;
+  }
+  .upd-idx-date { font-size: 12.5px; color: var(--muted-light); }
+  .upd-idx-card h3 {
+    margin: 12px 0 8px;
+    font-size: 19px;
+    color: var(--text-light);
+  }
+  .upd-idx-card p {
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: #b9b9c0;
+  }
+  .upd-idx-cta {
+    display: inline-block;
+    margin-top: 14px;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--accent-2);
+  }
+</style>

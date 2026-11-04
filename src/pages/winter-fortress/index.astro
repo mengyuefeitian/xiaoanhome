@@ -1,5 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
+import ProductCrossLinks from '../../components/ProductCrossLinks.astro';
 import { getT } from '../../i18n/utils';
 
 const t = getT('zh');
@@ -154,7 +155,7 @@ const appJsonLd = buildAppJsonLd(app, 'winterFortress', 'zh', '/winter-fortress'
         <span class="plat-tag">版本记录</span>
         <h3>看看每次更新做了什么</h3>
         <p class="lead" style="margin:12px 0 20px;font-size:16px">操作路径、截图、更新结果，按版本一次说清楚</p>
-        <a href="/winter-fortress/updates/" class="btn btn-outline" style="margin-top:auto;align-self:flex-start">版本更新说明 →</a>
+        <a href="/winter-fortress/updates" class="btn btn-outline" style="margin-top:auto;align-self:flex-start">版本更新说明 →</a>
       </div>
     </div>
   </div>
@@ -173,9 +174,12 @@ const appJsonLd = buildAppJsonLd(app, 'winterFortress', 'zh', '/winter-fortress'
         <h3>微信小程序</h3>
         <p>微信扫描二维码，或搜索「无尽冬日活动」，免安装即用。</p>
         <span class="btn btn-primary" style="cursor:default">扫码进入</span>
+        <a class="btn btn-ghost" href="https://github.com/mengyuefeitian/winter-fortress-registration" target="_blank" rel="noopener noreferrer" style="font-size:15px"><img src="/images/icon-github.svg" alt="" width="16" height="16" style="width:16px;height:16px">在 GitHub 查看项目</a>
       </div>
     </div>
   </div>
 </section>
+
+<ProductCrossLinks lang="zh" current="winterFortress" />
 
 </Base>

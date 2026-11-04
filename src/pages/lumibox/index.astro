@@ -1,5 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
+import ProductCrossLinks from '../../components/ProductCrossLinks.astro';
 import { getT } from '../../i18n/utils';
 
 const t = getT('zh');
@@ -238,6 +239,8 @@ const appJsonLd = buildAppJsonLd(app, 'lumibox', 'zh', '/lumibox');
     </div>
   </div>
 </section>
+
+<ProductCrossLinks lang="zh" current="lumibox" />
 
 <div class="legal-links">
   <a href="/lumibox/privacy-policy">隐私政策</a>
