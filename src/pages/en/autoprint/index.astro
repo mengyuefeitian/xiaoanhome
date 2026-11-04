@@ -7,10 +7,21 @@ const t = getT('en');
 const app = t.apps.autoprint;
 import { buildAppJsonLd } from '../../../data/seo';
 const appJsonLd = buildAppJsonLd(app, 'autoprint', 'en', '/en/autoprint');
+
+const apiSnippet = `<span class="c"># Create and copy a token in Settings → Local API</span>
+<span class="f">export</span> AP=http://127.0.0.1:17890 TOKEN=&lt;token&gt;
+
+<span class="c"># Print any file by absolute path — the original stays put</span>
+<span class="f">curl</span> -X POST <span class="s">"$AP/api/v1/print"</span> \\
+  -H <span class="s">"Authorization: Bearer $TOKEN"</span> \\
+  -H <span class="s">"Content-Type: application/json"</span> \\
+  -d <span class="s">'{"path":"/Users/me/report.pdf"}'</span>
+
+<span class="c"># 200 on success; 500 comes back with a failure reason</span>`;
 ---
 <Base
   jsonLd={appJsonLd}
-  title="AutoPrint · macOS Folder Auto Print Tool | XiaoAn Home"
+  title="AutoPrint · macOS Auto Print Tool with AI API | XiaoAn Home"
   description={app.desc}
   lang="en"
 >
@@ -18,7 +29,7 @@ const appJsonLd = buildAppJsonLd(app, 'autoprint', 'en', '/en/autoprint');
 <section class="hero sec-dark" id="top">
   <div class="wrap">
     <p class="eyebrow">AutoPrint</p>
-    <h1>Drop files in.<br>They print.</h1>
+    <h1>Drop files in.<br>Or let AI call it.</h1>
     <p class="lead">{app.desc}</p>
     <p class="hero-sub"><img src="/images/icon-macos.svg" class="pi" alt="macOS logo" width="17" height="17">macOS Desktop App</p>
     <div class="hero-device" style="padding-bottom:60px">
@@ -32,12 +43,31 @@ const appJsonLd = buildAppJsonLd(app, 'autoprint', 'en', '/en/autoprint');
 <section class="sec-dark" id="features">
   <div class="wrap">
     <div class="spot-head reveal">
-      <p class="eyebrow">Why AutoPrint</p>
-      <h2>Configure once. Print forever.</h2>
-      <p class="lead">Place files in a watched folder, AutoPrint sends them to the printer automatically. No manual intervention needed.</p>
+      <p class="eyebrow">Two ways to print</p>
+      <h2>Drop a file. Or call the API.</h2>
+      <p class="lead">Folder watching handles everyday batch printing. The local HTTP API lets AI assistants and automation scripts print on demand — and read the result back.</p>
     </div>
 
     <div class="spot reveal">
+      <div class="spot-text">
+        <h2>AI &amp; Scripts<br>Print on Demand</h2>
+        <p class="lead">Turn on the Local API and any AI assistant, Shortcut, or automation script can print an arbitrary file path, force a scan, and read back results or failure reasons with a single HTTP request. Add or remove watch folders and tune scan intervals and time windows — without ever opening the app.</p>
+      </div>
+      <div class="spot-visual">
+        <div class="app-showcase feature">
+          <img
+            src="/images/autoprint/feature-api.webp"
+            alt="Illustration of an AI assistant printing through the local HTTP API"
+            class="showcase-feature"
+            width="320"
+            height="320"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="spot rev reveal">
       <div class="spot-text">
         <h2>Watch Folders.<br>Auto-trigger.</h2>
         <p class="lead">Choose one or more local folders to monitor. New files trigger automatic print jobs — no need to open each file manually.</p>
@@ -56,7 +86,7 @@ const appJsonLd = buildAppJsonLd(app, 'autoprint', 'en', '/en/autoprint');
       </div>
     </div>
 
-    <div class="spot rev reveal">
+    <div class="spot reveal">
       <div class="spot-text">
         <h2>Flexible Printer Selection.<br>Multi-scenario.</h2>
         <p class="lead">Lists all system printers. Assign different printers to different folders — perfect for offices, classrooms, or home setups with multiple devices.</p>
@@ -75,7 +105,7 @@ const appJsonLd = buildAppJsonLd(app, 'autoprint', 'en', '/en/autoprint');
       </div>
     </div>
 
-    <div class="spot reveal">
+    <div class="spot rev reveal">
       <div class="spot-text">
         <h2>Office Conversion.<br>Multi-Format.</h2>
         <p class="lead">Handles PDF, images, and Office documents. Choose LibreOffice Headless, Microsoft Word, or Pages for document-to-PDF conversion before printing.</p>
@@ -94,7 +124,7 @@ const appJsonLd = buildAppJsonLd(app, 'autoprint', 'en', '/en/autoprint');
       </div>
     </div>
 
-    <div class="spot rev reveal">
+    <div class="spot reveal">
       <div class="spot-text">
         <h2>Print Log.<br>Full Audit Trail.</h2>
         <p class="lead">Records file name and completion time for every print job. Know exactly what printed, when — perfect for small offices needing accountability.</p>
@@ -115,11 +145,70 @@ const appJsonLd = buildAppJsonLd(app, 'autoprint', 'en', '/en/autoprint');
   </div>
 </section>
 
+<section class="sec-darker" id="api">
+  <div class="wrap">
+    <div class="spot-head reveal">
+      <p class="eyebrow">Local HTTP API</p>
+      <h2>One request. Paper out.</h2>
+      <p class="lead">Default port 17890, Bearer token auth, JSON in and out. AI assistants, Shortcuts and shell scripts can call the printer like a function.</p>
+    </div>
+
+    <div class="api-layout reveal">
+      <ul class="api-caps">
+        <li>
+          <span class="ico">🤖</span>
+          <div>
+            <b>Let AI print for real</b>
+            <span class="tx">"Print this report" can end with paper coming out — not a downloaded file and a shrug.</span>
+          </div>
+        </li>
+        <li>
+          <span class="ico">🎯</span>
+          <div>
+            <b>Any path, no copy</b>
+            <span class="tx">Pass an absolute path and it prints. The original file never moves, so nothing has to be staged in a watch folder first.</span>
+          </div>
+        </li>
+        <li>
+          <span class="ico">🔍</span>
+          <div>
+            <b>Read results back</b>
+            <span class="tx">Filter results by the last 1–72 hours and by success or failure. Failures carry a reason, so an agent can retry or pick another file.</span>
+          </div>
+        </li>
+        <li>
+          <span class="ico">🧾</span>
+          <div>
+            <b>Every call is logged</b>
+            <span class="tx">A separate api-audit.log records client, duration and status code — unauthorized attempts included. Tokens are never written to it.</span>
+          </div>
+        </li>
+      </ul>
+
+      <div>
+        <div class="api-term">
+          <div class="api-term-bar"><i></i><i></i><i></i><em>autoprint — local api</em></div>
+          <pre><code set:html={apiSnippet}></code></pre>
+        </div>
+        <div class="api-eps">
+          <code>POST /api/v1/print</code>
+          <code>POST /api/v1/print-now</code>
+          <code>GET /api/v1/results</code>
+          <code>GET /api/v1/status</code>
+          <code>GET /api/v1/logs</code>
+          <code>POST /api/v1/watch-folders</code>
+        </div>
+        <p class="api-note">The API is off by default and only listens after you enable it. Send the token as an <code style="font-family:ui-monospace,Menlo,monospace;font-size:12.5px">X-API-Token</code> header instead of a Bearer token if you prefer. It's plain HTTP, so keep it on a trusted network.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="sec-light">
   <div class="wrap">
     <div class="spot-head reveal">
       <p class="eyebrow">All Features</p>
-      <h2>The small office print solution</h2>
+      <h2>From folders to API, fully covered</h2>
     </div>
     <div class="grid">
       {app.features.map(f => (
@@ -145,6 +234,8 @@ const appJsonLd = buildAppJsonLd(app, 'autoprint', 'en', '/en/autoprint');
         <h3>macOS Desktop App</h3>
         <ul>
           <li>Watch local folders, auto-trigger print jobs</li>
+          <li>Local HTTP API for AI agents and scripts</li>
+          <li>Bearer token auth + separate audit log</li>
           <li>PDF, image, and Office document support</li>
           <li>Optional document conversion engine</li>
           <li>Complete print log with timestamp</li>
@@ -159,7 +250,7 @@ const appJsonLd = buildAppJsonLd(app, 'autoprint', 'en', '/en/autoprint');
     <div class="reveal">
       <p class="eyebrow">Get AutoPrint</p>
       <h2>Download AutoPrint</h2>
-      <p class="lead">Free and open source on GitHub.</p>
+      <p class="lead">Free and open source on GitHub. The API costs nothing extra.</p>
     </div>
     <div class="get-cards" style="grid-template-columns:1fr;max-width:320px;margin-left:auto;margin-right:auto">
       <div class="get-card reveal">
@@ -175,3 +266,27 @@ const appJsonLd = buildAppJsonLd(app, 'autoprint', 'en', '/en/autoprint');
 <ProductCrossLinks lang="en" current="autoprint" />
 
 </Base>
+
+<style is:global>
+.api-layout { display: grid; grid-template-columns: 1fr 1.1fr; gap: 44px; align-items: start; margin-top: 52px; }
+.api-caps { list-style: none; display: grid; gap: 20px; }
+.api-caps li { display: grid; grid-template-columns: 32px 1fr; gap: 10px; align-items: start; }
+.api-caps .ico { font-size: 19px; line-height: 1.5; }
+.api-caps b { display: block; color: #fff; font-size: 15.5px; font-weight: 600; margin-bottom: 4px; }
+.api-caps .tx { color: #aeaeb2; font-size: 14.5px; line-height: 1.7; }
+.api-term { background: #0a0a10; border: 1px solid rgba(255,255,255,.08); border-radius: 20px; overflow: hidden; box-shadow: 0 30px 70px rgba(0,0,0,.5); }
+.api-term-bar { display: flex; align-items: center; gap: 7px; padding: 13px 16px; background: rgba(255,255,255,.03); border-bottom: 1px solid rgba(255,255,255,.06); }
+.api-term-bar i { width: 9px; height: 9px; border-radius: 50%; background: #3a3a44; }
+.api-term-bar em { margin-left: 8px; font-style: normal; font-size: 12px; color: #71717c; letter-spacing: .02em; }
+.api-term pre { margin: 0; padding: 20px 18px; overflow-x: auto; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12.5px; line-height: 1.85; color: #cdd0da; }
+.api-term pre .c { color: #6b6b78; }
+.api-term pre .s { color: #8fd0a8; }
+.api-term pre .f { color: #8fb8ff; }
+.api-eps { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+.api-eps code { font-family: ui-monospace, Menlo, monospace; font-size: 12px; padding: 5px 10px; border-radius: 8px; background: rgba(255,255,255,.06); color: #b0b4c0; border: 1px solid rgba(255,255,255,.05); }
+.api-note { margin-top: 14px; font-size: 13px; color: #7d7d88; line-height: 1.7; }
+@media (max-width: 900px) {
+  .api-layout { grid-template-columns: 1fr; gap: 32px; }
+  .api-term pre { font-size: 11.5px; }
+}
+</style>

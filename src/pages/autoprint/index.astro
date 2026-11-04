@@ -7,10 +7,21 @@ const t = getT('zh');
 const app = t.apps.autoprint;
 import { buildAppJsonLd } from '../../data/seo';
 const appJsonLd = buildAppJsonLd(app, 'autoprint', 'zh', '/autoprint');
+
+const apiSnippet = `<span class="c"># 在「设置 → 本地 API」里生成并复制令牌</span>
+<span class="f">export</span> AP=http://127.0.0.1:17890 TOKEN=&lt;token&gt;
+
+<span class="c"># 打印任意路径的文件，原文件不动</span>
+<span class="f">curl</span> -X POST <span class="s">"$AP/api/v1/print"</span> \\
+  -H <span class="s">"Authorization: Bearer $TOKEN"</span> \\
+  -H <span class="s">"Content-Type: application/json"</span> \\
+  -d <span class="s">'{"path":"/Users/me/report.pdf"}'</span>
+
+<span class="c"># 200 成功；500 会带回失败原因</span>`;
 ---
 <Base
   jsonLd={appJsonLd}
-  title="自动打印 AutoPrint · macOS 文件夹监控自动打印工具 - 小安之家"
+  title="自动打印 AutoPrint · macOS 自动打印工具，AI 可调用 API - 小安之家"
   description={app.desc}
   lang="zh"
 >
@@ -18,7 +29,7 @@ const appJsonLd = buildAppJsonLd(app, 'autoprint', 'zh', '/autoprint');
 <section class="hero sec-dark" id="top">
   <div class="wrap">
     <p class="eyebrow">自动打印</p>
-    <h1>文件放进去<br>自动发给打印机</h1>
+    <h1>放文件自动打印<br>AI 也能随时调用</h1>
     <p class="lead">{app.desc}</p>
     <p class="hero-sub"><img src="/images/icon-macos.svg" class="pi" alt="macOS 图标" width="17" height="17">macOS 桌面应用</p>
     <div class="hero-device" style="padding-bottom:60px">
@@ -32,12 +43,31 @@ const appJsonLd = buildAppJsonLd(app, 'autoprint', 'zh', '/autoprint');
 <section class="sec-dark" id="features">
   <div class="wrap">
     <div class="spot-head reveal">
-      <p class="eyebrow">为什么选择自动打印</p>
-      <h2>配置一次，持续自动</h2>
-      <p class="lead">将文件放入指定文件夹，应用自动扫描并发送到打印机，无需手动操作。</p>
+      <p class="eyebrow">两种用法</p>
+      <h2>放文件也行，调 API 也行</h2>
+      <p class="lead">文件夹监控负责日常批量打印；本地 HTTP API 让 AI 助手和自动化脚本随时发起打印、随时取回结果。</p>
     </div>
 
     <div class="spot reveal">
+      <div class="spot-text">
+        <h2>AI 与脚本<br>随时调用打印</h2>
+        <p class="lead">开启「本地 API」后，AI 助手、快捷指令或自动化脚本只要发出一次 HTTP 请求，就能打印任意路径的文件、立刻扫描一遍、查询打印结果与失败原因，还能增删监控目录、调整扫描间隔与时间窗——全程不必打开应用界面。</p>
+      </div>
+      <div class="spot-visual">
+        <div class="app-showcase feature">
+          <img
+            src="/images/autoprint/feature-api.webp"
+            alt="AI 助手与脚本通过本地 API 调用自动打印示意"
+            class="showcase-feature"
+            width="320"
+            height="320"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="spot rev reveal">
       <div class="spot-text">
         <h2>监控文件夹<br>自动触发打印</h2>
         <p class="lead">指定一个或多个本地文件夹作为监控目录，新文件出现自动触发打印任务，无需打开每个文件手动打印。</p>
@@ -56,7 +86,7 @@ const appJsonLd = buildAppJsonLd(app, 'autoprint', 'zh', '/autoprint');
       </div>
     </div>
 
-    <div class="spot rev reveal">
+    <div class="spot reveal">
       <div class="spot-text">
         <h2>灵活选择打印机<br>多场景适配</h2>
         <p class="lead">列出系统全部可用打印机，为不同文件夹配置不同打印机，灵活适配办公室、教室、家庭等多种场景。</p>
@@ -75,7 +105,7 @@ const appJsonLd = buildAppJsonLd(app, 'autoprint', 'zh', '/autoprint');
       </div>
     </div>
 
-    <div class="spot reveal">
+    <div class="spot rev reveal">
       <div class="spot-text">
         <h2>Office 文档转换<br>多格式支持</h2>
         <p class="lead">支持 PDF、图片及 Office 文档，可选 LibreOffice Headless、Microsoft Word 或 Pages 进行文档转换后打印。</p>
@@ -94,7 +124,7 @@ const appJsonLd = buildAppJsonLd(app, 'autoprint', 'zh', '/autoprint');
       </div>
     </div>
 
-    <div class="spot rev reveal">
+    <div class="spot reveal">
       <div class="spot-text">
         <h2>打印记录<br>全程可查</h2>
         <p class="lead">记录每次打印的文件名和完成时间，便于核查和追溯历史打印任务，小型办公室也能有完整的打印日志。</p>
@@ -115,11 +145,70 @@ const appJsonLd = buildAppJsonLd(app, 'autoprint', 'zh', '/autoprint');
   </div>
 </section>
 
+<section class="sec-darker" id="api">
+  <div class="wrap">
+    <div class="spot-head reveal">
+      <p class="eyebrow">本地 HTTP API</p>
+      <h2>一个请求，直接出纸</h2>
+      <p class="lead">默认端口 17890，Bearer token 鉴权，请求与响应都是 JSON。AI 助手、快捷指令、Shell 脚本都能像调用一个函数那样调用打印机。</p>
+    </div>
+
+    <div class="api-layout reveal">
+      <ul class="api-caps">
+        <li>
+          <span class="ico">🤖</span>
+          <div>
+            <b>让 AI 直接打印</b>
+            <span class="tx">「把这份报表打印出来」这类指令，可以由 AI 调用打印接口落到真实纸张，而不是只回你一句「已下载」。</span>
+          </div>
+        </li>
+        <li>
+          <span class="ico">🎯</span>
+          <div>
+            <b>任意路径，不留副本</b>
+            <span class="tx">传入绝对路径即可打印，文件原本在哪就还在哪，不必先复制进监控目录。</span>
+          </div>
+        </li>
+        <li>
+          <span class="ico">🔍</span>
+          <div>
+            <b>结果可以回读</b>
+            <span class="tx">按最近 1–72 小时、按成功或失败筛选打印结果，失败会带上原因，AI 能据此重试或换文件。</span>
+          </div>
+        </li>
+        <li>
+          <span class="ico">🧾</span>
+          <div>
+            <b>每次调用都留痕</b>
+            <span class="tx">独立的 api-audit.log 记录客户端、耗时与状态码，未授权的尝试同样写入，令牌本身从不落盘到日志。</span>
+          </div>
+        </li>
+      </ul>
+
+      <div>
+        <div class="api-term">
+          <div class="api-term-bar"><i></i><i></i><i></i><em>autoprint — local api</em></div>
+          <pre><code set:html={apiSnippet}></code></pre>
+        </div>
+        <div class="api-eps">
+          <code>POST /api/v1/print</code>
+          <code>POST /api/v1/print-now</code>
+          <code>GET /api/v1/results</code>
+          <code>GET /api/v1/status</code>
+          <code>GET /api/v1/logs</code>
+          <code>POST /api/v1/watch-folders</code>
+        </div>
+        <p class="api-note">接口默认关闭，在设置中开启后才会监听；也可用 <code style="font-family:ui-monospace,Menlo,monospace;font-size:12.5px">X-API-Token</code> 头代替 Bearer。走的是纯 HTTP，建议只在可信网络里启用。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="sec-light">
   <div class="wrap">
     <div class="spot-head reveal">
       <p class="eyebrow">全部功能</p>
-      <h2>小型办公室的打印利器</h2>
+      <h2>从文件夹到 API，全部覆盖</h2>
     </div>
     <div class="grid">
       {app.features.map(f => (
@@ -145,6 +234,8 @@ const appJsonLd = buildAppJsonLd(app, 'autoprint', 'zh', '/autoprint');
         <h3>macOS 桌面应用</h3>
         <ul>
           <li>监控本地文件夹，自动触发打印</li>
+          <li>本地 HTTP API，AI 与脚本可直接调用</li>
+          <li>Bearer token 鉴权 + 独立审计日志</li>
           <li>支持 PDF、图片和 Office 文档</li>
           <li>可选文档转换引擎</li>
           <li>完整打印日志记录</li>
@@ -159,7 +250,7 @@ const appJsonLd = buildAppJsonLd(app, 'autoprint', 'zh', '/autoprint');
     <div class="reveal">
       <p class="eyebrow">立即获取</p>
       <h2>下载自动打印</h2>
-      <p class="lead">GitHub 免费开源。</p>
+      <p class="lead">GitHub 免费开源，API 不额外收费。</p>
     </div>
     <div class="get-cards" style="grid-template-columns:1fr;max-width:320px;margin-left:auto;margin-right:auto">
       <div class="get-card reveal">
@@ -175,3 +266,27 @@ const appJsonLd = buildAppJsonLd(app, 'autoprint', 'zh', '/autoprint');
 <ProductCrossLinks lang="zh" current="autoprint" />
 
 </Base>
+
+<style is:global>
+.api-layout { display: grid; grid-template-columns: 1fr 1.1fr; gap: 44px; align-items: start; margin-top: 52px; }
+.api-caps { list-style: none; display: grid; gap: 20px; }
+.api-caps li { display: grid; grid-template-columns: 32px 1fr; gap: 10px; align-items: start; }
+.api-caps .ico { font-size: 19px; line-height: 1.5; }
+.api-caps b { display: block; color: #fff; font-size: 15.5px; font-weight: 600; margin-bottom: 4px; }
+.api-caps .tx { color: #aeaeb2; font-size: 14.5px; line-height: 1.7; }
+.api-term { background: #0a0a10; border: 1px solid rgba(255,255,255,.08); border-radius: 20px; overflow: hidden; box-shadow: 0 30px 70px rgba(0,0,0,.5); }
+.api-term-bar { display: flex; align-items: center; gap: 7px; padding: 13px 16px; background: rgba(255,255,255,.03); border-bottom: 1px solid rgba(255,255,255,.06); }
+.api-term-bar i { width: 9px; height: 9px; border-radius: 50%; background: #3a3a44; }
+.api-term-bar em { margin-left: 8px; font-style: normal; font-size: 12px; color: #71717c; letter-spacing: .02em; }
+.api-term pre { margin: 0; padding: 20px 18px; overflow-x: auto; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12.5px; line-height: 1.85; color: #cdd0da; }
+.api-term pre .c { color: #6b6b78; }
+.api-term pre .s { color: #8fd0a8; }
+.api-term pre .f { color: #8fb8ff; }
+.api-eps { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+.api-eps code { font-family: ui-monospace, Menlo, monospace; font-size: 12px; padding: 5px 10px; border-radius: 8px; background: rgba(255,255,255,.06); color: #b0b4c0; border: 1px solid rgba(255,255,255,.05); }
+.api-note { margin-top: 14px; font-size: 13px; color: #7d7d88; line-height: 1.7; }
+@media (max-width: 900px) {
+  .api-layout { grid-template-columns: 1fr; gap: 32px; }
+  .api-term pre { font-size: 11.5px; }
+}
+</style>
